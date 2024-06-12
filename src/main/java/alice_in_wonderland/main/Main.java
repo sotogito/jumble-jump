@@ -1,9 +1,12 @@
 package alice_in_wonderland.main;
 
+import alice_in_wonderland.main.controller.Wonderland;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("이상한 나라의 앨리스");
+        Wonderland wonderland = new Wonderland();
+        wonderland.main();
 
     }
 }
