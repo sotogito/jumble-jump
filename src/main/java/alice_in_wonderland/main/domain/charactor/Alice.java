@@ -13,6 +13,7 @@ public class Alice {
 
     public Alice(NumberMaker numberMaker) {
         this.numberMaker = numberMaker;
+        size = setFirstSize();
     }
 
 
@@ -25,7 +26,11 @@ public class Alice {
         }
     }
 
-    //public setFirstSize
+    private int setFirstSize(){
+        int  FIRST_MIN_SIZE = 6;
+        int FIRST_MAX_SIZE = 9;
+        return numberMaker.generate(FIRST_MIN_SIZE, FIRST_MAX_SIZE);
+    }
 
 
 
