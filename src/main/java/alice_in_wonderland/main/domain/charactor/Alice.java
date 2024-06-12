@@ -26,18 +26,19 @@ public class Alice {
         }
     }
 
-    private int setFirstSize(){
-        int  FIRST_MIN_SIZE = 6;
-        int FIRST_MAX_SIZE = 9;
-        return numberMaker.generate(FIRST_MIN_SIZE, FIRST_MAX_SIZE);
-    }
-
     private int maxSizeAtDrink(){
         return size = MIN_SIZE;
     }
     private int maxSizeAtMushroom(){
         return MAX_SIZE - size;
     }
+
+    private int setFirstSize(){
+        int  FIRST_MIN_SIZE = 6;
+        int FIRST_MAX_SIZE = 9;
+        return numberMaker.generate(FIRST_MIN_SIZE, FIRST_MAX_SIZE);
+    }
+
 
 
 
