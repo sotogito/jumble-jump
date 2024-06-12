@@ -9,10 +9,9 @@ public class Door {
     private final int size;
     private GoOverState goOverState = GoOverState.STAY;
 
-    public Door(NumberMaker numberMaker,int size) {
+    public Door(NumberMaker numberMaker) {
         this.numberMaker = numberMaker;
-        this.size = size;
-        //사이즈 생성해야됨
+        size = setDoorSize();
     }
 
     public boolean getGoOverState() {
@@ -21,5 +20,11 @@ public class Door {
 
     public void setGoOverState(GoOverState goOverState) {
         this.goOverState = goOverState;
+    }
+
+    private int setDoorSize(){
+        int MIN = 2;
+        int MAX = 5;
+        return numberMaker.generate(MIN,MAX);
     }
 }
