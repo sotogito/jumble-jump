@@ -8,4 +8,4 @@
 
 ### 앞으로
 
-1. 출력
+1. GameManager의 toString은 필요 어뵹,ㅡㄹ걱ㅌ다.
