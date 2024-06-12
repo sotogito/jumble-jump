@@ -11,4 +11,23 @@ public enum Item {
         this.name = name;
         this.grow = grow;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean getIsGrow() {
+        return grow;
+    }
+
+    public static boolean findGrowState(String input) {
+        for (Item item : Item.values()) {
+            if (input.equals(item.getName())) {
+                return item.grow;
+            }
+        }
+        throw new IllegalArgumentException("없음");
+    }
+
+
 }

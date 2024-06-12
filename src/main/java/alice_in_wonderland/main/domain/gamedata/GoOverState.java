@@ -16,5 +16,8 @@ public enum GoOverState {
         return isOver;
     }
 
+    public static boolean findGoOverState(String input){
+        return input.equals(GO_OVER.name);
+    }
 
 }
