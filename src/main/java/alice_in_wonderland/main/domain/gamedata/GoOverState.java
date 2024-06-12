@@ -12,5 +12,9 @@ public enum GoOverState {
         this.isOver = isOver;
     }
 
+    public boolean getIsOver(){
+        return isOver;
+    }
+
 
 }

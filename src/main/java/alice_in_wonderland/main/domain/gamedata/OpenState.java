@@ -5,14 +5,14 @@ public enum OpenState {
     CLOSED("closed",false);
 
     private final String name;
-    private final boolean open;
+    private final boolean isOpen;
 
     OpenState(String name, boolean open) {
         this.name = name;
-        this.open = open;
+        this.isOpen = open;
     }
 
     public boolean getOpenState() {
-        return open;
+        return isOpen;
     }
 }
