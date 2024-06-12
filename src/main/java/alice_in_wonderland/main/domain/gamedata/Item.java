@@ -20,10 +20,10 @@ public enum Item {
         return grow;
     }
 
-    public static boolean findGrowState(String input) {
+    public static Item findGrowState(String input) {
         for (Item item : Item.values()) {
             if (input.equals(item.getName())) {
-                return item.grow;
+                return item;
             }
         }
         throw new IllegalArgumentException("없음");

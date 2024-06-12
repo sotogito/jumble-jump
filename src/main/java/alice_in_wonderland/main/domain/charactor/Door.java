@@ -18,4 +18,8 @@ public class Door {
     public boolean getGoOverState() {
         return goOverState.getIsOver();
     }
+
+    public void setGoOverState(GoOverState goOverState) {
+        this.goOverState = goOverState;
+    }
 }

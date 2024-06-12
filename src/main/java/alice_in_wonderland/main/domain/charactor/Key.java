@@ -15,4 +15,8 @@ public class Key {
         return openState.getOpenState();
     }
 
+    public void setOpenState(OpenState openState){
+        this.openState = openState;
+    }
+
 }
