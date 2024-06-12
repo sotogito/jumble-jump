@@ -16,6 +16,7 @@ public class Alice {
     }
 
 
+    //근데 앨리스의 크기가 넘어가지 않을 정도의 숫자여야함
     public void updateSize(Item item){
         if(item == Item.DRINK){
             size += numberMaker.generate(MIN_SIZE, MAX_SIZE);
