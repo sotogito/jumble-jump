@@ -14,6 +14,7 @@ public class InputMatcher {
     public void match(String input, Alice alice, Door door, Key key) {
         //어떤 boolean인지 넘겨애될 거 같은데
         //넘기지 말고 여기서 아예 set을 하자
+        //메시지 출력까지?
         if(isOpen(input)){
             //return true;
             //Key의 상태 변경
