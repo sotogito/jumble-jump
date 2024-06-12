@@ -25,8 +25,7 @@ public class InputMatcher {
             door.setGoOverState(GoOverState.GO_OVER);
             return;
         }
-
-        //alice.updateSize(Item.findGrowState(input));
+        alice.updateSize(Item.findGrowState(input));
     }
 
 
