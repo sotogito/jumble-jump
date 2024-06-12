@@ -11,4 +11,6 @@ public enum GoOverState {
         this.name = name;
         this.isOver = isOver;
     }
+
+
 }

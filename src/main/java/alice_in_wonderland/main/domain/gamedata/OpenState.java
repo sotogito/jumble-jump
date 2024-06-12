@@ -11,4 +11,8 @@ public enum OpenState {
         this.name = name;
         this.open = open;
     }
+
+    public boolean getOpenState() {
+        return open;
+    }
 }
