@@ -19,10 +19,10 @@ public class Alice {
 
     //근데 앨리스의 크기가 넘어가지 않을 정도의 숫자여야함
     public void updateSize(Item item){
-        if(item == Item.DRINK){
-            size += numberMaker.generate(MIN_SIZE, MAX_SIZE);
-        } else if (item == Item.MUSHROOM) {
-            size -= numberMaker.generate(MIN_SIZE, MAX_SIZE);
+        if(item == Item.DRINK){ //커짐
+            size += numberMaker.generate(MIN_SIZE, maxSizeAtDrink());
+        } else if (item == Item.MUSHROOM) { //작아짐
+            size -= numberMaker.generate(MIN_SIZE, maxSizeAtMushroom());
         }
     }
 
@@ -30,6 +30,13 @@ public class Alice {
         int  FIRST_MIN_SIZE = 6;
         int FIRST_MAX_SIZE = 9;
         return numberMaker.generate(FIRST_MIN_SIZE, FIRST_MAX_SIZE);
+    }
+
+    private int maxSizeAtDrink(){
+        return size = MIN_SIZE;
+    }
+    private int maxSizeAtMushroom(){
+        return MAX_SIZE - size;
     }
 
 
