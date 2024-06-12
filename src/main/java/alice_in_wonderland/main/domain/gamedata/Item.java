@@ -1,4 +1,4 @@
-package alice_in_wonderland.main.domain;
+package alice_in_wonderland.main.domain.gamedata;
 
 public enum Item {
     DRINK("음료",true),
