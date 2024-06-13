@@ -26,7 +26,7 @@ public enum Item {
                 return item;
             }
         }
-        throw new IllegalArgumentException("없음");
+        throw new IllegalArgumentException("음료나 버섯이나 open이나 go over 중 하나를 작성해주세요");
     }
 
 
