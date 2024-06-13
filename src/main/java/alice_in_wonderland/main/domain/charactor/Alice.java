@@ -13,30 +13,57 @@ public class Alice {
 
     public Alice(NumberMaker numberMaker) {
         this.numberMaker = numberMaker;
-        size = setFirstSize();
+        size = 9;
+        //size = setFirstSize();
     }
 
 
     //근데 앨리스의 크기가 넘어가지 않을 정도의 숫자여야함
     public void updateSize(Item item){
-        if(item == Item.DRINK){ //커짐
+        if(item == Item.DRINK && size < MAX_SIZE){ //커짐
+            System.out.println("음료를 먹었다");
+            System.out.println("맥스"+maxSizeAtDrink());
+
             size += numberMaker.generate(MIN_SIZE, maxSizeAtDrink());
-        } else if (item == Item.MUSHROOM) { //작아짐
+            return;
+        } else if (item == Item.MUSHROOM && size > MIN_SIZE) { //작아짐
+            System.out.println("버섯을 먹었다");
+            System.out.println("맥스"+maxSizeAtMushroom());
+
             size -= numberMaker.generate(MIN_SIZE, maxSizeAtMushroom());
+            return;
         }
+        isCantChangeSize(item);
     }
 
     private int maxSizeAtDrink(){
-        return size = MIN_SIZE;
-    }
-    private int maxSizeAtMushroom(){
         return MAX_SIZE - size;
     }
+    private int maxSizeAtMushroom(){
+        return size-MIN_SIZE;
+    }
+
+    public void isCantChangeSize(Item item){
+        if(item == Item.DRINK && size == MAX_SIZE){
+            throw new IllegalArgumentException("더이상 커질 수 없어");
+        } else if (item == Item.MUSHROOM && size == MIN_SIZE) {
+            throw new IllegalArgumentException("더이상 작아질 수 없어");
+        }
+    }
+
+
+
+
 
     private int setFirstSize(){
         int  FIRST_MIN_SIZE = 6;
         int FIRST_MAX_SIZE = 9;
         return numberMaker.generate(FIRST_MIN_SIZE, FIRST_MAX_SIZE);
+    }
+
+    @Override
+    public String toString() {
+        return "앨리스 : "+size;
     }
 
 
