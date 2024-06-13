@@ -49,22 +49,21 @@ public class Wonderland {
         }
     }
 
-    private InputMatcher createInputMatcher(GameManager gameManager,Alice alice, Door door, Key key) {
-        while (!gameManager.isOverCount()){
-            try{
-                return new InputMatcher(getUserInput(),alice,door,key);
-            }catch (IllegalArgumentException e) {
-                if(e.getMessage().contains(ErrorMessage.INPUT_ERROR)){
-                    Output.printError(e.getMessage());
-                    continue;
-                }
-                gameManager.decreaseCount();
+    private InputMatcher createInputMatcher(GameManager gameManager, Alice alice, Door door, Key key) {
+        while (!gameManager.isOverCount()) {
+            try {
+                return new InputMatcher(getUserInput(), alice, door, key);
+            } catch (IllegalArgumentException e) {
                 Output.printError(e.getMessage());
-                Output.printAttemptCount(gameManager);
+                if (!e.getMessage().contains(ErrorMessage.INPUT_ERROR)) {
+                    gameManager.decreaseCount();
+                    Output.printAttemptCount(gameManager);
+                }
             }
         }
-        throw new IllegalArgumentException(); //시도 횟수를 초과했을 때
+        throw new IllegalArgumentException("시도 횟수가 초과되었습니다.");
     }
+
 
 
     private String getUserInput(){
