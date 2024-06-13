@@ -26,7 +26,12 @@ public class Wonderland {
 
 
         try{
-            InputMatcher inputMatcher = createInputMatcher(gameManager,alice, door, key);
+            while (!gameManager.isGameOver(key,door)){
+                InputMatcher inputMatcher = createInputMatcher(gameManager,alice, door, key);
+                gameManager.decreaseCount();
+
+            }
+
             System.out.println("성공");
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -40,7 +45,7 @@ public class Wonderland {
     //잘못 입력했을때 = 시도횟수 x
     //다른 오류 = 시도횟수o
     private InputMatcher createInputMatcher(GameManager gameManager,Alice alice, Door door, Key key) {
-        while (!gameManager.isGameOver()){
+        while (!gameManager.isOverCount()){
             try{
                 return new InputMatcher(getUserInput(),alice,door,key);
             }catch (IllegalArgumentException e) {
@@ -48,15 +53,13 @@ public class Wonderland {
                     System.out.println("줄지않아");
                     System.out.println(e.getMessage());
                     continue;
-                    //return createInputMatcher(gameManager,alice,door,key);
                 }
                 System.out.println("줄어");
                 gameManager.decreaseCount();
                 System.out.println(e.getMessage());
-                //return createInputMatcher(gameManager,alice,door,key);
             }
         }
-        throw new IllegalArgumentException("게임이 종료되었습니다.");
+        throw new IllegalArgumentException("시도횟수가 끝났다! 엉엉엉엉엉");
 
     }
 
