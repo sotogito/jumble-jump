@@ -1,6 +1,6 @@
 package alice_in_wonderland.main.domain.charactor;
 
-import alice_in_wonderland.main.domain.gamedata.Item;
+import alice_in_wonderland.main.domain.states.Item;
 import alice_in_wonderland.main.domain.number.NumberMaker;
 import alice_in_wonderland.main.util.message.ErrorMessage;
 import alice_in_wonderland.main.util.message.GameMessage;
@@ -16,15 +16,13 @@ public class Alice {
     private boolean isAtOpenSizeSet = false;
     private boolean isAtGoOverSizeSet = false;
 
-
     public Alice(NumberMaker numberMaker) {
         this.numberMaker = numberMaker;
         size = setFirstSize();
     }
 
-
-    public void updateSize(Item item){
-        if(item == Item.DRINK && size < MAX_SIZE){ //커짐
+    public void updateSize(Item item) {
+        if (item == Item.DRINK && size < MAX_SIZE) { //커짐
             size += numberMaker.generate(MIN_SIZE, maxSizeAtDrink());
             return;
         } else if (item == Item.MUSHROOM && size > MIN_SIZE) { //작아짐
@@ -34,11 +32,12 @@ public class Alice {
         isCantChangeSize(item);
     }
 
-    private int maxSizeAtDrink(){
+    private int maxSizeAtDrink() {
         return MAX_SIZE - size;
     }
-    private int maxSizeAtMushroom(){
-        return size-MIN_SIZE;
+
+    private int maxSizeAtMushroom() {
+        return size - MIN_SIZE;
     }
 
     public void isCantChangeSize(Item item) {
@@ -49,21 +48,22 @@ public class Alice {
         }
     }
 
-    public boolean isBiggerThanKey(int keySize){
-        if (size <= keySize){
+
+    public boolean isBiggerThanKey(int keySize) {
+        if (size <= keySize) {
             throw new IllegalArgumentException(ErrorMessage.CANT_OPEN_WITH_KEY);
         }
         return true;
     }
 
-    public boolean isSmallerThanDoor(int doorSize){
-        if (size > doorSize){
+    public boolean isSmallerThanDoor(int doorSize) {
+        if (size > doorSize) {
             throw new IllegalArgumentException(ErrorMessage.CANT_GO_OVER_BIG);
         }
-        if (size < doorSize-1){
+        if (size < doorSize - 1) {
             throw new IllegalArgumentException(ErrorMessage.CANT_GO_OVER_SMALL);
         }
-        return size == doorSize || size == doorSize-1;
+        return size == doorSize || size == doorSize - 1;
     }
 
     public void setAtOpenSize() {
@@ -72,31 +72,32 @@ public class Alice {
             isAtOpenSizeSet = true;
         }
     }
-    public int getAtOpenSize() {
-        return atOpenSize;
-    }
+
     public void setAtGoOverSize() {
         if (!isAtGoOverSizeSet) {
             atGoOverSize = size;
             isAtGoOverSizeSet = true;
         }
     }
-    public int getAtGoOverSize(){
+
+    public int getAtOpenSize() {
+        return atOpenSize;
+    }
+
+    public int getAtGoOverSize() {
         return atGoOverSize;
     }
 
-
-    private int setFirstSize(){
-        int  FIRST_MIN_SIZE = 6;
+    private int setFirstSize() {
+        int FIRST_MIN_SIZE = 6;
         int FIRST_MAX_SIZE = 9;
         return numberMaker.generate(FIRST_MIN_SIZE, FIRST_MAX_SIZE);
     }
 
-
     @Override
     public String toString() {
         String name = "앨리스";
-        return String.format(GameMessage.SIZE, name,size);
+        return String.format(GameMessage.SIZE, name, size);
     }
 
 }

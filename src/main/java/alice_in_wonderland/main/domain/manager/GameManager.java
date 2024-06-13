@@ -7,31 +7,30 @@ import alice_in_wonderland.main.util.message.GameMessage;
 public class GameManager {
     private final static int TOTAL_COUNT = 5;
     private static int counter = TOTAL_COUNT; //static??
-    //private final int
 
     public int getTotalCount() {
         return counter;
     }
 
-    public void decreaseCount(){
+    public void decreaseCount() {
         counter--;
     }
 
-    public boolean isOverCount(){
+    public boolean isOverCount() {
         return counter <= 0;
     }
 
-    public boolean isGameOver(Key key, Door door){
-        return key.getOpenState() &&door.getGoOverState();
+    public boolean isGameOver(Key key, Door door) {
+        return key.getOpenState() && door.getGoOverState();
     }
 
-    public int getAttemptCount(){
+    public int getAttemptCount() {
         return TOTAL_COUNT - counter;
     }
 
     @Override
     public String toString() {
-        if (isOverCount()){
+        if (isOverCount()) {
             return GameMessage.END_ATTEMPT_COUNT;
         }
         return String.format(GameMessage.REMAINING_COUNTER, counter);

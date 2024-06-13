@@ -1,6 +1,7 @@
 package alice_in_wonderland.main.view;
 
 import alice_in_wonderland.main.util.message.GameMessage;
+
 import java.util.Scanner;
 
 public class Input {

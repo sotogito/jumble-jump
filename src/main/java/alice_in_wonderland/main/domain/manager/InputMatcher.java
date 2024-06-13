@@ -3,16 +3,16 @@ package alice_in_wonderland.main.domain.manager;
 import alice_in_wonderland.main.domain.charactor.Alice;
 import alice_in_wonderland.main.domain.charactor.Door;
 import alice_in_wonderland.main.domain.charactor.Key;
-import alice_in_wonderland.main.domain.gamedata.GoOverState;
-import alice_in_wonderland.main.domain.gamedata.Item;
-import alice_in_wonderland.main.domain.gamedata.OpenState;
+import alice_in_wonderland.main.domain.states.GoOverState;
+import alice_in_wonderland.main.domain.states.Item;
+import alice_in_wonderland.main.domain.states.OpenState;
 
 
 public class InputMatcher {
 
     public InputMatcher(String input, Alice alice, Door door, Key key) {
         if (isOpen(input)) {
-            if(key.isCanOpen(alice)){
+            if (key.isCanOpen(alice)) {
                 key.setOpenState(OpenState.OPEN);
                 alice.setAtOpenSize();
             }

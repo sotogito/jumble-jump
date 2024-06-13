@@ -1,10 +1,10 @@
-package alice_in_wonderland.main.domain.gamedata;
+package alice_in_wonderland.main.domain.states;
 
 import alice_in_wonderland.main.util.message.ErrorMessage;
 
 public enum Item {
-    DRINK("음료",true),
-    MUSHROOM("버섯",false);
+    DRINK("음료", true),
+    MUSHROOM("버섯", false);
 
     private final String name;
     private final boolean grow;
@@ -30,6 +30,5 @@ public enum Item {
         }
         throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
     }
-
 
 }

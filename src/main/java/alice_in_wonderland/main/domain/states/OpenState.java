@@ -1,8 +1,8 @@
-package alice_in_wonderland.main.domain.gamedata;
+package alice_in_wonderland.main.domain.states;
 
 public enum OpenState {
-    OPEN("open",true),
-    CLOSED("closed",false);
+    OPEN("open", true),
+    CLOSED("closed", false);
 
     private final String name;
     private final boolean isOpen;
@@ -20,7 +20,7 @@ public enum OpenState {
         return name;
     }
 
-    public static boolean findOpenState(String input){
+    public static boolean findOpenState(String input) {
         return input.equals(OPEN.name);
     }
 

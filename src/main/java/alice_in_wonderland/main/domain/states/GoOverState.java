@@ -1,8 +1,8 @@
-package alice_in_wonderland.main.domain.gamedata;
+package alice_in_wonderland.main.domain.states;
 
 public enum GoOverState {
-    GO_OVER("go over",true),
-    STAY("stay",false);
+    GO_OVER("go over", true),
+    STAY("stay", false);
 
     private final String name;
     private final boolean isOver;
@@ -12,7 +12,7 @@ public enum GoOverState {
         this.isOver = isOver;
     }
 
-    public boolean getIsOver(){
+    public boolean getIsOver() {
         return isOver;
     }
 
@@ -20,7 +20,7 @@ public enum GoOverState {
         return name;
     }
 
-    public static boolean findGoOverState(String input){
+    public static boolean findGoOverState(String input) {
         return input.equals(GO_OVER.name);
     }
 
