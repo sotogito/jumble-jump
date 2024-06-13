@@ -31,7 +31,7 @@ public class Wonderland {
                 InputMatcher inputMatcher = createInputMatcher(gameManager,alice, door, key);
                 gameManager.decreaseCount();
                 if (gameManager.isGameOver(key,door)){
-                    Output.printSuccess(gameManager,alice,door,key);
+                    Output.printSuccess(gameManager,alice);
                     break;
                 }
                 Output.printAttemptCount(gameManager);

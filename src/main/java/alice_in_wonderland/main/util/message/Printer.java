@@ -22,7 +22,7 @@ public class Printer {
                         Item.MUSHROOM.getName(),Item.MUSHROOM.getName() );
     }
 
-    public static String success(GameManager gameManager, Alice alice, Door door, Key key){
+    public static String success(GameManager gameManager, Alice alice){
         return String.format("%d번만에 성공하셨습니다\n",gameManager.getAttemptCount())+
                 alice+ "\n"+
                 String.format("앨리스의 크기가 %d일때 문을 열었어요.\n",alice.getAtOpenSize())+

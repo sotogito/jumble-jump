@@ -24,10 +24,10 @@ public class Output {
         System.out.println(alice);
     }
 
-    public static void printSuccess(GameManager gameManager, Alice alice, Door door, Key key){
+    public static void printSuccess(GameManager gameManager, Alice alice){
         System.out.println();
         System.out.println();
-        System.out.println(Printer.success(gameManager, alice, door, key));
+        System.out.println(Printer.success(gameManager, alice));
     }
 
     public static void printFail(Alice alice, Door door){
