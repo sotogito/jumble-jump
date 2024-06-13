@@ -23,18 +23,29 @@ public class Wonderland {
         GameManager gameManager = new GameManager();
         Output.printSizeAndAttemptCount(gameManager,key,door,alice);
 
-        try{
-            while (true){
-                InputMatcher inputMatcher = createInputMatcher(gameManager,alice, door, key);
+
+        boolean isGameEnd = gameLoop(gameManager,key,door,alice);
+        if (isGameEnd){
+            Output.printSuccess(gameManager,alice);
+            return;
+        }
+        Output.printFail(alice,door);
+
+
+    }
+
+    private boolean gameLoop(GameManager gameManager,Key key, Door door, Alice alice){
+        try {
+            while (true) {
+                InputMatcher inputMatcher = createInputMatcher(gameManager, alice, door, key);
                 gameManager.decreaseCount();
-                if (gameManager.isGameOver(key,door)){
-                    Output.printSuccess(gameManager,alice);
-                    break;
+                if (gameManager.isGameOver(key, door)) {
+                    return true;
                 }
-                Output.printSizeAndAttemptCount(gameManager,key,door,alice);
+                Output.printSizeAndAttemptCount(gameManager, key, door, alice);
             }
-        }catch (IllegalArgumentException e){
-            Output.printFail(alice,door);
+        } catch (IllegalArgumentException e) {
+            return false;
         }
     }
 
