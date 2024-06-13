@@ -21,8 +21,7 @@ public class Wonderland {
         Door door = createDoor();
         Key key = createKey();
         GameManager gameManager = new GameManager();
-        Output.printAttemptCount(gameManager);
-        Output.printCharacterSize(key,door,alice);
+        Output.printSizeAndAttemptCount(gameManager,key,door,alice);
 
         try{
             while (true){
@@ -32,16 +31,13 @@ public class Wonderland {
                     Output.printSuccess(gameManager,alice);
                     break;
                 }
-                Output.printAttemptCount(gameManager);
-                Output.printCharacterSize(key,door,alice);
+                Output.printSizeAndAttemptCount(gameManager,key,door,alice);
             }
         }catch (IllegalArgumentException e){
             Output.printFail(alice,door);
         }
     }
 
-    //잘못 입력했을때 = 시도횟수 x
-    //다른 오류 = 시도횟수o
     private InputMatcher createInputMatcher(GameManager gameManager,Alice alice, Door door, Key key) {
         while (!gameManager.isOverCount()){
             try{

@@ -23,6 +23,11 @@ public class Output {
         System.out.println(alice);
     }
 
+    public static void printSizeAndAttemptCount(GameManager gameManager,Key key, Door door, Alice alice) {
+        printAttemptCount(gameManager);
+        printCharacterSize(key, door, alice);
+    }
+
     public static void printSuccess(GameManager gameManager, Alice alice) {
         System.out.println();
         System.out.println();
