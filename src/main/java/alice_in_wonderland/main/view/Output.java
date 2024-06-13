@@ -8,6 +8,10 @@ import alice_in_wonderland.main.util.message.Printer;
 
 public class Output {
 
+    public static void printError(String error) {
+        System.out.print("\nOops... " + error+"\n");
+    }
+
     public static void printGameIntro() {
         System.out.println(Printer.intro());
     }

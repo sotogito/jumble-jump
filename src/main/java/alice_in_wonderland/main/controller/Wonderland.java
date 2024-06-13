@@ -55,11 +55,11 @@ public class Wonderland {
                 return new InputMatcher(getUserInput(),alice,door,key);
             }catch (IllegalArgumentException e) {
                 if(e.getMessage().contains(ErrorMessage.INPUT_ERROR)){
-                    System.out.println("\n"+e.getMessage());
+                    Output.printError(e.getMessage());
                     continue;
                 }
                 gameManager.decreaseCount();
-                System.out.println("\n"+e.getMessage());
+                Output.printError(e.getMessage());
                 Output.printAttemptCount(gameManager);
             }
         }
