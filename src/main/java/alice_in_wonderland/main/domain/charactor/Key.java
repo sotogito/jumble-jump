@@ -6,9 +6,6 @@ public class Key {
     private final int size = 3;
     private OpenState openState = OpenState.CLOSED;
 
-    public int getSize(){
-        return size;
-    }
 
     //문이 열려있는지 확인한다.
     public boolean getOpenState() {
@@ -17,6 +14,11 @@ public class Key {
 
     public void setOpenState(OpenState openState){
         this.openState = openState;
+    }
+
+    @Override
+    public String toString() {
+        return "키 : "+size;
     }
 
 }

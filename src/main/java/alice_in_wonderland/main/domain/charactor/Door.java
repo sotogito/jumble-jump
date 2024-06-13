@@ -27,4 +27,10 @@ public class Door {
         int MAX = 5;
         return numberMaker.generate(MIN,MAX);
     }
+
+    @Override
+    public String toString() {
+        return "문 : "+size;
+    }
+
 }
