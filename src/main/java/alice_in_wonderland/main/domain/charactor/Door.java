@@ -18,7 +18,10 @@ public class Door {
         return goOverState.getIsOver();
     }
 
-    public void setGoOverState(GoOverState goOverState) {
+    public void setGoOverState(GoOverState goOverState,Key key) {
+        if (!key.getOpenState()){
+            throw new IllegalArgumentException("키로 문 먼저 열어야해!");
+        }
         this.goOverState = goOverState;
     }
 

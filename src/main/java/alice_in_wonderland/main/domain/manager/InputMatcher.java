@@ -23,7 +23,7 @@ public class InputMatcher {
         } else if (isGoOver(input)) {
            //return true;
             //Door의 상태 변경
-            door.setGoOverState(GoOverState.GO_OVER);
+            door.setGoOverState(GoOverState.GO_OVER,key);
             return;
         }
         alice.updateSize(Item.findGrowState(input));
