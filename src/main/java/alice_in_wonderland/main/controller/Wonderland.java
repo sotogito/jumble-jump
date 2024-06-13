@@ -29,12 +29,18 @@ public class Wonderland {
             while (!gameManager.isGameOver(key,door)){
                 InputMatcher inputMatcher = createInputMatcher(gameManager,alice, door, key);
                 gameManager.decreaseCount();
+                Output.printAttemptCount(gameManager);
                 Output.printCharacterSize(key,door,alice);
             }
-            System.out.println("성공");
+            System.out.println("여기는 성공했을때만 ?");
         }catch (IllegalArgumentException e){
-            System.out.println("\n"+e.getMessage());
+            //시도횟수 통과 못했을땐가?
+            System.out.println("여기는 실패했을때만 ?");
         }
+
+
+
+
 
         System.out.println("끝났다.");
 
@@ -54,9 +60,10 @@ public class Wonderland {
                 }
                 gameManager.decreaseCount();
                 System.out.println("\n"+e.getMessage());
+                Output.printAttemptCount(gameManager);
             }
         }
-        throw new IllegalArgumentException("시도횟수가 끝났다! 엉엉엉엉엉");
+        throw new IllegalArgumentException(); //시도 횟수를 초과했을 때
     }
 
 
