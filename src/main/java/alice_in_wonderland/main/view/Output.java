@@ -5,6 +5,7 @@ import alice_in_wonderland.main.domain.charactor.Door;
 import alice_in_wonderland.main.domain.charactor.Key;
 import alice_in_wonderland.main.domain.manager.GameManager;
 import alice_in_wonderland.main.util.message.GameMessage;
+import alice_in_wonderland.main.util.message.Printer;
 
 public class Output {
 
@@ -21,6 +22,18 @@ public class Output {
         System.out.println(key);
         System.out.println(door);
         System.out.println(alice);
+    }
+
+    public static void printSuccess(GameManager gameManager, Alice alice, Door door, Key key){
+        System.out.println();
+        System.out.println();
+        System.out.println(Printer.success(gameManager, alice, door, key));
+    }
+
+    public static void printFail(Alice alice, Door door){
+        System.out.println();
+        System.out.println();
+        System.out.println(Printer.fail(alice, door));
     }
 
 

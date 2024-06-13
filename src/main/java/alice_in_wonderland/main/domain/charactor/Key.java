@@ -5,6 +5,7 @@ import alice_in_wonderland.main.domain.gamedata.OpenState;
 public class Key {
     private final int size = 3;
     private OpenState openState = OpenState.CLOSED;
+    private int atOpenAliceSize;
 
 
     //문이 열려있는지 확인한다.
