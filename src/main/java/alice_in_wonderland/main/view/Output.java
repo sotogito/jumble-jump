@@ -10,7 +10,7 @@ import alice_in_wonderland.main.util.message.Printer;
 public class Output {
 
     public static void printGameIntro(){
-        System.out.println(GameMessage.intro());
+        System.out.println(Printer.intro());
     }
 
     public static void printAttemptCount(GameManager gameManager){
