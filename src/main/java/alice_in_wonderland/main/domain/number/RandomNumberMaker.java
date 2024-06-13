@@ -6,6 +6,9 @@ public class RandomNumberMaker implements NumberMaker {
 
     @Override
     public int generate(int min, int max) {
+        if (min == max){
+            return 1;
+        }
         return random.nextInt(max - min) + min;
     }
 }
