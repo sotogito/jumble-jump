@@ -20,9 +20,10 @@ public class Wonderland {
         Alice alice = createAlice();
         Door door = createDoor();
         Key key = createKey();
+        GameManager gameManager = new GameManager();
+        Output.printAttemptCount(gameManager);
         Output.printCharacterSize(key,door,alice);
 
-        GameManager gameManager = new GameManager();
 
 
         try{
