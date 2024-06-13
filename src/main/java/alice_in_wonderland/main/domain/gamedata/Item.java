@@ -1,5 +1,7 @@
 package alice_in_wonderland.main.domain.gamedata;
 
+import alice_in_wonderland.main.util.message.ErrorMessage;
+
 public enum Item {
     DRINK("음료",true),
     MUSHROOM("버섯",false);
@@ -26,7 +28,7 @@ public enum Item {
                 return item;
             }
         }
-        throw new IllegalArgumentException("음료나 버섯이나 open이나 go over 중 하나를 작성해주세요");
+        throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
     }
 
 

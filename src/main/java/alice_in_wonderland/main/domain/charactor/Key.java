@@ -16,6 +16,14 @@ public class Key {
         this.openState = openState;
     }
 
+    public boolean isCanOpen(Alice alice){
+        try{
+            return alice.isBiggerThanKey(size);
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
     @Override
     public String toString() {
         return "키 : "+size;

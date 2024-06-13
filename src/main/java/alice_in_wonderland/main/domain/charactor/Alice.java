@@ -13,8 +13,8 @@ public class Alice {
 
     public Alice(NumberMaker numberMaker) {
         this.numberMaker = numberMaker;
-        size = 9;
-        //size = setFirstSize();
+        //size = 2;
+        size = setFirstSize();
     }
 
 
@@ -43,14 +43,30 @@ public class Alice {
         return size-MIN_SIZE;
     }
 
-    public void isCantChangeSize(Item item){
-        if(item == Item.DRINK && size == MAX_SIZE){
+    public void isCantChangeSize(Item item) {
+        if (item == Item.DRINK && size == MAX_SIZE) {
             throw new IllegalArgumentException("더이상 커질 수 없어");
         } else if (item == Item.MUSHROOM && size == MIN_SIZE) {
             throw new IllegalArgumentException("더이상 작아질 수 없어");
         }
     }
 
+    public boolean isBiggerThanKey(int keySize){
+        if (size <= keySize){
+            throw new IllegalArgumentException("키가 너무 무거워서 들수 없어!");
+        }
+        return keySize < size;
+    }
+
+    public boolean isSmallerThanDoor(int doorSize){
+        if (size > doorSize){
+            throw new IllegalArgumentException("문을 넘어가기에는 내가 너무 커");
+        }
+        if (size < doorSize-1){
+            throw new IllegalArgumentException("문을 넘어가기에는 내가 너무 작아");
+        }
+        return size == doorSize || size == doorSize-1;
+    }
 
 
 
