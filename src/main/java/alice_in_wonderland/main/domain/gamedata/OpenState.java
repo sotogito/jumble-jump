@@ -16,6 +16,10 @@ public enum OpenState {
         return isOpen;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static boolean findOpenState(String input){
         return input.equals(OPEN.name);
     }
