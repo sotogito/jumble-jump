@@ -8,7 +8,6 @@ import alice_in_wonderland.main.domain.manager.InputMatcher;
 import alice_in_wonderland.main.domain.number.NumberMaker;
 import alice_in_wonderland.main.domain.number.RandomNumberMaker;
 import alice_in_wonderland.main.util.message.ErrorMessage;
-import alice_in_wonderland.main.util.message.GameMessage;
 import alice_in_wonderland.main.view.Input;
 import alice_in_wonderland.main.view.Output;
 
@@ -64,8 +63,6 @@ public class Wonderland {
         throw new IllegalArgumentException("시도 횟수가 초과되었습니다.");
     }
 
-
-
     private String getUserInput(){
         return Input.inputUser();
     }
@@ -84,8 +81,6 @@ public class Wonderland {
     private Key createKey(){
         return new Key();
     }
-
-
 
 
 }
