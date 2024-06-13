@@ -20,11 +20,13 @@ public class InputMatcher {
             if (isOpen(input)) {
                 if(key.isCanOpen(alice)){
                     key.setOpenState(OpenState.OPEN);
+                    alice.setAtOpenSize();
                 }
                 return;
             } else if (isGoOver(input)) {
                 if (door.isAlreadyOpenDoor(key) && door.isCanGoOver(alice)) { //크기가 알맞지 않으면 오류
                     door.setGoOverState(GoOverState.GO_OVER);
+                    alice.setAtGoOverSize();
                 }
                 return;
             }

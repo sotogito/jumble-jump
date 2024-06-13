@@ -9,6 +9,10 @@ public class Alice {
     private final NumberMaker numberMaker;
 
     private int size = 0;
+    private int atOpenSize = -1;
+    private int atGoOverSize = -1;
+    private boolean isAtOpenSizeSet = false;   // 플래그를 추가하여 값이 설정되었는지 추적
+    private boolean isAtGoOverSizeSet = false;
 
 
     public Alice(NumberMaker numberMaker) {
@@ -21,15 +25,9 @@ public class Alice {
     //근데 앨리스의 크기가 넘어가지 않을 정도의 숫자여야함
     public void updateSize(Item item){
         if(item == Item.DRINK && size < MAX_SIZE){ //커짐
-            System.out.println("음료를 먹었다");
-            System.out.println("맥스"+maxSizeAtDrink());
-
             size += numberMaker.generate(MIN_SIZE, maxSizeAtDrink());
             return;
         } else if (item == Item.MUSHROOM && size > MIN_SIZE) { //작아짐
-            System.out.println("버섯을 먹었다");
-            System.out.println("맥스"+maxSizeAtMushroom());
-
             size -= numberMaker.generate(MIN_SIZE, maxSizeAtMushroom());
             return;
         }
@@ -55,7 +53,7 @@ public class Alice {
         if (size <= keySize){
             throw new IllegalArgumentException("키가 너무 무거워서 들수 없어!");
         }
-        return keySize < size;
+        return true;
     }
 
     public boolean isSmallerThanDoor(int doorSize){
@@ -66,6 +64,25 @@ public class Alice {
             throw new IllegalArgumentException("문을 넘어가기에는 내가 너무 작아");
         }
         return size == doorSize || size == doorSize-1;
+    }
+
+    public void setAtOpenSize() {
+        if (!isAtOpenSizeSet) {
+            atOpenSize = size;
+            isAtOpenSizeSet = true;
+        }
+    }
+    public int getAtOpenSize() {
+        return atOpenSize;
+    }
+    public void setAtGoOverSize() {
+        if (!isAtGoOverSizeSet) {
+            atGoOverSize = size;
+            isAtGoOverSizeSet = true;
+        }
+    }
+    public int getAtGoOverSize(){
+        return atGoOverSize;
     }
 
 
