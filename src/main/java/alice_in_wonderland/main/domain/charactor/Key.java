@@ -1,11 +1,11 @@
 package alice_in_wonderland.main.domain.charactor;
 
 import alice_in_wonderland.main.domain.gamedata.OpenState;
+import alice_in_wonderland.main.util.message.GameMessage;
 
 public class Key {
     private final int size = 3;
     private OpenState openState = OpenState.CLOSED;
-    private int atOpenAliceSize;
 
 
     //문이 열려있는지 확인한다.
@@ -27,7 +27,8 @@ public class Key {
 
     @Override
     public String toString() {
-        return "키의 크기 : "+size;
+        String name = "키";
+        return String.format(GameMessage.SIZE, name,size);
     }
 
 }

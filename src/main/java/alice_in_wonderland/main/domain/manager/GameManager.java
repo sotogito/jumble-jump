@@ -2,6 +2,7 @@ package alice_in_wonderland.main.domain.manager;
 
 import alice_in_wonderland.main.domain.charactor.Door;
 import alice_in_wonderland.main.domain.charactor.Key;
+import alice_in_wonderland.main.util.message.GameMessage;
 
 public class GameManager {
     private final static int TOTAL_COUNT = 5;
@@ -31,12 +32,9 @@ public class GameManager {
     @Override
     public String toString() {
         if (isOverCount()){
-            return "시도 횟수가 끝났다!!";
+            return GameMessage.END_ATTEMPT_COUNT;
         }
-        return String.format("시도 횟수는 %d번 남았습니다.", counter);
+        return String.format(GameMessage.REMAINING_COUNTER, counter);
     }
-
-
-
 
 }

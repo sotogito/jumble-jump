@@ -2,9 +2,10 @@ package alice_in_wonderland.main.domain.charactor;
 
 import alice_in_wonderland.main.domain.gamedata.GoOverState;
 import alice_in_wonderland.main.domain.number.NumberMaker;
+import alice_in_wonderland.main.util.message.ErrorMessage;
+import alice_in_wonderland.main.util.message.GameMessage;
 
 public class Door {
-
     private final NumberMaker numberMaker;
     private final int size;
     private GoOverState goOverState = GoOverState.STAY;
@@ -20,7 +21,7 @@ public class Door {
 
     public boolean isAlreadyOpenDoor(Key key){
         if (!key.getOpenState()){
-            throw new IllegalArgumentException("키로 문 먼저 열어야해!"); //키가 던져야하는 메시지인가?
+            throw new IllegalArgumentException(ErrorMessage.CANT_GO_OVER_NOT_YET_OPEN); //키가 던져야하는 메시지인가?
         }
         return true;
     }
@@ -45,7 +46,8 @@ public class Door {
 
     @Override
     public String toString() {
-        return "문의 크기 : "+size;
+        String name = "문";
+        return String.format(GameMessage.SIZE, name,size);
     }
 
 }

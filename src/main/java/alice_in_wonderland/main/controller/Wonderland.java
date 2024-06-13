@@ -24,8 +24,6 @@ public class Wonderland {
         Output.printAttemptCount(gameManager);
         Output.printCharacterSize(key,door,alice);
 
-
-
         try{
             while (true){
                 InputMatcher inputMatcher = createInputMatcher(gameManager,alice, door, key);
@@ -40,13 +38,6 @@ public class Wonderland {
         }catch (IllegalArgumentException e){
             Output.printFail(alice,door);
         }
-
-
-
-
-        System.out.println("끝났다.");
-
-
     }
 
     //잘못 입력했을때 = 시도횟수 x
@@ -67,8 +58,6 @@ public class Wonderland {
         }
         throw new IllegalArgumentException(); //시도 횟수를 초과했을 때
     }
-
-
 
 
     private String getUserInput(){
