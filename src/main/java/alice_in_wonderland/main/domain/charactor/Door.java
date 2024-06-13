@@ -45,7 +45,7 @@ public class Door {
 
     @Override
     public String toString() {
-        return "문 : "+size;
+        return "문의 크기 : "+size;
     }
 
 }

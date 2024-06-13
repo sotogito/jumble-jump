@@ -26,7 +26,7 @@ public class Key {
 
     @Override
     public String toString() {
-        return "키 : "+size;
+        return "키의 크기 : "+size;
     }
 
 }

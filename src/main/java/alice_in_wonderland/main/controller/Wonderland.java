@@ -20,7 +20,7 @@ public class Wonderland {
         Alice alice = createAlice();
         Door door = createDoor();
         Key key = createKey();
-        System.out.println("처음"+alice);
+        Output.printCharacterSize(key,door,alice);
 
         GameManager gameManager = new GameManager();
 
@@ -29,12 +29,11 @@ public class Wonderland {
             while (!gameManager.isGameOver(key,door)){
                 InputMatcher inputMatcher = createInputMatcher(gameManager,alice, door, key);
                 gameManager.decreaseCount();
-
+                Output.printCharacterSize(key,door,alice);
             }
-
             System.out.println("성공");
         }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            System.out.println("\n"+e.getMessage());
         }
 
         System.out.println("끝났다.");
@@ -50,17 +49,14 @@ public class Wonderland {
                 return new InputMatcher(getUserInput(),alice,door,key);
             }catch (IllegalArgumentException e) {
                 if(e.getMessage().contains(ErrorMessage.INPUT_ERROR)){
-                    System.out.println("줄지않아");
-                    System.out.println(e.getMessage());
+                    System.out.println("\n"+e.getMessage());
                     continue;
                 }
-                System.out.println("줄어");
                 gameManager.decreaseCount();
-                System.out.println(e.getMessage());
+                System.out.println("\n"+e.getMessage());
             }
         }
         throw new IllegalArgumentException("시도횟수가 끝났다! 엉엉엉엉엉");
-
     }
 
 

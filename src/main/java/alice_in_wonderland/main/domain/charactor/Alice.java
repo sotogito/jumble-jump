@@ -79,7 +79,7 @@ public class Alice {
 
     @Override
     public String toString() {
-        return "앨리스 : "+size;
+        return "앨리스의 크기 : "+size;
     }
 
 
