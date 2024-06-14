@@ -16,6 +16,16 @@ public class Door {
         size = setDoorSize();
     }
 
+    public void changeGoOverState() {
+        goOverState = GoOverState.GO_OVER;
+    }
+
+
+
+
+
+
+
     public boolean getGoOverState() {
         return goOverState.getIsOver();
     }
