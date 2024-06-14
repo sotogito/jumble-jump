@@ -12,7 +12,7 @@ public class GameManager {
         return counter;
     }
 
-    public void decreaseCount() {
+    public static void decreaseCount() {
         counter--;
     }
 

@@ -22,8 +22,8 @@ public class WonderlandDevelop {
         Door door = new Door(numberMaker);
         Key key = new Key();
 
-        InputManager inputManager = new InputManager(alice, door, key);
         GameManager gameManager = new GameManager();
+        InputManager inputManager = new InputManager(alice, door, key);
 
         Output.printSizeAndAttemptCount(gameManager,key,door,alice);
         boolean isGameEnd = gameLoop(inputManager,gameManager,key,door,alice);
@@ -41,7 +41,6 @@ public class WonderlandDevelop {
         while (!gameManager.isOverCount()){
             try{
                 inputManager.registerCommand(getInput());
-                gameManager.decreaseCount();
                 Output.printSizeAndAttemptCount(gameManager, key, door, alice);
             }catch (IllegalArgumentException e){
                 if(e.getMessage().contains("성공")) {
@@ -49,7 +48,6 @@ public class WonderlandDevelop {
                 }
                 Output.printError(e.getMessage());
                 if (!e.getMessage().contains(ErrorMessage.INPUT_ERROR)){
-                    gameManager.decreaseCount();
                     Output.printAttemptCount(gameManager);
                 }
             }

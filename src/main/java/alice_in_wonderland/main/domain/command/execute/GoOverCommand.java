@@ -11,7 +11,6 @@ public class GoOverCommand implements Command {
     private final Door door;
     private final Key key;
     private final Alice alice;
-   //private final GameManager gameManager;
 
     public GoOverCommand(Door door, Key key,Alice alice) {
         this.door = door;

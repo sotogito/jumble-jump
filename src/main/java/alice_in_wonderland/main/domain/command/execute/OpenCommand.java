@@ -3,6 +3,7 @@ package alice_in_wonderland.main.domain.command.execute;
 import alice_in_wonderland.main.domain.charactor.Alice;
 import alice_in_wonderland.main.domain.charactor.Key;
 import alice_in_wonderland.main.domain.command.Command;
+import alice_in_wonderland.main.domain.manager.GameManager;
 import alice_in_wonderland.main.util.message.ErrorMessage;
 
 public class OpenCommand implements Command {

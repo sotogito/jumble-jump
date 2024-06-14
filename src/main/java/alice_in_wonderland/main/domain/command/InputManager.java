@@ -7,6 +7,7 @@ import alice_in_wonderland.main.domain.command.execute.DrinkCommand;
 import alice_in_wonderland.main.domain.command.execute.GoOverCommand;
 import alice_in_wonderland.main.domain.command.execute.MushroomCommand;
 import alice_in_wonderland.main.domain.command.execute.OpenCommand;
+import alice_in_wonderland.main.domain.manager.GameManager;
 import alice_in_wonderland.main.util.message.ErrorMessage;
 
 import java.util.HashMap;
@@ -18,12 +19,13 @@ public class InputManager {
     private final Map<String, Command> commands = new HashMap<>();
 
     public InputManager(Alice alice, Door door, Key key) {
-        initCommandsMap(alice, door, key);
+        initCommandsMap(alice,door, key);
     }
 
     public void registerCommand(String input) {
         Command command = commands.get(input);
         if (command != null) {
+            GameManager.decreaseCount();
             command.execute();
             return;
         }
