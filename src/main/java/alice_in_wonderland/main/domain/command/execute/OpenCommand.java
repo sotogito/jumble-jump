@@ -18,6 +18,7 @@ public class OpenCommand implements Command {
     public void execute() {
         if(alice.aliceIsBiggerThanKey(key.getSize())){
             key.changeOpenState();
+            alice.setAtOpenSize();
             return;
         }
         throw new IllegalArgumentException(ErrorMessage.CANT_OPEN_WITH_KEY);
