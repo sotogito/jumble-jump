@@ -36,6 +36,11 @@ public class Alice {
     }
 
 
+    public boolean aliceIsBiggerThanKey(int keySize){
+        return size > keySize;
+    }
+
+
 
 
 
