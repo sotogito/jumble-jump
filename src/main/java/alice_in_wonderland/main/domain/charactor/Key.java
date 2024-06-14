@@ -8,7 +8,12 @@ public class Key {
     private OpenState openState = OpenState.CLOSED;
 
     public void changeOpenState() {
+
         openState = OpenState.OPEN;
+    }
+
+    public int getSize(){
+        return size;
     }
 
 
