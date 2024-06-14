@@ -22,11 +22,17 @@ public class Alice {
     }
 
     public void growSize(){
-        size += numberMaker.generate(MIN_SIZE, maxSizeAtDrink());
+        if (size < MAX_SIZE){
+            size += numberMaker.generate(MIN_SIZE, maxSizeAtDrink());
+        }
+        throw new IllegalArgumentException(ErrorMessage.ALICE_SIZE_LIMIT_MAX);
     }
 
     public void reduceSize(){
-        size -= numberMaker.generate(MIN_SIZE, maxSizeAtMushroom());
+        if (size > MIN_SIZE){
+            size -= numberMaker.generate(MIN_SIZE, maxSizeAtMushroom());
+        }
+        throw new IllegalArgumentException(ErrorMessage.ALICE_SIZE_LIMIT_MIN);
     }
 
 
