@@ -20,14 +20,23 @@ public class GoOverCommand implements Command {
 
     @Override
     public void execute() {
-        if(key.getOpenState()){
-            door.changeGoOverState();
-            alice.setAtGoOverSize();
+        if(checkState()){
             if(door.getGoOverState() && key.getOpenState()){
                 throw new IllegalArgumentException("성공");
             }
         }
         throw new IllegalArgumentException(ErrorMessage.CANT_GO_OVER_NOT_YET_OPEN);
+    }
+
+    private boolean checkState(){
+        if(key.getOpenState()) {
+            if (alice.isSmallerThanDoor(door.getSize())) {
+                door.changeGoOverState();
+                alice.setAtGoOverSize();
+                return true;
+            }
+        }
+        return false;
     }
 
 }
