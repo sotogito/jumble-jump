@@ -28,11 +28,7 @@ public class Door {
     }
 
     public boolean isCanGoOver(Alice alice) {
-        try {
-            return alice.isSmallerThanDoor(size);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
-        }
+        return alice.isSmallerThanDoor(size);
     }
 
     public void setGoOverState(GoOverState goOverState) {

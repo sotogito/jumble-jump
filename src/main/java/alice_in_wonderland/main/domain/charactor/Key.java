@@ -17,11 +17,7 @@ public class Key {
     }
 
     public boolean isCanOpen(Alice alice) {
-        try {
-            return alice.isBiggerThanKey(size);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
-        }
+        return alice.isBiggerThanKey(size);
     }
 
     @Override
