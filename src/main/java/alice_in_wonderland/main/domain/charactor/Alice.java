@@ -21,6 +21,20 @@ public class Alice {
         size = setFirstSize();
     }
 
+    public void growSize(){
+        size += numberMaker.generate(MIN_SIZE, maxSizeAtDrink());
+    }
+
+    public void reduceSize(){
+        size -= numberMaker.generate(MIN_SIZE, maxSizeAtMushroom());
+    }
+
+
+
+
+
+
+
     public void updateSize(Item item) {
         if (item == Item.DRINK && size < MAX_SIZE) { //커짐
             size += numberMaker.generate(MIN_SIZE, maxSizeAtDrink());
