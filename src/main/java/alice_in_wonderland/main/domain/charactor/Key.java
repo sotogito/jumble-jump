@@ -7,6 +7,13 @@ public class Key {
     private final int size = 3;
     private OpenState openState = OpenState.CLOSED;
 
+    public void changeOpenState() {
+        openState = OpenState.OPEN;
+    }
+
+
+
+
 
     public boolean getOpenState() {
         return openState.getOpenState();
