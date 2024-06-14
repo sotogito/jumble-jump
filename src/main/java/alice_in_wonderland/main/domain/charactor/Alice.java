@@ -24,6 +24,7 @@ public class Alice {
     public void growSize(){
         if (size < MAX_SIZE){
             size += numberMaker.generate(MIN_SIZE, maxSizeAtDrink());
+            return;
         }
         throw new IllegalArgumentException(ErrorMessage.ALICE_SIZE_LIMIT_MAX);
     }
@@ -31,6 +32,7 @@ public class Alice {
     public void reduceSize(){
         if (size > MIN_SIZE){
             size -= numberMaker.generate(MIN_SIZE, maxSizeAtMushroom());
+            return;
         }
         throw new IllegalArgumentException(ErrorMessage.ALICE_SIZE_LIMIT_MIN);
     }
