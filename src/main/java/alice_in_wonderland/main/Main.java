@@ -1,6 +1,5 @@
 package alice_in_wonderland.main;
 
-import alice_in_wonderland.main.controller.Wonderland;
 import alice_in_wonderland.main.controller.WonderlandDevelop;
 
 public class Main {

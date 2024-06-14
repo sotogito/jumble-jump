@@ -24,13 +24,7 @@ public class Key {
         return openState.getOpenState();
     }
 
-    public void setOpenState(OpenState openState) {
-        this.openState = openState;
-    }
 
-    public boolean isCanOpen(Alice alice) {
-        return alice.isBiggerThanKey(size);
-    }
 
     @Override
     public String toString() {

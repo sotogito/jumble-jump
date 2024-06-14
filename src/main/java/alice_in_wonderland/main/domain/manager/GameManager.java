@@ -8,9 +8,6 @@ public class GameManager {
     private final static int TOTAL_COUNT = 5;
     private static int counter = TOTAL_COUNT; //static??
 
-    public int getTotalCount() {
-        return counter;
-    }
 
     public static void decreaseCount() {
         counter--;
@@ -20,9 +17,6 @@ public class GameManager {
         return counter <= 0;
     }
 
-    public boolean isGameOver(Key key, Door door) {
-        return key.getOpenState() && door.getGoOverState();
-    }
 
     public int getAttemptCount() {
         return TOTAL_COUNT - counter;

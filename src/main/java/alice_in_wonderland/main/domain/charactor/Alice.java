@@ -45,20 +45,6 @@ public class Alice {
 
 
 
-
-
-
-    public void updateSize(Item item) {
-        if (item == Item.DRINK && size < MAX_SIZE) { //커짐
-            size += numberMaker.generate(MIN_SIZE, maxSizeAtDrink());
-            return;
-        } else if (item == Item.MUSHROOM && size > MIN_SIZE) { //작아짐
-            size -= numberMaker.generate(MIN_SIZE, maxSizeAtMushroom());
-            return;
-        }
-        isCantChangeSize(item);
-    }
-
     private int maxSizeAtDrink() {
         return MAX_SIZE - size;
     }
@@ -67,21 +53,7 @@ public class Alice {
         return size - MIN_SIZE;
     }
 
-    public void isCantChangeSize(Item item) {
-        if (item == Item.DRINK && size == MAX_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.ALICE_SIZE_LIMIT_MAX);
-        } else if (item == Item.MUSHROOM && size == MIN_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.ALICE_SIZE_LIMIT_MIN);
-        }
-    }
 
-
-    public boolean isBiggerThanKey(int keySize) {
-        if (size <= keySize) {
-            throw new IllegalArgumentException(ErrorMessage.CANT_OPEN_WITH_KEY);
-        }
-        return true;
-    }
 
     public boolean isSmallerThanDoor(int doorSize) {
         if (size > doorSize) {

@@ -20,6 +20,10 @@ public class Door {
         goOverState = GoOverState.GO_OVER;
     }
 
+    public int getSize(){
+        return size;
+    }
+
 
 
 
@@ -30,20 +34,6 @@ public class Door {
         return goOverState.getIsOver();
     }
 
-    public boolean isAlreadyOpenDoor(Key key) {
-        if (!key.getOpenState()) {
-            throw new IllegalArgumentException(ErrorMessage.CANT_GO_OVER_NOT_YET_OPEN); //키가 던져야하는 메시지인가?
-        }
-        return true;
-    }
-
-    public boolean isCanGoOver(Alice alice) {
-        return alice.isSmallerThanDoor(size);
-    }
-
-    public void setGoOverState(GoOverState goOverState) {
-        this.goOverState = goOverState;
-    }
 
     private int setDoorSize() {
         int MIN = 2;
