@@ -1,9 +1,9 @@
 package alice_in_wonderland.main.domain.command.execute;
 
 import alice_in_wonderland.main.domain.charactor.Alice;
-import alice_in_wonderland.main.domain.command.command;
+import alice_in_wonderland.main.domain.command.Command;
 
-public class DrinkCommand implements command {
+public class DrinkCommand implements Command {
     private final Alice alice;
 
     public DrinkCommand(Alice alice) {
