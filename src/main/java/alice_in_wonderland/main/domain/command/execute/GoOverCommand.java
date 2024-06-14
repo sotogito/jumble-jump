@@ -1,5 +1,6 @@
 package alice_in_wonderland.main.domain.command.execute;
 
+import alice_in_wonderland.main.domain.charactor.Alice;
 import alice_in_wonderland.main.domain.charactor.Door;
 import alice_in_wonderland.main.domain.charactor.Key;
 import alice_in_wonderland.main.domain.command.Command;
@@ -9,17 +10,20 @@ import alice_in_wonderland.main.util.message.ErrorMessage;
 public class GoOverCommand implements Command {
     private final Door door;
     private final Key key;
+    private final Alice alice;
    //private final GameManager gameManager;
 
-    public GoOverCommand(Door door, Key key) {
+    public GoOverCommand(Door door, Key key,Alice alice) {
         this.door = door;
         this.key = key;
+        this.alice = alice;
     }
 
     @Override
     public void execute() {
         if(key.getOpenState()){
             door.changeGoOverState();
+            alice.setAtGoOverSize();
             if(door.getGoOverState() && key.getOpenState()){
                 throw new IllegalArgumentException("성공");
             }

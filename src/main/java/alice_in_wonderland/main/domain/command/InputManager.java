@@ -34,7 +34,7 @@ public class InputManager {
         commands.put("음료", new DrinkCommand(alice));
         commands.put("버섯", new MushroomCommand(alice));
         commands.put("open", new OpenCommand(key , alice));
-        commands.put("go over", new GoOverCommand(door, key));
+        commands.put("go over", new GoOverCommand(door, key,alice));
     }
 
 
