@@ -18,12 +18,14 @@ public class GoOverCommand implements Command {
         this.alice = alice;
     }
 
+    public boolean isOverGame(){
+        return door.getGoOverState() && key.getOpenState();
+    }
+
     @Override
     public void execute() {
-        if(checkState()){
-            if(door.getGoOverState() && key.getOpenState()){
-                throw new IllegalArgumentException("성공");
-            }
+        if (checkState()){
+            return;
         }
         throw new IllegalArgumentException(ErrorMessage.CANT_GO_OVER_NOT_YET_OPEN);
     }

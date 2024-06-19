@@ -21,6 +21,7 @@ public class Alice {
         size = setFirstSize();
     }
 
+
     public void growSize(){
         if (size < MAX_SIZE){
             size += numberMaker.generate(MIN_SIZE, maxSizeAtDrink());

@@ -40,12 +40,11 @@ public class WonderlandDevelop {
 
         while (!gameManager.isOverCount()){
             try{
-                inputManager.registerCommand(getInput());
-                Output.printSizeAndAttemptCount(gameManager, key, door, alice);
-            }catch (IllegalArgumentException e){
-                if(e.getMessage().contains("성공")) {
+                if(inputManager.registerCommand(getInput())){
                     return true;
                 }
+                Output.printSizeAndAttemptCount(gameManager, key, door, alice);
+            }catch (IllegalArgumentException e){
                 Output.printError(e.getMessage());
                 if (!e.getMessage().contains(ErrorMessage.INPUT_ERROR)){
                     Output.printAttemptCount(gameManager);

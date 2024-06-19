@@ -22,12 +22,17 @@ public class InputManager {
         initCommandsMap(alice,door, key);
     }
 
-    public void registerCommand(String input) {
+    public boolean registerCommand(String input) {
         Command command = commands.get(input);
         if (command != null) {
             GameManager.decreaseCount();
             command.execute();
-            return;
+
+            if(command instanceof GoOverCommand) {
+                return ((GoOverCommand) command).isOverGame();
+            }
+
+            return false;
         }
         throw new IllegalArgumentException(ErrorMessage.INPUT_ERROR);
     }
