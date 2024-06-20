@@ -12,6 +12,7 @@ public class GoOverCommand implements Command {
     private final Key key;
     private final Alice alice;
 
+    //TODO 넘겨주는 인수가 많은데 door+key+alice 클래스를 하나 생성해야하나?
     public GoOverCommand(Door door, Key key,Alice alice) {
         this.door = door;
         this.key = key;

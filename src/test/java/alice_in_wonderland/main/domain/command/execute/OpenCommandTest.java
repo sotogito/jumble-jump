@@ -48,5 +48,4 @@ class OpenCommandTest {
                 .hasMessageContaining(ErrorMessage.CANT_OPEN_WITH_KEY);
 
     }
-
 }
