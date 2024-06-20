@@ -43,9 +43,6 @@ public class Alice {
         return size > keySize;
     }
 
-
-
-
     private int maxSizeAtDrink() {
         return MAX_SIZE - size;
     }
@@ -53,7 +50,6 @@ public class Alice {
     private int maxSizeAtMushroom() {
         return size - MIN_SIZE;
     }
-
 
 
     public boolean isSmallerThanDoor(int doorSize) {

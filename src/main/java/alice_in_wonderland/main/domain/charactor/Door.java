@@ -24,12 +24,6 @@ public class Door {
         return size;
     }
 
-
-
-
-
-
-
     public boolean getGoOverState() {
         return goOverState.getIsOver();
     }
