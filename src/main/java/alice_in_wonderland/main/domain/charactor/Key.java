@@ -8,7 +8,6 @@ public class Key {
     private OpenState openState = OpenState.CLOSED;
 
     public void changeOpenState() {
-
         openState = OpenState.OPEN;
     }
 
@@ -16,14 +15,9 @@ public class Key {
         return size;
     }
 
-
-
-
-
     public boolean getOpenState() {
         return openState.getOpenState();
     }
-
 
 
     @Override
