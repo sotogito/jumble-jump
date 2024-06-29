@@ -9,18 +9,25 @@ import java.util.TreeMap;
 
 public class VocaPair {
 
-    private final TreeMap<English,Korean> vocas =new TreeMap<>();
+    private final TreeMap<English,Korean> vocas;
 
     public VocaPair(List<String> vocaPairs) {
-
-        // 엔터 별로 나누기 BufferedReader
-        //: -> 별로 나누기
-        // 왼쪽은 English 객체 생성
-        // 오른쪽은 Korean 객체 생성
-        //vaca에 put
-        // List.copyOf(voca); -> 불변으로
+        vocas = new TreeMap<>();
         addEntries(vocaPairs);
     }
+
+    public int getNumberOfVoca(){
+        return vocas.size();
+    }
+
+
+
+
+
+
+
+
+
 
     public void addEntry(String input) {
         String[] parts = input.split(":");
@@ -59,12 +66,6 @@ public class VocaPair {
             System.out.println(entry.getKey() + " : " + entry.getValue());
         }
     }
-
-
-
-
-
-
 
 
 
