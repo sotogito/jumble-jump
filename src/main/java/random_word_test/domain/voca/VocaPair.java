@@ -17,4 +17,7 @@ public class VocaPair {
         // List.copyOf(voca); -> 불변으로
         this.voca = new TreeMap<>();
     }
+
+
+
 }
