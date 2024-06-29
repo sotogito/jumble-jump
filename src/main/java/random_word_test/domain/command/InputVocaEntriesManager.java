@@ -24,7 +24,6 @@ public class InputVocaEntriesManager {
             command.execute();
             return;
         }
-
         throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT);
     }
 
