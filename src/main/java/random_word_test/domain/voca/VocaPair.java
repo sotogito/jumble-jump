@@ -9,7 +9,7 @@ public class VocaPair {
 
     public VocaPair(String inputVocaPair) {
 
-        // 엔터 별로 나누기
+        // 엔터 별로 나누기 BufferedReader
         //: -> 별로 나누기
         // 왼쪽은 English 객체 생성
         // 오른쪽은 Korean 객체 생성
