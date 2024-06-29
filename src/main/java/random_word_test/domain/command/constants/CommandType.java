@@ -1,4 +1,4 @@
-package random_word_test.domain.command;
+package random_word_test.domain.command.constants;
 
 public enum CommandType {
     COMPLETED_INPUT_VOCA("입력 완료"),
