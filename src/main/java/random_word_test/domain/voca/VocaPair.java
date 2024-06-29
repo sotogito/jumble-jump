@@ -20,6 +20,14 @@ public class VocaPair {
         return vocas.size();
     }
 
+    public List<English> getAllEnglishWords() {
+        return new ArrayList<>(vocas.keySet());
+    }
+
+    public List<Korean> getAllKoreanDefinitions() {
+        return new ArrayList<>(vocas.values());
+    }
+
 
 
 
