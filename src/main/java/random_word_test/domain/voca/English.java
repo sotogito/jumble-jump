@@ -11,6 +11,10 @@ public class English implements Comparable<English> {
         return word;
     }
 
+
+
+
+
     @Override
     public int compareTo(English other) {
         return this.word.compareTo(other.word); // note TreeMap에 저장될 때 key의 순서를 지정함 = 사전순 대로

@@ -9,6 +9,12 @@ public class Korean {
         this.definitions = definitions;
     }
 
+    public void addDefinition(String definition) {
+        if (!definitions.contains(definition)) {
+            definitions.add(definition);
+        }
+    }
+
     @Override
     public String toString() {
         return String.join(", ", definitions);
