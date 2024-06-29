@@ -1,6 +1,11 @@
 package random_word_test.domain.test;
 
-public interface Tester {
+public abstract class Tester {
 
-    void test(String question);
+    private final String QUESTION_FORMAT = "%s";
+
+    public String test(String string){
+        return String.format(QUESTION_FORMAT, string);
+    }
+
 }
