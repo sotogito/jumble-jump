@@ -12,7 +12,7 @@ public class EnglishValidator {
     }
 
     public static void validateAlphabetic(String word) {
-        if (!word.matches("^[A-Za-z]+$")) {
+        if (!word.matches("^[A-Za-z\\s]+$")) { // 알파벳과 공백을 허용하도록 정규 표현식 수정
             throw new IllegalArgumentException(ErrorMessage.INVALID_VOCA_ENTRY);
         }
     }
