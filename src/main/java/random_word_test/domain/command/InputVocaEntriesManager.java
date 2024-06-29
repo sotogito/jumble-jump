@@ -20,11 +20,11 @@ public class InputVocaEntriesManager {
 
     public void inputMatch(String input){
         Command command = commandMap.get(input);
-        if(command != null){
-            command.execute();
-            return;
+
+        if(command == null){
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT);
         }
-        throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT);
+        command.execute();
     }
 
     private void initCommandMap(InputVocaEntriesController inputController){

@@ -12,4 +12,6 @@ public class Input {
     public static String inputVocaEntries(){
         return scanner.nextLine();
     }
+
+
 }
