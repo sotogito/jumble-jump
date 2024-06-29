@@ -1,9 +1,12 @@
 package random_word_test.domain.voca;
 
+import random_word_test.util.validators.EnglishValidator;
+
 public class English implements Comparable<English> {
     private final String word;
 
     public English(String word) {
+        EnglishValidator.validate(word);
         this.word = word;
     }
 

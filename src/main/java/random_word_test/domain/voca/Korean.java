@@ -1,11 +1,14 @@
 package random_word_test.domain.voca;
 
+import random_word_test.util.validators.KoreanValidator;
+
 import java.util.List;
 
 public class Korean {
     private final List<String> definitions;
 
     public Korean(List<String> definitions) {
+        KoreanValidator.validate(definitions);
         this.definitions = definitions;
     }
 
