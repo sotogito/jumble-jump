@@ -14,6 +14,6 @@ public class EndCommand implements Command {
 
     @Override
     public void execute(){
-        testManager.setTestEnded();
+        testManager.setFinishProgram();
     }
 }
