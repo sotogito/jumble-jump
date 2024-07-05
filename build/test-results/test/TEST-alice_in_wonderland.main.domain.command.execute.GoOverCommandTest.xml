@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="alice_in_wonderland.main.domain.command.execute.GoOverCommandTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2024-06-20T09:24:35" hostname="gimsuyeon-ui-MacBookAir.local" time="0.329">
+  <properties/>
+  <testcase name="go over이 불가능할 때" classname="alice_in_wonderland.main.domain.command.execute.GoOverCommandTest" time="0.318"/>
+  <testcase name="go over이 가능할 때" classname="alice_in_wonderland.main.domain.command.execute.GoOverCommandTest" time="0.006"/>
+  <testcase name="isOverGame()" classname="alice_in_wonderland.main.domain.command.execute.GoOverCommandTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

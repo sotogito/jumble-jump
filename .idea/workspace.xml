@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="57dee3b0-67bb-4680-b022-731985ac7c35" name="Changes" comment="fix : Test type에 따라 TestManager 생성" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="jumble-jump" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="JUnit5 Test Class" />
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="3-random-word-test" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2hm2tVcS5PeGA7On6OmGtHkK57B" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.AliceTest.aliceIsBiggerThanKey.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AliceTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AliceTest.growSize.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AliceTest.isSmallerThanDoor_넘어갈_수_있음.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AliceTest.isSmallerThanDoor_크기가_작아서_넘어갈_수_없음.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AliceTest.isSmallerThanDoor_크기가_커서_넘어갈_수_없음.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AliceTest.reduceSize.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AliceTest.setAtGoOverSize.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AliceTest.setAtOpenSize.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AliceTest.앨리스_모크_크기_확인.executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.DoorTest.changeGoOverState.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DoorTest.getSize.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GoOverCommandTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.InputManagerTest.목록에_없는_명령_작성.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.KeyTest.changeOpenState.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.KeyTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.KeyTest.getSize.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.MainTest.목록에_없는_명령_작성.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.OpenCommandTest.execute_fail.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.OpenCommandTest.execute_success.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.OpenCommandTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Tests in 'jumble-jump.test'.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.jumble-jump [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.jumble-jump [:Test.main()].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/kimsuyeon/jumble-jump&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="alice_in_wonderland.main.domain.command.execute" />
+      <recent name="alice_in_wonderland.main.domain.charactor" />
+      <recent name="alice_in_wonderland.main.domain.command" />
+      <recent name="alice_in_wonderland.main.controller" />
+      <recent name="alice_in_wonderland.main" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Test">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="random_word_test.Test" />
+      <module name="jumble-jump.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="random_word_test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.example.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <module name="jumble-jump.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AliceTest.setAtGoOverSize" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;alice_in_wonderland.main.domain.charactor.AliceTest.setAtGoOverSize&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="AliceTest.setAtOpenSize" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;alice_in_wonderland.main.domain.charactor.AliceTest.setAtOpenSize&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests in 'jumble-jump.test'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Gradle.Tests in 'jumble-jump.test'" />
+        <item itemvalue="Gradle.AliceTest.setAtOpenSize" />
+        <item itemvalue="Gradle.AliceTest.setAtGoOverSize" />
+        <item itemvalue="Application.org.example.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="57dee3b0-67bb-4680-b022-731985ac7c35" name="Changes" comment="" />
+      <created>1718185148015</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1718185148015</updated>
+      <workItem from="1718185149249" duration="14970000" />
+      <workItem from="1718257255841" duration="29918000" />
+      <workItem from="1718351834920" duration="346000" />
+      <workItem from="1718352288633" duration="18203000" />
+      <workItem from="1718434471204" duration="6548000" />
+      <workItem from="1718771942151" duration="72000" />
+      <workItem from="1718772184840" duration="618000" />
+      <workItem from="1718772811560" duration="1544000" />
+      <workItem from="1718774362476" duration="4718000" />
+      <workItem from="1718790506790" duration="1989000" />
+      <workItem from="1718792504471" duration="4195000" />
+      <workItem from="1718814012640" duration="12000" />
+      <workItem from="1718870505940" duration="5422000" />
+      <workItem from="1718896314695" duration="2399000" />
+      <workItem from="1719416119116" duration="1641000" />
+      <workItem from="1719420353214" duration="6669000" />
+      <workItem from="1719508578847" duration="323000" />
+      <workItem from="1719590707294" duration="12000" />
+      <workItem from="1719643991669" duration="5906000" />
+      <workItem from="1719650054844" duration="18943000" />
+      <workItem from="1719762692421" duration="66000" />
+      <workItem from="1720158300146" duration="77000" />
+      <workItem from="1720158380732" duration="101000" />
+    </task>
+    <task id="LOCAL-00092" summary="docs : 오타 수정">
+      <option name="closed" value="true" />
+      <created>1718791637586</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1718791637586</updated>
+    </task>
+    <task id="LOCAL-00093" summary="docs : 문제설명 링크 걸기">
+      <option name="closed" value="true" />
+      <created>1718791974541</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1718791974541</updated>
+    </task>
+    <task id="LOCAL-00094" summary="feat : 컨트롤러 Main.java 연결">
+      <option name="closed" value="true" />
+      <created>1718792946982</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1718792946982</updated>
+    </task>
+    <task id="LOCAL-00095" summary="docs : docs 생성">
+      <option name="closed" value="true" />
+      <created>1718793477314</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1718793477315</updated>
+    </task>
+    <task id="LOCAL-00096" summary="docs : main 브랜치 점블점프 설명 삭제">
+      <option name="closed" value="true" />
+      <created>1718793608106</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1718793608106</updated>
+    </task>
+    <task id="LOCAL-00097" summary="docs : 사건의 발달, 문제 설명 작성">
+      <option name="closed" value="true" />
+      <created>1718810160281</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1718810160281</updated>
+    </task>
+    <task id="LOCAL-00098" summary="test : door 테스트 코드 작성">
+      <option name="closed" value="true" />
+      <created>1718871202102</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1718871202102</updated>
+    </task>
+    <task id="LOCAL-00099" summary="test : key 테스트 코드 작성">
+      <option name="closed" value="true" />
+      <created>1718871341991</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1718871341991</updated>
+    </task>
+    <task id="LOCAL-00100" summary="chore : 줄 간격 조절">
+      <option name="closed" value="true" />
+      <created>1718871360641</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1718871360641</updated>
+    </task>
+    <task id="LOCAL-00101" summary="test : openCommand 테스트 코드">
+      <option name="closed" value="true" />
+      <created>1718874577459</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1718874577459</updated>
+    </task>
+    <task id="LOCAL-00102" summary="docs : TODO">
+      <option name="closed" value="true" />
+      <created>1718874939188</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1718874939188</updated>
+    </task>
+    <task id="LOCAL-00103" summary="test : GoOverCommandTest 작성">
+      <option name="closed" value="true" />
+      <created>1718875514035</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1718875514035</updated>
+    </task>
+    <task id="LOCAL-00104" summary="docs : 헤드라인 작성">
+      <option name="closed" value="true" />
+      <created>1718875698191</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1718875698191</updated>
+    </task>
+    <task id="LOCAL-00105" summary="docs : 리팩토링 업데이트">
+      <option name="closed" value="true" />
+      <created>1718897097235</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1718897097235</updated>
+    </task>
+    <task id="LOCAL-00106" summary="docs : README.md 초기화">
+      <option name="closed" value="true" />
+      <created>1719419735476</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1719419735476</updated>
+    </task>
+    <task id="LOCAL-00107" summary="chore : 디렉토리 생성">
+      <option name="closed" value="true" />
+      <created>1719419974219</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1719419974220</updated>
+    </task>
+    <task id="LOCAL-00108" summary="커밋 푸시 테스트">
+      <option name="closed" value="true" />
+      <created>1719420482390</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1719420482391</updated>
+    </task>
+    <task id="LOCAL-00109" summary="커밋 푸시 테스트">
+      <option name="closed" value="true" />
+      <created>1719420520944</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1719420520944</updated>
+    </task>
+    <task id="LOCAL-00110" summary="feat : 입력받기 커멘트패턴 적용">
+      <option name="closed" value="true" />
+      <created>1719426860976</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1719426860976</updated>
+    </task>
+    <task id="LOCAL-00111" summary="feat : 영어+뜻 , voca 객체 생성">
+      <option name="closed" value="true" />
+      <created>1719426929030</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1719426929030</updated>
+    </task>
+    <task id="LOCAL-00112" summary="feat : 영어, 뜻 객체 생성에 필요한 converter 인터페이스 적용">
+      <option name="closed" value="true" />
+      <created>1719426982779</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1719426982779</updated>
+    </task>
+    <task id="LOCAL-00113" summary="feat : 랜덤으로 순서를 섞은 문제 출제 인터페이스 구현">
+      <option name="closed" value="true" />
+      <created>1719427030733</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1719427030733</updated>
+    </task>
+    <task id="LOCAL-00114" summary="feat : tester인ㅌ페이스 생성">
+      <option name="closed" value="true" />
+      <created>1719427060213</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1719427060213</updated>
+    </task>
+    <task id="LOCAL-00115" summary="feat : 기본 클래스 생성">
+      <option name="closed" value="true" />
+      <created>1719427110039</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1719427110039</updated>
+    </task>
+    <task id="LOCAL-00116" summary="docs : README.md, NOTE.md 작성">
+      <option name="closed" value="true" />
+      <created>1719645018495</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1719645018496</updated>
+    </task>
+    <task id="LOCAL-00117" summary="feat : 문제 출력 Tester 추상클래스">
+      <option name="closed" value="true" />
+      <created>1719645749407</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1719645749407</updated>
+    </task>
+    <task id="LOCAL-00118" summary="feat : 영어 , 한글 객체 오버라이드">
+      <option name="closed" value="true" />
+      <created>1719646993195</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1719646993195</updated>
+    </task>
+    <task id="LOCAL-00119" summary="feat : '입력 완료'가 입력 될때까지 입력받기">
+      <option name="closed" value="true" />
+      <created>1719647746335</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1719647746335</updated>
+    </task>
+    <task id="LOCAL-00120" summary="feat : 커멘트 상수화">
+      <option name="closed" value="true" />
+      <created>1719649524967</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1719649524967</updated>
+    </task>
+    <task id="LOCAL-00121" summary="feat : 커멘트 상수화">
+      <option name="closed" value="true" />
+      <created>1719649784692</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1719649784692</updated>
+    </task>
+    <task id="LOCAL-00122" summary="feat : 커멘트 상수화">
+      <option name="closed" value="true" />
+      <created>1719649863798</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1719649863798</updated>
+    </task>
+    <task id="LOCAL-00123" summary="feat : 입력왼료할 때까지 입력받기">
+      <option name="closed" value="true" />
+      <created>1719650082916</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1719650082916</updated>
+    </task>
+    <task id="LOCAL-00124" summary="feat : 입력왼료할 때까지 입력받기">
+      <option name="closed" value="true" />
+      <created>1719650165344</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1719650165344</updated>
+    </task>
+    <task id="LOCAL-00125" summary="feat : 입력왼료할 때까지 입력받기">
+      <option name="closed" value="true" />
+      <created>1719650191128</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1719650191128</updated>
+    </task>
+    <task id="LOCAL-00126" summary="feat : command 상속 클래스들 참조 변수 등록하기">
+      <option name="closed" value="true" />
+      <created>1719650572490</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1719650572491</updated>
+    </task>
+    <task id="LOCAL-00127" summary="feat : 게임 전체 제어하는 TestManager 생성">
+      <option name="closed" value="true" />
+      <created>1719650601665</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1719650601665</updated>
+    </task>
+    <task id="LOCAL-00128" summary="feat : 영어단어-한국어 로 voca map 생성하기">
+      <option name="closed" value="true" />
+      <created>1719676978825</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1719676978825</updated>
+    </task>
+    <task id="LOCAL-00129" summary="feat : 입력 command 상수화">
+      <option name="closed" value="true" />
+      <created>1719677004775</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1719677004775</updated>
+    </task>
+    <task id="LOCAL-00130" summary="feat : [입력 완료]가 될때까지 입력받기">
+      <option name="closed" value="true" />
+      <created>1719677097742</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1719677097742</updated>
+    </task>
+    <task id="LOCAL-00131" summary="feat : 에러 메시지 상수화">
+      <option name="closed" value="true" />
+      <created>1719677119584</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1719677119584</updated>
+    </task>
+    <task id="LOCAL-00132" summary="feat : command 명령어 인지 확인하는 validator 작성">
+      <option name="closed" value="true" />
+      <created>1719677142605</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1719677142605</updated>
+    </task>
+    <task id="LOCAL-00133" summary="feat : [입력 완료] 가 제대로 입력 될떄까지 입력 받기">
+      <option name="closed" value="true" />
+      <created>1719678972298</created>
+      <option name="number" value="00133" />
+      <option name="presentableId" value="LOCAL-00133" />
+      <option name="project" value="LOCAL" />
+      <updated>1719678972298</updated>
+    </task>
+    <task id="LOCAL-00134" summary="feat : 영어, 한국어로 이루어져있는지 유효검사">
+      <option name="closed" value="true" />
+      <created>1719679611939</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1719679611939</updated>
+    </task>
+    <task id="LOCAL-00135" summary="feat : 단어 입력 요청 메시지 출력">
+      <option name="closed" value="true" />
+      <created>1719680929244</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1719680929244</updated>
+    </task>
+    <task id="LOCAL-00136" summary="feat : 문제 개수 반환">
+      <option name="closed" value="true" />
+      <created>1719681195363</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1719681195363</updated>
+    </task>
+    <task id="LOCAL-00137" summary="feat : 시험 type에 따라 Tester생성">
+      <option name="closed" value="true" />
+      <created>1719683519873</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1719683519873</updated>
+    </task>
+    <task id="LOCAL-00138" summary="feat : 시험 type에 따라 시험 List생성">
+      <option name="closed" value="true" />
+      <created>1719685517975</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1719685517976</updated>
+    </task>
+    <task id="LOCAL-00139" summary="fix : 엉어, 한글 공백도 포함 가능">
+      <option name="closed" value="true" />
+      <created>1719685662266</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1719685662266</updated>
+    </task>
+    <task id="LOCAL-00140" summary="fix : Test type에 따라 TestManager 생성">
+      <option name="closed" value="true" />
+      <created>1719762751696</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1719762751696</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat : 영어, 뜻 객체 생성에 필요한 converter 인터페이스 적용" />
+    <MESSAGE value="feat : 랜덤으로 순서를 섞은 문제 출제 인터페이스 구현" />
+    <MESSAGE value="feat : tester인ㅌ페이스 생성" />
+    <MESSAGE value="feat : 기본 클래스 생성" />
+    <MESSAGE value="docs : README.md, NOTE.md 작성" />
+    <MESSAGE value="feat : 문제 출력 Tester 추상클래스" />
+    <MESSAGE value="feat : 영어 , 한글 객체 오버라이드" />
+    <MESSAGE value="feat : '입력 완료'가 입력 될때까지 입력받기" />
+    <MESSAGE value="feat : 커멘트 상수화" />
+    <MESSAGE value="feat : 입력왼료할 때까지 입력받기" />
+    <MESSAGE value="feat : command 상속 클래스들 참조 변수 등록하기" />
+    <MESSAGE value="feat : 게임 전체 제어하는 TestManager 생성" />
+    <MESSAGE value="feat : 영어단어-한국어 로 voca map 생성하기" />
+    <MESSAGE value="feat : 입력 command 상수화" />
+    <MESSAGE value="feat : [입력 완료]가 될때까지 입력받기" />
+    <MESSAGE value="feat : 에러 메시지 상수화" />
+    <MESSAGE value="feat : command 명령어 인지 확인하는 validator 작성" />
+    <MESSAGE value="feat : [입력 완료] 가 제대로 입력 될떄까지 입력 받기" />
+    <MESSAGE value="feat : 영어, 한국어로 이루어져있는지 유효검사" />
+    <MESSAGE value="feat : 단어 입력 요청 메시지 출력" />
+    <MESSAGE value="feat : 문제 개수 반환" />
+    <MESSAGE value="feat : 시험 type에 따라 Tester생성" />
+    <MESSAGE value="feat : 시험 type에 따라 시험 List생성" />
+    <MESSAGE value="fix : 엉어, 한글 공백도 포함 가능" />
+    <MESSAGE value="fix : Test type에 따라 TestManager 생성" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix : Test type에 따라 TestManager 생성" />
+  </component>
+</project>

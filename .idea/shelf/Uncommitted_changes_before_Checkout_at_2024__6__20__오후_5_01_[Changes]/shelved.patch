@@ -1,0 +1,15 @@
+Index: src/main/java/grandmas_letter_aroseagida/controller/Aroseagida.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package grandmas_letter_aroseagida.controller;\n\npublic class Aroseagida {\n\n    public void aroseagida() {\n    }\n}\n
+===================================================================
+diff --git a/src/main/java/grandmas_letter_aroseagida/controller/Aroseagida.java b/src/main/java/grandmas_letter_aroseagida/controller/Aroseagida.java
+--- a/src/main/java/grandmas_letter_aroseagida/controller/Aroseagida.java	
++++ b/src/main/java/grandmas_letter_aroseagida/controller/Aroseagida.java	
+@@ -3,5 +3,6 @@
+ public class Aroseagida {
+ 
+     public void aroseagida() {
++        System.out.println("Aroseagida");
+     }
+ }
