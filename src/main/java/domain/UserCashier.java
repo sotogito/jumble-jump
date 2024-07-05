@@ -10,6 +10,7 @@ public class UserCashier {
         this.amount = amount;
     }
 
+
     public void validateSufficientAmount(long itemAmount) {
         if(itemAmount > this.amount) {
             long insufficientAmount = calculateInsufficientAmount(itemAmount);
