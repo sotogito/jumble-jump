@@ -14,7 +14,7 @@ public class Items {
 
     public int getMinimumItemPrice(){
         return items.stream()
-                .filter(item -> item.getStock() > 0)
+                .filter(item -> !item.isOutOfStock()) //item.getStock() > 0
                 .min(Comparator.comparingDouble(Item::getPrice))
                 .map(item -> (int)item.getPrice())
                 .orElseThrow(() -> new IllegalArgumentException("유효한 아이템이 없습니다."));

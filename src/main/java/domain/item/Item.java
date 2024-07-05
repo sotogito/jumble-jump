@@ -16,6 +16,10 @@ public class Item {
         this.stock = new Stock(stock);
     }
 
+    public long calculatePurchasePriceAsAmount(int amount) {
+        return price.getPrice() * amount;
+    }
+
     public void decreaseStock(int amount) {
         stock.decreaseStock(amount);
     }
