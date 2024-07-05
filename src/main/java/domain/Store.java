@@ -27,17 +27,12 @@ public class Store {
 
         long purchasedPrice = item.calculatePurchasePriceAsAmount(quantity);
 
-        //note 일단 구매 하면 구매할 돈이 있고, 충분한 수량이 있는지 확인
-        item.validateAfterPurchasingStock(quantity);
-        userCashier.validateSufficientAmount(purchasedPrice);
+        validateBeforePurchase(item,quantity,purchasedPrice);
+        updatePurchases(item,quantity,purchasedPrice);
 
 
-        //note 성공하면 업데이트
-        userCashier.decreaseAmountAsPurchased(purchasedPrice);
-        item.decreaseStock(quantity);
-        order.updatePurchasedItemsAndAmount(item,quantity);
 
-
+        //note 구입 후에 확인해야하는 사항(앞으로) : 상품 전원 품절, 최소 금액보다 잔돈이 많은지
         if(item.equals(minimumPrice) && minimumPrice.isOutOfStock()){//구매했는데 만약 상품이 0개라면 최
             try{
                 minimumPrice = items.getMinimumPriceItem();
@@ -52,5 +47,19 @@ public class Store {
         }
 
         return true;
+    }
+
+    //note 구입 전에 확인해야하는 사항 : 일단 구매 하면 구매할 돈이 있고, 충분한 수량이 있는지 확인
+    private void validateBeforePurchase (Item item, int quantity, long purchasedPrice){
+        item.validateAfterPurchasingStock(quantity);
+        userCashier.validateSufficientAmount(purchasedPrice);
+    }
+
+
+    //note 성공하면 업데이트
+    private void updatePurchases(Item item, int quantity, long purchasedPrice){
+        userCashier.decreaseAmountAsPurchased(purchasedPrice);
+        item.decreaseStock(quantity);
+        order.updatePurchasedItemsAndAmount(item,quantity);
     }
 }
