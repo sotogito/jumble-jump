@@ -1,5 +1,5 @@
 ### 구현 순서
-2. item
+2. ~~item~~
 1. CSV 파일 생성 및 읽어오기
 3. UserCashier
 4. Order
@@ -51,3 +51,7 @@
   - List<Item,Integer> items : 구매한 아이템과 수량
 
 - printer은 인터페이스로?
+
+- Store에서 예외를 ㅈ바아서 출력물만들어야할듯
+  - 재고가 부족할때
+  - 사용자의 돈이 부족할때
