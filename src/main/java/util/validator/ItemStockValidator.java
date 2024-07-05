@@ -2,7 +2,7 @@ package util.validator;
 
 public class ItemStockValidator {
 
-    private static final int MIN = 10;
+    private static final int MIN = 1;
     private static final int MAX = 1000;
 
     public static void validate(int stock){
