@@ -22,5 +22,10 @@ public class UserCashier {
         return itemAmount - this.amount;
     }
 
+    //note 더이상 구매할 수 있는지 확인
+    public boolean isLessThanPurchasedItemAmount(long minimumItemPrice) {
+        return amount < minimumItemPrice;
+    }
+
 
 }
