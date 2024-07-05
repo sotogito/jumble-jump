@@ -16,6 +16,19 @@ public class Item {
         this.stock = new Stock(stock);
     }
 
+    //note 수량이 부족하지 않은지
+    public void validateAfterPurchasingStock(int quantity){
+        int itemStock = stock.getStock();
+        if(itemStock < quantity){
+            throw new IllegalArgumentException(
+                    String.format("%s는(은) 수량이 %d개 뿐이에요!",name.getName(),itemStock)
+            );
+        }
+    }
+
+    //note 구매 가격이 충분 한지
+
+
     public long calculatePurchasePriceAsAmount(int purchasedQuantity) {
         return price.getPrice() * purchasedQuantity;
     }
