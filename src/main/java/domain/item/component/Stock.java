@@ -10,6 +10,14 @@ public class Stock {
         this.stock = stock;
     }
 
+    //TODO 예외 잡아서 Store에서 출력하기
+    public void decreaseStock(int amount) {
+        if(stock < amount){
+            throw new IllegalArgumentException("구매하신 상품의 수량만큼의 재고가 존재하지 않아요.");
+        }
+        stock -= amount;
+    }
+
     public int getStock() {
         return stock;
     }
