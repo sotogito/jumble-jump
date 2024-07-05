@@ -31,7 +31,7 @@ class ItemsTest {
     @DisplayName("가장 작은 가격 반환하기")
     void getMinimumItemPrice(){
         int expected = 100;
-        int  actual= items.getMinimumItemPrice();
+        long  actual= items.getMinimumPriceItem().getPrice();
 
         assertEquals(expected, actual);
     }
@@ -58,7 +58,7 @@ class ItemsTest {
 
 
         int expected = 1000;
-        int  actual= items.getMinimumItemPrice();
+        long  actual= items.getMinimumPriceItem().getPrice();
 
         assertEquals(expected, actual);
     }
@@ -70,5 +70,7 @@ class ItemsTest {
         assertThatThrownBy(() -> items.findItemByName(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+
 
 }
