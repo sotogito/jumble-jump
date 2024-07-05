@@ -10,20 +10,16 @@ public class UserCashier {
         this.amount = amount;
     }
 
-    /*
-    public long getAmount() {
-        return amount;
-    }
-
-     */
-
-    public void decreaseAmountAsPurchased(long itemAmount) {
+    public void validateSufficientAmount(long itemAmount) {
         if(itemAmount > this.amount) {
             long insufficientAmount = calculateInsufficientAmount(itemAmount);
             throw new IllegalArgumentException(
                     String.format("%,d원이 부족해요.", insufficientAmount)
             );
         }
+    }
+
+    public void decreaseAmountAsPurchased(long itemAmount) {
         this.amount -= itemAmount;
     }
 
