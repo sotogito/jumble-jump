@@ -16,12 +16,12 @@ public class Item {
         this.stock = new Stock(stock);
     }
 
-    public long calculatePurchasePriceAsAmount(int amount) {
-        return price.getPrice() * amount;
+    public long calculatePurchasePriceAsAmount(int purchasedQuantity) {
+        return price.getPrice() * purchasedQuantity;
     }
 
-    public void decreaseStock(int amount) {
-        stock.decreaseStock(amount);
+    public void decreaseStock(int purchasedQuantity) {
+        stock.decreaseStock(purchasedQuantity);
     }
 
     public boolean isOutOfStock(){
