@@ -17,15 +17,13 @@ public class Store {
         this.userCashier = userCashier;
         this.order = new Order();
         this.items = items;
+        this.minimumPrice = items.getMinimumPriceItem();
     }
 
+    //todo 테스트 코드 작성 후 메서드 분리
     public boolean isCanPurchase(String itemName, int quantity){
         Item item = items.findItemByName(itemName);
 
-        //note 최소 금액보다 일단 잔돈이 많은지
-        if(userCashier.isLessThanPurchasedItemAmount(minimumPrice.getPrice())){
-            return false;
-        }
 
         long purchasedPrice = item.calculatePurchasePriceAsAmount(quantity);
 
@@ -37,10 +35,20 @@ public class Store {
         //note 성공하면 업데이트
         userCashier.decreaseAmountAsPurchased(purchasedPrice);
         item.decreaseStock(quantity);
+        order.updatePurchasedItemsAndAmount(item,quantity);
 
 
-        if(item.equals(minimumPrice) && minimumPrice.isOutOfStock()){ //구매했는데 만약 상품이 0개라면 최
-            minimumPrice = items.getMinimumPriceItem();
+        if(item.equals(minimumPrice) && minimumPrice.isOutOfStock()){//구매했는데 만약 상품이 0개라면 최
+            try{
+                minimumPrice = items.getMinimumPriceItem();
+            }catch (IllegalArgumentException e){
+                return false;
+            }
+        }
+
+        //note 최소 금액보다 일단 잔돈이 많은지
+        if(userCashier.isLessThanPurchasedItemAmount(minimumPrice.getPrice())){
+            return false;
         }
 
         return true;
