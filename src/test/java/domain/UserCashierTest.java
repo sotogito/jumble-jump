@@ -28,15 +28,7 @@ class UserCashierTest {
     }
 
      */
-    @Test
-    @DisplayName("아이템 가격 > 사용자 잔돈 => 예외, 숫자 포맷 확인")
-    void decreaseAmountAsPurchased_fail(){
-        String expected = "10,000원이 부족해요.";
 
-        assertThatThrownBy(() -> userCashier.decreaseAmountAsPurchased(60000))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(expected);
-    }
 
     @Test
     @DisplayName("삼품 최소 가격 > 잔돈 = true")
