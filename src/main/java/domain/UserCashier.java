@@ -10,6 +10,13 @@ public class UserCashier {
         this.amount = amount;
     }
 
+    /*
+    public long getAmount() {
+        return amount;
+    }
+
+     */
+
     public void decreaseAmountAsPurchased(long itemAmount) {
         if(itemAmount > this.amount) {
             long insufficientAmount = calculateInsufficientAmount(itemAmount);
