@@ -10,7 +10,7 @@ public class Item {
     private final Price price;
     private final Stock stock;
 
-    public Item(String name, int price, int stock) {
+    public Item(String name, long price, int stock) {
         this.name = new Name(name);
         this.price = new Price(price);
         this.stock = new Stock(stock);
@@ -28,7 +28,7 @@ public class Item {
         return name.getName();
     }
 
-    public int getPrice() {
+    public long getPrice() {
         return price.getPrice();
     }
 

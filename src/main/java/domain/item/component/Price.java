@@ -4,14 +4,14 @@ import util.validator.ItemPriceValidator;
 
 public class Price {
 
-    private final int price;
+    private final long price;
 
-    public Price(int price) {
+    public Price(long price) {
         ItemPriceValidator.validate(price);
         this.price = price;
     }
 
-    public int getPrice() {
+    public long getPrice() {
         return price;
     }
 }
