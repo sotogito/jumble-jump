@@ -1,6 +1,6 @@
 ### 구현 순서
-1. CSV 파일 생성 및 읽어오기
 2. item
+1. CSV 파일 생성 및 읽어오기
 3. UserCashier
 4. Order
 5. Store
