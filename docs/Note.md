@@ -2,7 +2,7 @@
 2. ~~item~~
 1. ~~CSV 파일 생성 및 읽어오기~~
 3. ~~UserCashier~~
-4. Order
+4. ~~Order~~
 5. Store
 6. ChangeCalculator 
 7. PurchasePolicy(i)
