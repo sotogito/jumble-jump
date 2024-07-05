@@ -1,10 +1,12 @@
 package domain;
 
+import util.validator.UserCashValidator;
+
 public class UserCashier {
     private long amount;
 
     public UserCashier(long amount) {
-        //todo 유효검ㅅ
+        UserCashValidator.validate(amount);
         this.amount = amount;
     }
 
