@@ -1,5 +1,6 @@
 package domain.item;
 
+import util.Exception.InvalidPurchaseException;
 import util.message.ErrorMessage;
 
 import java.util.Comparator;
@@ -16,7 +17,7 @@ public class Items {
         return items.stream()
                 .filter(item -> !item.isOutOfStock()) // item.getStock() > 0
                 .min(Comparator.comparingDouble(Item::getPrice))
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.ALL_ITEM_OUT_OF_STOCK));
+                .orElseThrow(() -> new InvalidPurchaseException(ErrorMessage.ALL_ITEM_OUT_OF_STOCK));
 
     }
 
@@ -26,7 +27,7 @@ public class Items {
                 return item;
             }
         }
-        throw new IllegalArgumentException(ErrorMessage.NOT_EXISTENCE_INPUT_ITEM);
+        throw new InvalidPurchaseException(ErrorMessage.NOT_EXISTENCE_INPUT_ITEM);
     }
 
     public List<Item> getItems() {

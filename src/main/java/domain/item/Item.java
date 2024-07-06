@@ -3,6 +3,7 @@ package domain.item;
 import domain.item.component.Name;
 import domain.item.component.Price;
 import domain.item.component.Stock;
+import util.Exception.InvalidPurchaseException;
 import util.message.ErrorMessage;
 
 public class Item {
@@ -19,7 +20,7 @@ public class Item {
     public void validateAfterPurchasingStock(int quantity){
         int itemStock = stock.getStock();
         if(itemStock < quantity){
-            throw new IllegalArgumentException(
+            throw new InvalidPurchaseException(
                     String.format(ErrorMessage.INVALID_PURCHASE_ITEM_QUANTITY,name.getName(),itemStock)
             );
         }

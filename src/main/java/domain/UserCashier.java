@@ -1,6 +1,7 @@
 package domain;
 
 import domain.item.Items;
+import util.Exception.InvalidPurchaseException;
 import util.message.ErrorMessage;
 import util.validator.UserCashValidator;
 
@@ -19,7 +20,7 @@ public class UserCashier {
     public void validateSufficientAmount(long itemAmount) {
         if(itemAmount > this.amount) {
             long insufficientAmount = calculateInsufficientAmount(itemAmount);
-            throw new IllegalArgumentException(
+            throw new InvalidPurchaseException(
                     String.format(ErrorMessage.INVALID_ITEM_TOTAL_AMOUNT, insufficientAmount)
             );
         }

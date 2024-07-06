@@ -19,7 +19,7 @@ public class InputPurchaseItemValidator {
         try{
             Integer.parseInt(input[1]);
         }catch(NumberFormatException e){
-            throw new ArrayIndexOutOfBoundsException(ErrorMessage.ONLY_NUMBER_PURCHASE_QUANTITY);
+            throw new NumberFormatException(ErrorMessage.ONLY_NUMBER_PURCHASE_QUANTITY);
         }
     }
 
