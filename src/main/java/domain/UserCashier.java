@@ -14,10 +14,14 @@ public class UserCashier {
         changeCalculator = new ChangeCalculator();
     }
 
+
+    public long getAmount(){
+        return amount;
+    }
+
     public EnumMap<Bill,Integer> getChange(){
         return changeCalculator.calculateChange(amount);
     }
-
 
     public void validateSufficientAmount(long itemAmount) {
         if(itemAmount > this.amount) {
