@@ -1,6 +1,5 @@
 package controller;
 
-import domain.ChangeCalculator;
 import domain.Order;
 import domain.Store;
 import domain.UserCashier;
@@ -17,11 +16,9 @@ import view.printer.Printer;
 import view.printer.ReceiptPrinter;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainController {
-
     private Printer printer;
 
     public void main() throws IOException {
@@ -35,22 +32,17 @@ public class MainController {
         Store store = new Store(order,items,userCashier);
         getUserPurchaseItemLoop(store,userCashier);
 
-
         printClosingMessage();
         printReceiptDataToOutput(userCashier,order);
         printChangeDataToOutput(userCashier);
-
     }
 
-    private void printChangeDataToOutput(UserCashier userCashier) {
-        printer = new ChangePrinter(userCashier);
-        Output.printPrinter(printer);
-    }
+    private Items registerVendingMachineItems() throws IOException {
+        ItemCsvReader csvReader = new ItemCsvReader(new RawCsvReader());
+        String itemCsvPath = "/data/items.csv";
 
-    private void printReceiptDataToOutput(UserCashier userCashier, Order order) {
-        printer = new ReceiptPrinter(userCashier, order);
-        Output.printPrinter(printer);
-
+        List<Item> itemList = csvReader.readItems(itemCsvPath);
+        return new Items(itemList);
     }
 
     private void getUserPurchaseItemLoop(Store store,UserCashier userCashier){
@@ -68,7 +60,6 @@ public class MainController {
         }
     }
 
-
     private boolean isCanUserPurchase(Store store){
         String[] inputPurchaseData = Input.inputPurchaseItemNameAndQuantity();
         String itemName = inputPurchaseData[0];
@@ -76,7 +67,6 @@ public class MainController {
 
         return store.isCanPurchase(itemName, quantity);
     }
-
 
     private UserCashier createUserCashier(Items items) {
         while (true){
@@ -93,24 +83,24 @@ public class MainController {
         Output.printPrinter(printer);
     }
 
-
-    private Items registerVendingMachineItems() throws IOException {
-        ItemCsvReader csvReader = new ItemCsvReader(new RawCsvReader());
-        String itemCsvPath = "/data/items.csv";
-
-        List<Item> itemList = csvReader.readItems(itemCsvPath);
-        return new Items(itemList);
-    }
-
     private Order createOrder() {
         return new Order();
     }
-
 
     private void printClosingMessage(){
         Output.printMessage("");
         Output.printMessage(ServiceMessage.PRINT_CLOSING);
     }
 
+    private void printReceiptDataToOutput(UserCashier userCashier, Order order) {
+        printer = new ReceiptPrinter(userCashier, order);
+        Output.printPrinter(printer);
+
+    }
+
+    private void printChangeDataToOutput(UserCashier userCashier) {
+        printer = new ChangePrinter(userCashier);
+        Output.printPrinter(printer);
+    }
 
 }
