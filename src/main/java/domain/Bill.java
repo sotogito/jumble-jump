@@ -9,6 +9,7 @@ public enum Bill {
     COIN_100(100),
     COIN_50(50),
     COIN_10(10),
+    COIN_5(5),
     COIN_1(1);
 
     private int value;
