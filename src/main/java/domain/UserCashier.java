@@ -45,5 +45,10 @@ public class UserCashier {
         return amount < minimumItemPrice;
     }
 
+    @Override
+    public String toString() {
+        return amount+"";
+    }
+
 
 }

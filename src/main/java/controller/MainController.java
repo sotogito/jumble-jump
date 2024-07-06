@@ -1,19 +1,41 @@
 package controller;
 
 import domain.Order;
+import domain.UserCashier;
 import domain.item.Item;
 import domain.item.Items;
 import util.reader.ItemCsvReader;
 import util.reader.RawCsvReader;
+import view.Input;
+import view.Output;
+import view.printer.ItemListPrinter;
 
 import java.io.IOException;
 import java.util.List;
 
 public class MainController {
     public void main() throws IOException {
+        Output.printWelcomeStore();
         Items items = registerVendingMachineItems();
-        System.out.println(items);
+        sendItemListToOutput(items);
 
+        UserCashier userCashier = createUserCashier();
+
+    }
+
+    private UserCashier createUserCashier() {
+        while (true){
+            try{
+                return new UserCashier(Input.inputUSerAmount());
+            }catch (IllegalArgumentException e){
+                Output.printError(e.getMessage());
+            }
+        }
+    }
+
+    private void sendItemListToOutput(Items items) {
+        ItemListPrinter itemListPrinter = new ItemListPrinter(items);
+        Output.printItemList(itemListPrinter);
     }
 
 

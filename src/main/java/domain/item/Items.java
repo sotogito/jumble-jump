@@ -12,6 +12,10 @@ public class Items {
         this.items = items;
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
     public Item getMinimumPriceItem(){
         return items.stream()
                 .filter(item -> !item.isOutOfStock()) // item.getStock() > 0
