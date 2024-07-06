@@ -21,7 +21,7 @@ public class Item {
         int itemStock = stock.getStock();
         if(itemStock < quantity){
             throw new IllegalArgumentException(
-                    String.format("%s는(은) 수량이 %d개 뿐이에요!",name.getName(),itemStock)
+                    String.format("%s는(은) 수량이 %d개 뿐이에요!\n",name.getName(),itemStock)
             );
         }
     }

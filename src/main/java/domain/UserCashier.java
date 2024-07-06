@@ -28,7 +28,7 @@ public class UserCashier {
         if(itemAmount > this.amount) {
             long insufficientAmount = calculateInsufficientAmount(itemAmount);
             throw new IllegalArgumentException(
-                    String.format("%,d원이 부족해요.", insufficientAmount)
+                    String.format("%,d원이 부족해요.\n", insufficientAmount)
             );
         }
     }
