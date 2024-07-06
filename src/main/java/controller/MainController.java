@@ -1,5 +1,6 @@
 package controller;
 
+import domain.ChangeCalculator;
 import domain.Order;
 import domain.Store;
 import domain.UserCashier;
@@ -9,7 +10,9 @@ import util.reader.ItemCsvReader;
 import util.reader.RawCsvReader;
 import view.Input;
 import view.Output;
+import view.printer.ChangePrinter;
 import view.printer.ItemListPrinter;
+import view.printer.ReceiptPrinter;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,13 +20,28 @@ import java.util.List;
 public class MainController {
     public void main() throws IOException {
         Output.printWelcomeStore();
+        Order order = createOrder();
         Items items = registerVendingMachineItems();
         sendItemListToOutput(items);
 
         UserCashier userCashier = createUserCashier();
 
-        Store store = new Store(items,userCashier);
+        Store store = new Store(order,items,userCashier);
         getUserPurchaseItemLoop(store);
+
+        sendReceiptDataToOutput(userCashier,order);
+        sendChangeDataToOutput(userCashier);
+
+    }
+
+    private void sendChangeDataToOutput(UserCashier userCashier) {
+        ChangePrinter changePrinter = new ChangePrinter(userCashier);
+        Output.printChange(changePrinter);
+    }
+
+    private void sendReceiptDataToOutput(UserCashier userCashier, Order order) {
+        ReceiptPrinter receiptPrinter = new ReceiptPrinter(userCashier, order);
+        Output.printReceipt(receiptPrinter);
 
     }
 
@@ -66,6 +84,10 @@ public class MainController {
 
         List<Item> itemList = csvReader.readItems(itemCsvPath);
         return new Items(itemList);
+    }
+
+    private Order createOrder() {
+        return new Order();
     }
 
 
