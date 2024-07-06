@@ -2,12 +2,20 @@ package domain;
 
 import util.validator.UserCashValidator;
 
+import java.util.EnumMap;
+
 public class UserCashier {
     private long amount;
+    private ChangeCalculator changeCalculator;
 
     public UserCashier(long amount) {
         UserCashValidator.validate(amount);
         this.amount = amount;
+        changeCalculator = new ChangeCalculator();
+    }
+
+    public EnumMap<Bill,Integer> getChange(){
+        return changeCalculator.calculateChange(amount);
     }
 
 
