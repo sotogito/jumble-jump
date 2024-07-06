@@ -49,20 +49,25 @@ public class MainController {
 
     private void getUserPurchaseItemLoop(Store store,UserCashier userCashier){
         while (true) {
-            System.out.printf(ServiceMessage.PRINT_BALANCE, userCashier.getAmount());
+            Output.printBalance(userCashier);
             try {
-                String[] inputPurchaseData = Input.inputPurchaseItemNameAndQuantity();
-                String itemName = inputPurchaseData[0];
-                int quantity = Integer.parseInt(inputPurchaseData[1]);
-
-                if (!store.isCanPurchase(itemName, quantity)) {
+                if(!isCanUserPurchase(store)){
                     break;
                 }
-                System.out.print(ServiceMessage.PRINT_SUCCESS_SHOPPING_BASKET);
+                Output.printMessage(ServiceMessage.PRINT_SUCCESS_SHOPPING_BASKET);
             } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
                 Output.printError(e.getMessage());
             }
         }
+    }
+
+
+    private boolean isCanUserPurchase(Store store){
+        String[] inputPurchaseData = Input.inputPurchaseItemNameAndQuantity();
+        String itemName = inputPurchaseData[0];
+        int quantity = Integer.parseInt(inputPurchaseData[1]);
+
+        return store.isCanPurchase(itemName, quantity);
     }
 
 
