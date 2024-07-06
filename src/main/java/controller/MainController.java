@@ -1,6 +1,7 @@
 package controller;
 
 import domain.Order;
+import domain.Store;
 import domain.UserCashier;
 import domain.item.Item;
 import domain.item.Items;
@@ -21,6 +22,22 @@ public class MainController {
 
         UserCashier userCashier = createUserCashier();
 
+        Store store = new Store(items,userCashier);
+
+
+        while (true){
+            try{
+                String[] inputPurchaseData = Input.inputPurchaseItemNameAndQuantity();
+                String itemName = inputPurchaseData[0];
+                int quantity = Integer.parseInt(inputPurchaseData[1]);
+
+                if(!store.isCanPurchase(itemName,quantity)){
+                    break;
+                }
+            }catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e){
+                Output.printError(e.getMessage());
+            }
+        }
     }
 
     private UserCashier createUserCashier() {
