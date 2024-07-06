@@ -14,7 +14,6 @@ public class ReceiptPrinter implements Printer {
     private static final String PRINT_TOTAL_AMOUNT = "총 가격 : %,d원\n";
     private static final String DIVIDER = "------\n";
 
-
     private final UserCashier userCashier;
     private final Order order;
 

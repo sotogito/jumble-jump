@@ -8,21 +8,12 @@ import java.util.EnumMap;
 
 public class UserCashier {
     private long amount;
-    private ChangeCalculator changeCalculator;
+    private final ChangeCalculator changeCalculator;
 
     public UserCashier(long amount, Items items) {
         UserCashValidator.validate(amount,items.getMinimumPriceItem().getPrice());
         this.amount = amount;
         changeCalculator = new ChangeCalculator();
-    }
-
-
-    public long getAmount(){
-        return amount;
-    }
-
-    public EnumMap<Bill,Integer> getChange(){
-        return changeCalculator.calculateChange(amount);
     }
 
     public void validateSufficientAmount(long itemAmount) {
@@ -34,6 +25,10 @@ public class UserCashier {
         }
     }
 
+    public boolean isLessThanPurchasedItemAmount(long minimumItemPrice) {
+        return amount < minimumItemPrice;
+    }
+
     public void decreaseAmountAsPurchased(long itemAmount) {
         this.amount -= itemAmount;
     }
@@ -42,15 +37,17 @@ public class UserCashier {
         return itemAmount - this.amount;
     }
 
+    public long getAmount(){
+        return amount;
+    }
 
-    public boolean isLessThanPurchasedItemAmount(long minimumItemPrice) {
-        return amount < minimumItemPrice;
+    public EnumMap<Bill,Integer> getChange(){
+        return changeCalculator.calculateChange(amount);
     }
 
     @Override
     public String toString() {
         return amount+"";
     }
-
 
 }

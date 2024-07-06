@@ -3,7 +3,6 @@ package util.validator;
 import util.message.ErrorMessage;
 
 public class ItemStockValidator {
-
     private static final int MIN = 1;
     private static final int MAX = 1000;
 
@@ -18,6 +17,5 @@ public class ItemStockValidator {
             );
         }
     }
-
 
 }

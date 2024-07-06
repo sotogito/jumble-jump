@@ -3,18 +3,11 @@ package domain;
 import domain.item.Item;
 import domain.item.Items;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Store {
     private Order order;
     private final Items items;
     private final UserCashier userCashier;
     private Item minimumPrice;
-
-    //돈은 부족하지 않은데 수량이 부족하면? 돈은 업데이트 된거잖아
-    //수량은있는데 돈이 부족하면? 수량은 업데이트 된거잖아
-    //각각 유효처리 한거를 따로 분리해야될듯
 
     public Store(Order order, Items items, UserCashier userCashier) {
         this.userCashier = userCashier;

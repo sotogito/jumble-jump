@@ -17,4 +17,5 @@ public class Stock {
     public int getStock() {
         return stock;
     }
+
 }

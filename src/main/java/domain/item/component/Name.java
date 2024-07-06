@@ -7,11 +7,11 @@ public class Name {
 
     public Name(String name) {
         ItemNameValidator.validate(name);
-        //TODO 중복 검사
         this.name = name;
     }
 
     public String getName() {
         return name;
     }
+
 }

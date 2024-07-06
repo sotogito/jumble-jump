@@ -3,7 +3,6 @@ package domain.item.component;
 import util.validator.ItemPriceValidator;
 
 public class Price {
-
     private final long price;
 
     public Price(long price) {
@@ -14,4 +13,5 @@ public class Price {
     public long getPrice() {
         return price;
     }
+
 }

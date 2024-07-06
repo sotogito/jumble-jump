@@ -2,10 +2,7 @@ package view;
 
 import domain.UserCashier;
 import util.message.ServiceMessage;
-import view.printer.ChangePrinter;
-import view.printer.ItemListPrinter;
 import view.printer.Printer;
-import view.printer.ReceiptPrinter;
 
 public class Output {
 
@@ -27,6 +24,5 @@ public class Output {
     public static void printBalance(UserCashier userCashier){
         System.out.printf(ServiceMessage.PRINT_BALANCE, userCashier.getAmount());
     }
-
 
 }

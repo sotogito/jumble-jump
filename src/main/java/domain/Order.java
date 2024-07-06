@@ -13,7 +13,6 @@ public class Order {
         this.purchasedItems = new HashMap<>();
     }
 
-
     public void updatePurchasedItemsAndAmount(Item item, int purchasedQuantity) {
         purchasedItems.put(item, purchasedQuantity);
         totalAmount += item.calculatePurchasePriceAsAmount(purchasedQuantity);
@@ -26,7 +25,5 @@ public class Order {
     public long getTotalAmount() {
         return totalAmount;
     }
-
-
 
 }

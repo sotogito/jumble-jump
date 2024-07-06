@@ -3,7 +3,6 @@ package util.validator;
 import util.message.ErrorMessage;
 
 public class ItemPriceValidator {
-
     private static final int MIN = 10;
     private static final long MAX = 10000000000L;
 

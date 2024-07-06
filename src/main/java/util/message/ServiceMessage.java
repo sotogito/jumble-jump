@@ -14,5 +14,4 @@ public class ServiceMessage {
 
     public static final String PRINT_CLOSING = "빈털털이가 되셨군요!\n";
 
-
 }

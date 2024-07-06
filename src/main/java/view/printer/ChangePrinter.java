@@ -39,7 +39,4 @@ public class ChangePrinter implements Printer {
         return sb.toString();
     }
 
-
-
-
 }

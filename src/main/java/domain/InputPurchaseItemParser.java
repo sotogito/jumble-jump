@@ -1,6 +1,5 @@
 package domain;
 
-import util.message.ErrorMessage;
 import util.validator.InputPurchaseItemValidator;
 
 public class InputPurchaseItemParser {
@@ -14,4 +13,5 @@ public class InputPurchaseItemParser {
         }
         return parts;
     }
+
 }

@@ -21,5 +21,4 @@ public enum Bill {
         return value;
     }
 
-
 }
