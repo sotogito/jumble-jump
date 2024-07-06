@@ -9,8 +9,11 @@ public class ChangeCalculator {
 
         for (Bill coin : Bill.values()) {
             int coinValue = coin.getValue();
-            int count = (int) balance / coinValue;  // 각 동전의 개수를 계산
-            balance %= coinValue;             // 잔액을 업데이트
+            int count = (int) balance / coinValue;// 각 동전의 개수를 계산
+            balance %= coinValue; // 잔액을 업데이트
+            if(count == 0) {
+                continue;
+            }
             result.put(coin, count);
         }
         return result;
