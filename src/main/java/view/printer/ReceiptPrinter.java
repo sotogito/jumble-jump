@@ -49,7 +49,7 @@ public class ReceiptPrinter implements Printer {
             long price = entry.getKey().calculatePurchasePriceAsAmount(entry.getValue());
 
             String printout = String.format(PRINT_ITEM_RECEIPT_FORMAT,name,quantity,price);
-            sb.append(printout);
+            sb.insert(0,printout);
         }
 
         return sb.toString();
