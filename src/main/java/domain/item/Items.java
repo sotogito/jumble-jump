@@ -29,4 +29,13 @@ public class Items {
         throw new IllegalArgumentException("존재하지 않는 상품입니다.");
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Item item : items) {
+            sb.append(item.toString());
+        }
+        return sb.toString();
+    }
+
 }

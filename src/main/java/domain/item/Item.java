@@ -53,4 +53,9 @@ public class Item {
         return stock.getStock();
     }
 
+    @Override
+    public String toString() {
+        return name.getName() + " : " + price.getPrice()+"\n";
+    }
+
 }
