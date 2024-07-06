@@ -7,7 +7,8 @@ import util.message.ServiceMessage;
 
 import java.util.Map;
 
-public class ReceiptPrinter {
+public class ReceiptPrinter implements Printer {
+    private final String PRINT_RECEIPT_INTRO_MESSAGE = "영수증을 출력할게요.\n";
     private final String PRINT_RECEIPT_INTRO = "<영수증>\n";
     private final String PRINT_ITEM_RECEIPT_FORMAT = "%s, %d개, %,d원\n";
     private final String PRINT_TOTAL_AMOUNT = "총 가격 : %,d원\n";
@@ -22,7 +23,10 @@ public class ReceiptPrinter {
         this.order = order;
     }
 
+    @Override
     public void print(){
+        System.out.print(PRINT_RECEIPT_INTRO_MESSAGE);
+        System.out.println();
         System.out.print(PRINT_RECEIPT_INTRO);
         System.out.printf(ServiceMessage.PRINT_BALANCE,getChange());
         System.out.print(DIVIDER);

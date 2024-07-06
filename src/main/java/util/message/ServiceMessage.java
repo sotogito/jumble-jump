@@ -11,4 +11,8 @@ public class ServiceMessage {
     public static final String PRINT_BALANCE = "[잔액은 %,d원이에요.]\n";
     public static final String PRINT_SUCCESS_SHOPPING_BASKET = "장바구니에 성공적으로 추가했습니다!\n";
 
+
+    public static final String PRINT_CLOSING = "빈털털이가 되셨군요!\n";
+
+
 }

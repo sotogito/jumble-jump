@@ -13,6 +13,7 @@ import view.Input;
 import view.Output;
 import view.printer.ChangePrinter;
 import view.printer.ItemListPrinter;
+import view.printer.Printer;
 import view.printer.ReceiptPrinter;
 
 import java.io.IOException;
@@ -20,34 +21,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainController {
+
+    private Printer printer;
+
     public void main() throws IOException {
-        Output.printWelcomeStore();
+        Output.printMessage(ServiceMessage.PRINT_WELCOME_STORE);
         Order order = createOrder();
         Items items = registerVendingMachineItems();
-        sendItemListToOutput(items);
+        printItemListToOutput(items);
 
         UserCashier userCashier = createUserCashier(items);
 
         Store store = new Store(order,items,userCashier);
         getUserPurchaseItemLoop(store,userCashier);
 
-        sendReceiptDataToOutput(userCashier,order);
-        sendChangeDataToOutput(userCashier);
+
+        printClosingMessage();
+        printReceiptDataToOutput(userCashier,order);
+        printChangeDataToOutput(userCashier);
 
     }
 
-    private void sendChangeDataToOutput(UserCashier userCashier) {
-        ChangePrinter changePrinter = new ChangePrinter(userCashier);
-        Output.printChange(changePrinter);
+    private void printChangeDataToOutput(UserCashier userCashier) {
+        printer = new ChangePrinter(userCashier);
+        Output.printPrinter(printer);
     }
 
-    private void sendReceiptDataToOutput(UserCashier userCashier, Order order) {
-        ReceiptPrinter receiptPrinter = new ReceiptPrinter(userCashier, order);
-        Output.printReceipt(receiptPrinter);
+    private void printReceiptDataToOutput(UserCashier userCashier, Order order) {
+        printer = new ReceiptPrinter(userCashier, order);
+        Output.printPrinter(printer);
 
     }
 
     private void getUserPurchaseItemLoop(Store store,UserCashier userCashier){
+        Output.printMessage("");
         while (true) {
             Output.printBalance(userCashier);
             try {
@@ -81,9 +88,9 @@ public class MainController {
         }
     }
 
-    private void sendItemListToOutput(Items items) {
-        ItemListPrinter itemListPrinter = new ItemListPrinter(items);
-        Output.printItemList(itemListPrinter);
+    private void printItemListToOutput(Items items) {
+        printer = new ItemListPrinter(items);
+        Output.printPrinter(printer);
     }
 
 
@@ -97,6 +104,12 @@ public class MainController {
 
     private Order createOrder() {
         return new Order();
+    }
+
+
+    private void printClosingMessage(){
+        Output.printMessage("");
+        Output.printMessage(ServiceMessage.PRINT_CLOSING);
     }
 
 
