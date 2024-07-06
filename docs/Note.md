@@ -3,8 +3,8 @@
 1. ~~CSV 파일 생성 및 읽어오기~~
 3. ~~UserCashier~~
 4. ~~Order~~
-5. Store
-6. ChangeCalculator 
+5. ~~Store~~
+6. ~~ChangeCalculator~~ 
 7. PurchasePolicy(i)
 8. view , 컨트롤러
 
@@ -59,3 +59,15 @@
 - Store에서 예외를 ㅈ바아서 출력물만들어야할듯
   - 재고가 부족할때
   - 사용자의 돈이 부족할때
+
+
+---
+- ~~printer 추상클레스 상속하고 각각 요소들 인터페이스로 implement 하기~~   
+-> 출력물마다 메서드가 다 다르고 너무 세분화 되는 거 같아 인터페이스는 별로인 거 같다.
+- ~~최초로 금액 받을때 상품의 최소 금액보다 큰지 확인하기~~
+- protect로 바꿀꺼 바꾸기 - domain에서만 사용하는것들은 protect로 하기
+- 예외 사용자 재정의하기
+
+---
+1. 상위 클래스에서 하위 클래스를 조정하자 - items,item처럼
+2. 
