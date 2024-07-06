@@ -1,5 +1,6 @@
 package domain;
 
+import domain.item.Items;
 import util.validator.UserCashValidator;
 
 import java.util.EnumMap;
@@ -8,8 +9,8 @@ public class UserCashier {
     private long amount;
     private ChangeCalculator changeCalculator;
 
-    public UserCashier(long amount) {
-        UserCashValidator.validate(amount);
+    public UserCashier(long amount, Items items) {
+        UserCashValidator.validate(amount,items.getMinimumPriceItem().getPrice());
         this.amount = amount;
         changeCalculator = new ChangeCalculator();
     }

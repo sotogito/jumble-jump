@@ -4,10 +4,11 @@ import util.message.ErrorMessage;
 
 public class UserCashValidator {
 
-    private static final int MIN = 100;
+    private static long MIN;
     private static final long MAX = 100000000;
 
-    public static void validate(long amount){
+    public static void validate(long amount,long minimumItemPrice){
+        MIN = minimumItemPrice;
         validateNumberInRange(amount);
     }
 

@@ -6,6 +6,7 @@ import domain.Store;
 import domain.UserCashier;
 import domain.item.Item;
 import domain.item.Items;
+import util.message.ServiceMessage;
 import util.reader.ItemCsvReader;
 import util.reader.RawCsvReader;
 import view.Input;
@@ -24,10 +25,10 @@ public class MainController {
         Items items = registerVendingMachineItems();
         sendItemListToOutput(items);
 
-        UserCashier userCashier = createUserCashier();
+        UserCashier userCashier = createUserCashier(items);
 
         Store store = new Store(order,items,userCashier);
-        getUserPurchaseItemLoop(store);
+        getUserPurchaseItemLoop(store,userCashier);
 
         sendReceiptDataToOutput(userCashier,order);
         sendChangeDataToOutput(userCashier);
@@ -45,8 +46,9 @@ public class MainController {
 
     }
 
-    private void getUserPurchaseItemLoop(Store store){
+    private void getUserPurchaseItemLoop(Store store,UserCashier userCashier){
         while (true){
+            System.out.printf(ServiceMessage.PRINT_BALANCE,userCashier.getAmount());
             try{
                 String[] inputPurchaseData = Input.inputPurchaseItemNameAndQuantity();
                 String itemName = inputPurchaseData[0];
@@ -55,6 +57,7 @@ public class MainController {
                 if(!store.isCanPurchase(itemName,quantity)){
                     break;
                 }
+                System.out.print(ServiceMessage.PRINT_SUCCESS_SHOPPING_BASKET);
             }catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e){
                 Output.printError(e.getMessage());
             }
@@ -62,10 +65,10 @@ public class MainController {
     }
 
 
-    private UserCashier createUserCashier() {
+    private UserCashier createUserCashier(Items items) {
         while (true){
             try{
-                return new UserCashier(Input.inputUSerAmount());
+                return new UserCashier(Input.inputUSerAmount(),items);
             }catch (IllegalArgumentException e){
                 Output.printError(e.getMessage());
             }

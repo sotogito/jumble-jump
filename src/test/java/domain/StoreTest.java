@@ -25,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StoreTest {
     private Store store;
+    private Order order = new Order();
 
 
 
@@ -39,9 +40,10 @@ class StoreTest {
         itemsList.add(item2);
 
         Items items = new Items(itemsList);
-        UserCashier userCashier = new UserCashier(2100);
+        UserCashier userCashier = new UserCashier(2100,items);
 
-        store = new Store(items, userCashier);
+
+        store = new Store(order,items, userCashier);
 
         assertFalse(store.isCanPurchase("사과",2));
 
@@ -58,8 +60,8 @@ class StoreTest {
         itemsList.add(item2);
 
         Items items = new Items(itemsList);
-        UserCashier userCashier = new UserCashier(6100);
-        store = new Store(items, userCashier);
+        UserCashier userCashier = new UserCashier(6100,items);
+        store = new Store(order,items, userCashier);
         store.isCanPurchase("참외",1);
 
         assertTrue(store.isCanPurchase("사과",2));
@@ -77,8 +79,8 @@ class StoreTest {
         itemsList.add(item2);
 
         Items items = new Items(itemsList);
-        UserCashier userCashier = new UserCashier(7100);
-        store = new Store(items, userCashier);
+        UserCashier userCashier = new UserCashier(7100,items);
+        store = new Store(order,items, userCashier);
 
         String expected = "900원이 부족해요.";
 
@@ -103,8 +105,8 @@ class StoreTest {
         itemsList.add(item2);
 
         Items items = new Items(itemsList);
-        UserCashier userCashier = new UserCashier(7100);
-        store = new Store(items, userCashier);
+        UserCashier userCashier = new UserCashier(7100,items);
+        store = new Store(order,items, userCashier);
 
         String expected = "사과는(은) 수량이 3개 뿐이에요!";
 
@@ -127,8 +129,8 @@ class StoreTest {
         itemsList.add(item2);
 
         Items items = new Items(itemsList);
-        UserCashier userCashier = new UserCashier(100100);
-        store = new Store(items, userCashier);
+        UserCashier userCashier = new UserCashier(100100,items);
+        store = new Store(order,items, userCashier);
 
         //store.isCanPurchase("사과",3);
 
@@ -149,8 +151,8 @@ class StoreTest {
 
         Items items = new Items(itemList);
 
-        UserCashier userCashier = new UserCashier(100100);
-        store = new Store(items, userCashier);
+        UserCashier userCashier = new UserCashier(100100,items);
+        store = new Store(order,items, userCashier);
 
         store.isCanPurchase("사과",1);
 
