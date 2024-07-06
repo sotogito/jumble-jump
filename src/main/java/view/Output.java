@@ -1,7 +1,9 @@
 package view;
 
 import util.message.ServiceMessage;
+import view.printer.ChangePrinter;
 import view.printer.ItemListPrinter;
+import view.printer.ReceiptPrinter;
 
 public class Output {
 
@@ -17,5 +19,14 @@ public class Output {
     public static void printItemList(ItemListPrinter itemListPrinter){
         itemListPrinter.print();
         System.out.println();
+    }
+
+    public static void printReceipt(ReceiptPrinter receiptPrinter){
+        receiptPrinter.print();
+
+    }
+
+    public static void printChange(ChangePrinter changePrinter){
+        changePrinter.print();
     }
 }
