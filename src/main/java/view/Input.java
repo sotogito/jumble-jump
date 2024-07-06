@@ -18,6 +18,7 @@ public class Input {
         }
     }
 
+    /*
     public static String[] inputPurchaseItemNameAndQuantity(){
         System.out.print(ServiceMessage.INPUT_PURCHASE_ITEM_NAME_QUANTITY);
         try{
@@ -29,6 +30,13 @@ public class Input {
         }catch (ArrayIndexOutOfBoundsException e){
             throw new ArrayIndexOutOfBoundsException(e.getMessage());
         }
+    }
+
+     */
+
+    public static String[] inputPurchaseItemNameAndQuantity(){
+        System.out.print(ServiceMessage.INPUT_PURCHASE_ITEM_NAME_QUANTITY);
+        return InputPurchaseItemParser.parse(scanner.nextLine().trim());
     }
 
 }
