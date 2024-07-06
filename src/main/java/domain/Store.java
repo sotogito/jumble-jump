@@ -23,13 +23,10 @@ public class Store {
     //todo 테스트 코드 작성 후 메서드 분리
     public boolean isCanPurchase(String itemName, int quantity){
         Item item = items.findItemByName(itemName);
-
-
         long purchasedPrice = item.calculatePurchasePriceAsAmount(quantity);
 
         validateBeforePurchase(item,quantity,purchasedPrice);
         updatePurchases(item,quantity,purchasedPrice);
-
 
 
         //note 구입 후에 확인해야하는 사항(앞으로) : 상품 전원 품절, 최소 금액보다 잔돈이 많은지
@@ -40,7 +37,6 @@ public class Store {
                 return false;
             }
         }
-
         //note 최소 금액보다 일단 잔돈이 많은지
         if(userCashier.isLessThanPurchasedItemAmount(minimumPrice.getPrice())){
             return false;
