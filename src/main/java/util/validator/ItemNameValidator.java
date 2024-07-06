@@ -1,5 +1,6 @@
 package util.validator;
 
+import util.Exception.InvalidItemRegistrationException;
 import util.message.ErrorMessage;
 
 public class ItemNameValidator {
@@ -10,7 +11,7 @@ public class ItemNameValidator {
 
     private static void validateNotEmpty(String itemName) {
         if(itemName == null || itemName.isEmpty()){
-            throw new IllegalArgumentException(ErrorMessage.EMPTY_REGISTER_ITEM_NAME);
+            throw new InvalidItemRegistrationException(ErrorMessage.EMPTY_REGISTER_ITEM_NAME);
         }
     }
 

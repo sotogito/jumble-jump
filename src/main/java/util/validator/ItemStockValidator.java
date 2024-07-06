@@ -1,5 +1,6 @@
 package util.validator;
 
+import util.Exception.InvalidItemRegistrationException;
 import util.message.ErrorMessage;
 
 public class ItemStockValidator {
@@ -12,7 +13,7 @@ public class ItemStockValidator {
 
     private static void validateNumberInRange(long number) {
         if(number < MIN || number > MAX) {
-            throw new IllegalArgumentException(
+            throw new InvalidItemRegistrationException(
                     String.format(ErrorMessage.INVALID_REGISTER_ITEM_STOCK,MIN,MAX)
             );
         }

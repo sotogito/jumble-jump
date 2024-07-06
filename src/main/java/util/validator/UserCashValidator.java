@@ -1,5 +1,6 @@
 package util.validator;
 
+import util.Exception.InvalidPurchaseException;
 import util.message.ErrorMessage;
 
 public class UserCashValidator {
@@ -14,7 +15,7 @@ public class UserCashValidator {
 
     private static void validateNumberInRange(long number) {
         if(number < MIN || number > MAX) {
-            throw new IllegalArgumentException(
+            throw new InvalidPurchaseException(
                     String.format(ErrorMessage.INVALID_USER_AMOUNT,MIN,MAX)
             );
         }
