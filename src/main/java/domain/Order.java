@@ -9,9 +9,10 @@ public class Order {
     private Map<Item, Integer> purchasedItems;
     private long totalAmount;
 
-    Order() {
+    public Order() {
         this.purchasedItems = new HashMap<>();
     }
+
 
     public void updatePurchasedItemsAndAmount(Item item, int purchasedQuantity) {
         purchasedItems.put(item, purchasedQuantity);
@@ -25,5 +26,7 @@ public class Order {
     public long getTotalAmount() {
         return totalAmount;
     }
+
+
 
 }

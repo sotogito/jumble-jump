@@ -13,9 +13,9 @@ public class Store {
     //수량은있는데 돈이 부족하면? 수량은 업데이트 된거잖아
     //각각 유효처리 한거를 따로 분리해야될듯
 
-    public Store(Items items, UserCashier userCashier) {
+    public Store(Order order, Items items, UserCashier userCashier) {
         this.userCashier = userCashier;
-        this.order = new Order();
+        this.order = order;
         this.items = items;
         this.minimumPrice = items.getMinimumPriceItem();
     }
