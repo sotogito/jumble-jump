@@ -23,8 +23,11 @@ public class MainController {
         UserCashier userCashier = createUserCashier();
 
         Store store = new Store(items,userCashier);
+        getUserPurchaseItemLoop(store);
 
+    }
 
+    private void getUserPurchaseItemLoop(Store store){
         while (true){
             try{
                 String[] inputPurchaseData = Input.inputPurchaseItemNameAndQuantity();
@@ -39,6 +42,7 @@ public class MainController {
             }
         }
     }
+
 
     private UserCashier createUserCashier() {
         while (true){
