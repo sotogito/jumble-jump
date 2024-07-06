@@ -54,6 +54,7 @@ public class MainController {
                     break;
                 }
                 Output.printMessage(ServiceMessage.PRINT_SUCCESS_SHOPPING_BASKET);
+                //NOTE : 에러 두개 잡기
             } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException e) {
                 Output.printError(e.getMessage());
             }

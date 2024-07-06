@@ -1,26 +1,22 @@
 package domain.item;
 
+import util.message.ErrorMessage;
+
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.List;
 
 public class Items {
-
     private List<Item> items;
 
     public Items(List<Item> items) {
         this.items = items;
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
-
     public Item getMinimumPriceItem(){
         return items.stream()
                 .filter(item -> !item.isOutOfStock()) // item.getStock() > 0
                 .min(Comparator.comparingDouble(Item::getPrice))
-                .orElseThrow(() -> new IllegalArgumentException("모든 상품이 소진되었어요. 장사 끝!"));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.ALL_ITEM_OUT_OF_STOCK));
 
     }
 
@@ -30,7 +26,11 @@ public class Items {
                 return item;
             }
         }
-        throw new IllegalArgumentException("존재하지 않는 상품입니다.");
+        throw new IllegalArgumentException(ErrorMessage.NOT_EXISTENCE_INPUT_ITEM);
+    }
+
+    public List<Item> getItems() {
+        return items;
     }
 
     @Override
