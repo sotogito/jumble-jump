@@ -33,7 +33,7 @@ public class Store {
 
 
         //note 구입 후에 확인해야하는 사항(앞으로) : 상품 전원 품절, 최소 금액보다 잔돈이 많은지
-        if(item.equals(minimumPrice) && minimumPrice.isOutOfStock()){//구매했는데 만약 상품이 0개라면 최
+        if(item.equals(minimumPrice) && minimumPrice.isOutOfStock()){ //만약 구매한 상품이 최소금액인데 수량이0이면 최소 가격 업데이트
             try{
                 minimumPrice = items.getMinimumPriceItem();
             }catch (IllegalArgumentException e){
@@ -61,4 +61,5 @@ public class Store {
         item.decreaseStock(quantity);
         order.updatePurchasedItemsAndAmount(item,quantity);
     }
+
 }

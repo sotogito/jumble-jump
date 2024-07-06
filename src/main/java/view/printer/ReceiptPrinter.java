@@ -8,11 +8,11 @@ import util.message.ServiceMessage;
 import java.util.Map;
 
 public class ReceiptPrinter implements Printer {
-    private final String PRINT_RECEIPT_INTRO_MESSAGE = "영수증을 출력할게요.\n";
-    private final String PRINT_RECEIPT_INTRO = "<영수증>\n";
-    private final String PRINT_ITEM_RECEIPT_FORMAT = "%s, %d개, %,d원\n";
-    private final String PRINT_TOTAL_AMOUNT = "총 가격 : %,d원\n";
-    private final String DIVIDER = "------\n";
+    private static final String PRINT_RECEIPT_INTRO_MESSAGE = "영수증을 출력할게요.\n";
+    private static final String PRINT_RECEIPT_INTRO = "<영수증>\n";
+    private static final String PRINT_ITEM_RECEIPT_FORMAT = "%s, %d개, %,d원\n";
+    private static final String PRINT_TOTAL_AMOUNT = "총 가격 : %,d원\n";
+    private static final String DIVIDER = "------\n";
 
 
     private final UserCashier userCashier;

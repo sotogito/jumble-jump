@@ -1,6 +1,7 @@
 package domain;
 
 import domain.item.Items;
+import util.message.ErrorMessage;
 import util.validator.UserCashValidator;
 
 import java.util.EnumMap;
@@ -28,7 +29,7 @@ public class UserCashier {
         if(itemAmount > this.amount) {
             long insufficientAmount = calculateInsufficientAmount(itemAmount);
             throw new IllegalArgumentException(
-                    String.format("%,d원이 부족해요.\n", insufficientAmount)
+                    String.format(ErrorMessage.INVALID_ITEM_TOTAL_AMOUNT, insufficientAmount)
             );
         }
     }
@@ -41,7 +42,7 @@ public class UserCashier {
         return itemAmount - this.amount;
     }
 
-    //note 더이상 구매할 수 있는지 확인
+
     public boolean isLessThanPurchasedItemAmount(long minimumItemPrice) {
         return amount < minimumItemPrice;
     }

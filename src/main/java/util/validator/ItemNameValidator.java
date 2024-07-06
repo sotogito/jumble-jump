@@ -1,5 +1,7 @@
 package util.validator;
 
+import util.message.ErrorMessage;
+
 public class ItemNameValidator {
 
     public static void validate(String itemName){
@@ -8,7 +10,7 @@ public class ItemNameValidator {
 
     private static void validateNotEmpty(String itemName) {
         if(itemName == null || itemName.isEmpty()){
-            throw new IllegalArgumentException("상품의 이름이 비어있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_REGISTER_ITEM_NAME);
         }
     }
 

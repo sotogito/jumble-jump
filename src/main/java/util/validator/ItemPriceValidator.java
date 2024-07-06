@@ -1,5 +1,7 @@
 package util.validator;
 
+import util.message.ErrorMessage;
+
 public class ItemPriceValidator {
 
     private static final int MIN = 10;
@@ -12,7 +14,7 @@ public class ItemPriceValidator {
     private static void validateNumberInRange(long number) {
         if(number < MIN || number > MAX) {
             throw new IllegalArgumentException(
-                    String.format("상품의 가격은 %d부터 %d까지 입력 가능합니다.",MIN,MAX)
+                    String.format(ErrorMessage.INVALID_REGISTER_ITEM_PRICE,MIN,MAX)
             );
         }
     }
