@@ -1,4 +1,5 @@
 plugins {
+    id("org.jetbrains.kotlin.jvm") version "1.9.20"
     id("java")
 }
 
@@ -23,3 +24,4 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
