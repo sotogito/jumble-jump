@@ -35,3 +35,6 @@
 문장을 입력하면 선택한 폰트로 출력한다.
 ```
 [(1) 엉망진창 코드](https://github.com/sotogito/jumble-jump/tree/ecc62a2)
+- csv 파일에서 폰트id-폰트이름 읽어서 Map으로 저장하기
+- Figlet 폰트 .flf 파일 활용하기
+- Figlet 라이브러리 사용
