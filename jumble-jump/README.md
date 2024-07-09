@@ -28,3 +28,10 @@
 [(1) 기본](https://github.com/sotogito/jumble-jump/tree/4-penny-pinching-store)
 - csv 파일에서 물건 읽어서 저장하기
 - 복잡한 if문 - 구매를 할 수 없을 때까지의 조건
+
+---
+#### [ 5. ](jumbles/penny_pinching_store.md) 악필에서 명필로
+```text
+문장을 입력하면 성택한 폰트로 출력한다.
+```
+[(1) 엉망진창 코드](https://github.com/sotogito/jumble-jump/tree/ecc62a2)
