@@ -6,12 +6,12 @@ public class Input {
     private static Scanner scanner = new Scanner(System.in);
 
     public static String inputPrintout(){
-        System.out.println("출력물을 입력해주세요.\n");
+        System.out.print("출력물을 입력해 주세요.\n");
         return scanner.nextLine();
     }
 
     public static int inputFontId(){
-        System.out.println("원하는 폰트 ID 를 입력해 주세요.\n");
+        System.out.print("원하는 폰트 ID 를 입력해 주세요.\n");
         try{
             return Integer.parseInt(scanner.nextLine())-1;
         }catch (IllegalArgumentException e){

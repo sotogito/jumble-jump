@@ -24,6 +24,7 @@ public class PrintoutValidator {
      * 다른나라 언어도 입력이 불가하다.
      *
      * 영어로만 입력이 되어있나? 확인하려면 특수문자도 입력이 가능한다..
+     * 만약 안되는 특수문자가 있으면 표시하고 출력하기
      */
 
     private static void validateString(String input) {
