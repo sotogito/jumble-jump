@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 public class PrintoutValidator {
     private static final int MIN_LENGTH = 1;
     private static final int MAX_LENGTH = 50;
-    private static final String PATTERN = "^[a-zA-Z!@#$%^&*(),.?\":{}|<> ]*$";
+    private static final String PATTERN = "^[a-zA-Z0-9!@#$%^&*(),.?\":{}|<> ]*$";
 
     public static void validate(String input){
         validateNotEmptyAndLength(input);
@@ -29,7 +29,7 @@ public class PrintoutValidator {
 
     private static void validateString(String input) {
         if (!Pattern.matches(PATTERN, input)) {
-            throw new IllegalArgumentException("출력물은 영어와 특수문자만 입력 가능합니다.\n");
+            throw new IllegalArgumentException("출력물은 영어와 숫자, 특수문자만 입력 가능합니다.\n");
         }
     }
 
