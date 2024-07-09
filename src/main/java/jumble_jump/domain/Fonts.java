@@ -11,8 +11,21 @@ public class Fonts {
         this.fonts = fonts;
     }
 
+    //TODO optional 활용
     public String getFontName(int fontId) {
-        return fonts.get(fontId);
+        try{
+            return fonts.get(fontId);
+        }catch (IllegalArgumentException e){
+            throw new IllegalArgumentException("폰트를 찾을 수 없어요.\n");
+        }
+    }
+
+    public boolean idExistFontId(int id) {
+        return fonts.containsKey(id);
+    }
+
+    public Map<Integer,String> getFonts() {
+        return fonts;
     }
 
 }
