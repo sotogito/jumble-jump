@@ -21,7 +21,7 @@
 [(1) 도연이의 랜덤 영어 단어 시험](https://github.com/sotogito/jumble-jump/tree/3-random-word-test)
 
 ---
-[ 4. ](jumbles/penny_pinching_store.md) 빈털털이 구멍 가게
+#### [ 4. ](jumbles/penny_pinching_store.md) 빈털털이 구멍 가게
 ```text
 사용자가 입력한 금액이 더 이상 구매할 수 없는 가격이 될 때까지 빈털이로 만든다.
 ```
