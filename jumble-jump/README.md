@@ -23,7 +23,7 @@
 ---
 #### [ 4. ](jumbles/penny_pinching_store.md) 빈털털이 구멍 가게
 ```text
-사용자가 입력한 금액이 더 이상 구매할 수 없는 가격이 될 때까지 빈털이로 만든다.
+사용자가 입력한 금액이 더 이상 구매할 수 없는 가격이 될 때까지 구매하게 만들어 빈털털이로 만든다.
 ```
 [(1) 기본](https://github.com/sotogito/jumble-jump/tree/4-penny-pinching-store)
 - csv 파일에서 물건 읽어서 저장하기
@@ -32,6 +32,6 @@
 ---
 #### [ 5. ](jumbles/penny_pinching_store.md) 악필에서 명필로
 ```text
-문장을 입력하면 성택한 폰트로 출력한다.
+문장을 입력하면 선택한 폰트로 출력한다.
 ```
 [(1) 엉망진창 코드](https://github.com/sotogito/jumble-jump/tree/ecc62a2)
