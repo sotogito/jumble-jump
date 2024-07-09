@@ -1,4 +1,4 @@
-package jumble_jump.hello_spring;
+package jumble_jump;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package jumble_jump.hello_spring;
+package jumble_jump;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
