@@ -25,7 +25,7 @@ public class CalligrapherFinder {
     }
 
     private Calligrapher getCalligrapher(int fontId){
-        if (fontId == 0){
+        if (fontId == BasicsCalligrapher.basicFontNumber){
             return new BasicsCalligrapher();
         }
         return new VariousCalligrapher();

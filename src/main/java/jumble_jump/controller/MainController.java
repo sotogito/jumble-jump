@@ -20,11 +20,11 @@ public class MainController {
 
     public void main() throws IOException {
         Fonts fonts = createFonts();
-        CalligrapherFinder calligrapherFinder = new CalligrapherFinder(fonts);
+        CalligrapherFinder calligrapherFinder = createCalligrapherFinder(fonts);
 
-        AllFontPrinter allFontPrinter = new AllFontPrinter();
-        String print = allFontPrinter.print(calligrapherFinder, fonts);
-        System.out.println(print);
+        AllFontPrinter allFontPrinter = createPrinter();
+        String printout = allFontPrinter.print(calligrapherFinder, fonts);
+        System.out.println(printout);
 
         getPrintout(calligrapherFinder,fonts);
     }
@@ -76,4 +76,13 @@ public class MainController {
         Map<Integer, String> stringStringMap = csvReader.readAsMap(FONT_CSV_PATH);
         return stringStringMap;
     }
+
+    private CalligrapherFinder createCalligrapherFinder(Fonts fonts) {
+        return new CalligrapherFinder(fonts);
+    }
+
+    private AllFontPrinter createPrinter() {
+        return new AllFontPrinter();
+    }
+
 }

@@ -7,14 +7,14 @@ public enum Status {
     private String status;
     private boolean active;
 
-    private static final String FOTMAT = "[%s]";
+    private static final String FORMAT = "[%s]";
 
     Status(String status, boolean active) {
         this.status = status;
     }
 
     public String getStatus(){
-        return String.format(FOTMAT, status);
+        return String.format(FORMAT, status);
     }
 
     public boolean isActive() {
