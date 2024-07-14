@@ -16,6 +16,8 @@ import java.util.Map;
 
 public class MainController {
 
+    private static final String FONT_CSV_PATH = "/data/fonts.csv";
+
     public void main() throws IOException {
         Fonts fonts = createFonts();
         CalligrapherFinder calligrapherFinder = new CalligrapherFinder(fonts);
@@ -70,9 +72,8 @@ public class MainController {
 
     private Map<Integer,String> registerFonts() throws IOException {
         FontCsvReader csvReader = new FontCsvReader(new RawCsvReader());
-        String itemCsvPath = "/data/fonts.csv";
 
-        Map<Integer, String> stringStringMap = csvReader.readAsMap(itemCsvPath);
+        Map<Integer, String> stringStringMap = csvReader.readAsMap(FONT_CSV_PATH);
         return stringStringMap;
     }
 }
