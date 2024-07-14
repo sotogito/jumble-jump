@@ -3,6 +3,8 @@ package jumble_jump.util.message;
 public class ErrorMessage {
     public final static String PRINT_ERROR_FORMAT = "[ERROR] : %s";
 
+    public final static String ONLY_NUMBER_FONT_ID = "숫자로 입력하세요\n";
+
     public final static String CANT_FIND_FONT_FILE_FORMAT_PATH = "파일을 찾을 수 없습니다. : %s";
 
     public final static String CANT_FIND_FONT = "폰트를 찾을 수 없어요.\n";
