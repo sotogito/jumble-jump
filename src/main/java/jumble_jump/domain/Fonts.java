@@ -1,5 +1,7 @@
 package jumble_jump.domain;
 
+import jumble_jump.util.message.ErrorMessage;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +18,7 @@ public class Fonts {
         try{
             return fonts.get(fontId);
         }catch (IllegalArgumentException e){
-            throw new IllegalArgumentException("폰트를 찾을 수 없어요.\n");
+            throw new IllegalArgumentException(ErrorMessage.CANT_FIND_FONT);
         }
     }
 

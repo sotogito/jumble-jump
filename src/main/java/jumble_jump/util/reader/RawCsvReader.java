@@ -1,6 +1,7 @@
 package jumble_jump.util.reader;
 
 import com.opencsv.CSVReader;
+import jumble_jump.util.message.ErrorMessage;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +15,8 @@ public class RawCsvReader {
         InputStream in = getClass().getResourceAsStream(path);
 
         if (in == null) {
-            throw new IOException("파일을 찾을 수 없습니다: " + path);
+            throw new IOException(
+                    String.format(ErrorMessage.CANT_FIND_FONT_FILE_FORMAT_PATH,path));
         }
 
         InputStreamReader isr = new InputStreamReader(in, StandardCharsets.UTF_8);
