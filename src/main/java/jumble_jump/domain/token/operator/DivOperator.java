@@ -1,8 +1,9 @@
-package jumble_jump.domain.operators;
+package jumble_jump.domain.token.operator;
 
 import jumble_jump.domain.component.OperatorType;
+import jumble_jump.domain.token.OperatorToken;
 
-public class DivOperator implements Operator {
+public class DivOperator implements OperatorToken {
     @Override
     public OperatorType getOperatorType() {
         return OperatorType.DIVIDE;
