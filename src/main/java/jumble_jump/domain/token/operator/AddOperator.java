@@ -3,6 +3,7 @@ package jumble_jump.domain.token.operator;
 import jumble_jump.domain.component.OperatorType;
 import jumble_jump.domain.token.OperatorToken;
 
+//note 연산자는 행동이 저장되어야함
 public class AddOperator implements OperatorToken {
 
     @Override
