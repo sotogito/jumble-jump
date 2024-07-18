@@ -1,5 +1,6 @@
 package jumble_jump.controller;
 
+import jumble_jump.domain.Problem;
 import jumble_jump.domain.matcher.NumberMatcher;
 import jumble_jump.domain.matcher.OperatorMatcher;
 import jumble_jump.domain.matcher.ParenthesisMatcher;
@@ -9,6 +10,7 @@ import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.util.Token;
 import jumble_jump.util.Tokenizer;
 import jumble_jump.view.Input;
+import jumble_jump.view.Output;
 
 import java.util.List;
 
@@ -16,19 +18,28 @@ public class MainController {
 
     public void main(){
         Tokenizer tokenizer = createTokenizer();
-        List<Token> tokens = tokenizer.tokenize(Input.inputProblem());
+        List<Token> tokens = getTokens(tokenizer);
+        setProblemTokens(tokens);
 
-        for (Token token : tokens) {
-            if(token instanceof NumberToken) {
-                System.out.println(((NumberToken) token).getNumber());
-            }else if(token instanceof OperatorToken) {
-                System.out.println(((OperatorToken) token).getOperatorType());
-            }else if(token instanceof ParenthesisToken) {
-                System.out.println(((ParenthesisToken) token).getParenthesisPriority());
+        System.out.println(Problem.getProblemText());
+
+
+
+
+    }
+
+    private void setProblemTokens(List<Token> tokens) {
+        Problem.setProblemTokens(tokens);
+    }
+
+    private List<Token> getTokens(Tokenizer tokenizer) {
+        while (true){
+            try{
+                return tokenizer.tokenize(Input.inputProblem());
+            }catch (IllegalArgumentException e){
+                Output.printError(e.getMessage());
             }
         }
-
-
     }
 
     private Tokenizer createTokenizer() {
