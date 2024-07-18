@@ -34,6 +34,15 @@ public enum ParenthesisType {
         throw new IllegalArgumentException("존재하지 않는 괄호입니다.");
     }
 
+    public static boolean isParenthesisType(char input) {
+        for (ParenthesisType p : values()) {
+            if (p.getSymbol() == input) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ParenthesisType getAdvancedPriority(ParenthesisType p1, ParenthesisType p2){
         if (p1.getPriority() > p2.getPriority()) {
             return p1;
