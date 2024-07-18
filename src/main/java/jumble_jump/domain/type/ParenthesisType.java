@@ -1,4 +1,4 @@
-package jumble_jump.domain.component;
+package jumble_jump.domain.type;
 
 public enum ParenthesisType {
     PARENTHESIS_LEFT('(', 1),

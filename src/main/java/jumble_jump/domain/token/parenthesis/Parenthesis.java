@@ -1,8 +1,7 @@
 package jumble_jump.domain.token.parenthesis;
 
-import jumble_jump.domain.component.ParenthesisType;
+import jumble_jump.domain.type.ParenthesisType;
 import jumble_jump.domain.token.ParenthesisToken;
-import jumble_jump.util.Token;
 
 /**
  * 객체들의 인터페이스 implments는 부모가 아니라 자식으로 해줘야함

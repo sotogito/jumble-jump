@@ -1,12 +1,10 @@
 package jumble_jump.util;
 
-import jumble_jump.domain.component.OperatorType;
-import jumble_jump.domain.component.ParenthesisType;
-import jumble_jump.domain.matcher.Matcher;
+import jumble_jump.domain.type.OperatorType;
+import jumble_jump.domain.type.ParenthesisType;
 import jumble_jump.domain.matcher.NumberMatcher;
 import jumble_jump.domain.matcher.OperatorMatcher;
 import jumble_jump.domain.matcher.ParenthesisMatcher;
-import jumble_jump.domain.token.NumberToken;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package jumble_jump.domain;
 
-import jumble_jump.domain.component.OperatorType;
+import jumble_jump.domain.type.OperatorType;
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;

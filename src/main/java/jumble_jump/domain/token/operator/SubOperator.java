@@ -1,6 +1,6 @@
 package jumble_jump.domain.token.operator;
 
-import jumble_jump.domain.component.OperatorType;
+import jumble_jump.domain.type.OperatorType;
 import jumble_jump.domain.token.OperatorToken;
 
 public class SubOperator implements OperatorToken {
