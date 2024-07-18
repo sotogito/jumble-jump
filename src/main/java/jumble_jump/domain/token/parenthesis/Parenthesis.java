@@ -21,4 +21,9 @@ public class Parenthesis implements ParenthesisToken {
     public int getParenthesisPriority() {
         return parenthesisType.getPriority();
     }
+
+    @Override
+    public String getParenthesisText() {
+        return Character.toString(parenthesisType.getSymbol());
+    }
 }
