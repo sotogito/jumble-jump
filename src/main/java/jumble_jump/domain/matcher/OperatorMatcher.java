@@ -1,23 +1,27 @@
 package jumble_jump.domain.matcher;
 
 import jumble_jump.domain.component.OperatorType;
-import jumble_jump.domain.operators.*;
+import jumble_jump.domain.token.OperatorToken;
+import jumble_jump.domain.token.operator.*;
+import jumble_jump.util.Token;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class OperatorMatcher {
+public class OperatorMatcher implements Matcher {
 
-    private final List<Operator> operators = new ArrayList<>();
+    private final List<OperatorToken> operators = new ArrayList<>();
 
     public OperatorMatcher() {
         initOperator();
     }
 
-    private Operator match(char inputOperator){
+    //note 반환은 Token으로 함
+    @Override
+    public Token match(char inputOperator){
         OperatorType operatorType = OperatorType.fromSymbol(inputOperator);
 
-        for(Operator operator : operators) {
+        for(OperatorToken operator : operators) {
             if(operator.getOperatorType().equals(operatorType)) {
                 return operator;
             }

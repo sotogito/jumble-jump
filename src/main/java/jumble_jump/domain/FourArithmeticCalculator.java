@@ -1,6 +1,6 @@
 package jumble_jump.domain;
 
-public interface CalculatorType {
+public interface FourArithmeticCalculator {
     double add(double x, double y);
     double sub(double x, double y);
     double div(double x, double y);
