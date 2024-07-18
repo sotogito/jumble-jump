@@ -1,4 +1,4 @@
-package jumble_jump.view;
+package jumble_jump.util.validator;
 
 public class NumberValidator {
 
