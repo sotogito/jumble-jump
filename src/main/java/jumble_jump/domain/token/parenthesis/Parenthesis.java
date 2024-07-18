@@ -13,8 +13,8 @@ public class Parenthesis implements ParenthesisToken {
 
     private final ParenthesisType parenthesisType;
 
-    public Parenthesis(ParenthesisType parenthesisType) {
-        this.parenthesisType = parenthesisType;
+    public Parenthesis(char parenthesis) {
+        this.parenthesisType = ParenthesisType.fromSymbol(parenthesis);
     }
 
     @Override
