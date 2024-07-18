@@ -1,5 +1,6 @@
 package jumble_jump.domain.calligrapher;
 
+
 import com.github.lalyos.jfiglet.FigletFont;
 
 import java.io.IOException;
