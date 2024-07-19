@@ -7,6 +7,7 @@ import jumble_jump.domain.matcher.ParenthesisMatcher;
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
+import jumble_jump.service.CalculatorService;
 import jumble_jump.util.Token;
 import jumble_jump.util.Tokenizer;
 import jumble_jump.view.Input;
@@ -19,17 +20,23 @@ public class MainController {
     public void main(){
         Tokenizer tokenizer = createTokenizer();
         List<Token> tokens = getTokens(tokenizer);
-        setProblemTokens(tokens);
+        Problem problem = createProblem(tokens);
 
-        System.out.println(Problem.getProblemText());
+        CalculatorService calculatorService = createCalculatorService(problem);
+
+
 
 
 
 
     }
 
-    private void setProblemTokens(List<Token> tokens) {
-        Problem.setProblemTokens(tokens);
+    private CalculatorService createCalculatorService(Problem problem) {
+        return new CalculatorService(problem);
+    }
+
+    private Problem createProblem(List<Token> tokens) {
+        return new Problem(tokens);
     }
 
     private List<Token> getTokens(Tokenizer tokenizer) {

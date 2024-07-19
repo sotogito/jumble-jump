@@ -11,17 +11,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Problem {
-    private static final List<Token> problemTokens = new ArrayList<>();
+    private final List<Token> problemTokens;
 
-    public static void setProblemTokens(List<Token> tokens) {
-        problemTokens.addAll(tokens);
+    public Problem(List<Token> tokens) {
+        this.problemTokens = tokens;
     }
 
-    public static List<Token> getProblemTokens() {
+    public List<Token> getProblemTokens() {
         return problemTokens;
     }
 
-    public static String getProblemText() {
+    public String getProblemText() {
         return ProblemToStringConverter.getProblemText(problemTokens);
     }
 }
