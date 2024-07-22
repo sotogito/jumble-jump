@@ -124,22 +124,25 @@ public class CalculatorService {
                     operatorStack.push(token);
 
                     if (parenthesisStack.size() >= 2) { //note parenthesisStack에 들어있는 열린 괄호들을 우선순위로 정렬한다음 그 값이 isnectOpen인지
-                        List<ParenthesisToken> parenthesisList = new ArrayList<>();
+
+                        List<Integer> parenthesisPriorityList = new ArrayList<>();
                         for (Token t : parenthesisStack) {
                             if (t instanceof ParenthesisToken) {
-                                parenthesisList.add((ParenthesisToken) t);
+                                parenthesisPriorityList.add(((ParenthesisToken) t).getParenthesisPriority());
+                                continue;
                             }
+                            throw new IllegalArgumentException();
                         }
-                        parenthesisList.sort(Comparator.comparingInt(ParenthesisToken::getParenthesisPriority));
 
-                        for (int i = 0; i < parenthesisList.size() - 1; i++) {
-                            ParenthesisType before = parenthesisList.get(i).getParenthesisType();
-                            ParenthesisType after = parenthesisList.get(i + 1).getParenthesisType();
-
-                            if (!ParenthesisType.isNextOpen(before, after)) {
+                        Collections.sort(parenthesisPriorityList);
+                        for (int i = 0; i < parenthesisPriorityList.size() - 1; i++) {
+                            if(parenthesisPriorityList.get(i + 1) - parenthesisPriorityList.get(i) != 1){
                                 throw new IllegalArgumentException("우선순위가 높은 괄호부터 차례대로 사용해주세요");
                             }
                         }
+
+
+
                     }
                 }
 
