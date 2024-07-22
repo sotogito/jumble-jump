@@ -1,12 +1,11 @@
 package jumble_jump.domain.type;
 
+import jumble_jump.domain.token.ParenthesisToken;
+
 public enum ParenthesisType {
-    PARENTHESIS_LEFT('(', 1),
-    PARENTHESIS_RIGHT(')', 1),
-    CURLY_BRACE_LEFT('{', 2),
-    CURLY_BRACE_RIGHT('}', 2),
-    BRACKET_LEFT('[', 3),
-    BRACKET_RIGHT(']', 3),
+    PARENTHESIS_OPEN('(', 1), PARENTHESIS_CLOSE(')', 1),
+    CURLY_BRACE_OPEN('{', 2), CURLY_BRACE_CLOSE('}', 2),
+    BRACKET_OPEN('[', 3), BRACKET_CLOSE(']', 3),
     ;
 
     private final char symbol;
@@ -43,12 +42,38 @@ public enum ParenthesisType {
         return false;
     }
 
-    public ParenthesisType getAdvancedPriority(ParenthesisType p1, ParenthesisType p2){
-        if (p1.getPriority() > p2.getPriority()) {
-            return p1;
-        }
-        return p2;
+    public boolean isOpen() {
+        return this == PARENTHESIS_OPEN || this == CURLY_BRACE_OPEN || this == BRACKET_OPEN;
     }
+
+
+    public static boolean isNextParenthesis(ParenthesisType before, ParenthesisType now){
+        int subPriority = now.getPriority() - before.getPriority();
+        return subPriority == 0 || subPriority == 1;
+    }
+
+    public static boolean isNextOpen(ParenthesisType before, ParenthesisType now){
+        int subPriority = now.getPriority() - before.getPriority();
+        return subPriority == 0 || subPriority == -1;
+    }
+
+    public static boolean isNextClose(ParenthesisType before, ParenthesisType now){
+        int subPriority = now.getPriority() - before.getPriority();
+        return subPriority == 0 || subPriority == 1;
+    }
+
+    public static boolean isSamePriority(ParenthesisType before, ParenthesisType now){
+        System.out.println("befor 우선순위" +before.symbol +before.getPriority());
+        System.out.println("nnow 우선순위" +now.symbol +now.getPriority());
+        return before.getPriority() == now.getPriority();
+    }
+
+
+    public static boolean isSameOpenState(ParenthesisType before, ParenthesisType now){
+        return (before.isOpen() && now.isOpen()) || (!before.isOpen() && !now.isOpen());
+    }
+
+
 
 
 

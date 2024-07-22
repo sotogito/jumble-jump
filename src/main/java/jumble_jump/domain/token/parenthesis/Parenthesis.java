@@ -25,4 +25,16 @@ public class Parenthesis implements ParenthesisToken {
     public String getParenthesisText() {
         return Character.toString(parenthesisType.getSymbol());
     }
+
+    @Override
+    public ParenthesisType getParenthesisType() {
+        return parenthesisType;
+    }
+
+    @Override
+    public boolean isOpenParenthesis() {
+        return parenthesisType.isOpen();
+    }
+
+
 }
