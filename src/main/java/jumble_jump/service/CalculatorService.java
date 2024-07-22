@@ -118,72 +118,49 @@ public class CalculatorService {
 
                 //note 열린 괄호 ({[
                 if(nowParenthesis.isOpenParenthesis()){
+                    System.out.println("열린 -> 열린");
+                    parenthesisStack.push(nowParenthesis);
+                    rightParenthesisCount++;
+                    operatorStack.push(token);
 
-                    if(beforeParenthesis.isOpenParenthesis()){
-                        System.out.println("열린 -> 열린");
-                        //todo [()] 이렇게 사용한것도 통과해버린다
-                        //if (!ParenthesisType.isNextOpen(beforeParenthesis.getParenthesisType(), nowParenthesisType)) {
-                        //    throw new IllegalArgumentException("열린 괄호의 우선순위를 지켜주세요");
-                        //}
-
-                        //beforeParenthesis = nowParenthesis;
-                        parenthesisStack.push(nowParenthesis);
-                        rightParenthesisCount++;
-                        operatorStack.push(token);
-                        continue;
-
-                    } else if (!beforeParenthesis.isOpenParenthesis()) {
-                        System.out.println("닫힌 -> 열린");
-                        if(rightParenthesisCount != leftParenthesisCount){
-                            throw new IllegalArgumentException("괄호의 중첩이 끝나지 않았습니다.");
+                    if (parenthesisStack.size() >= 2) { //note parenthesisStack에 들어있는 열린 괄호들을 우선순위로 정렬한다음 그 값이 isnectOpen인지
+                        List<ParenthesisToken> parenthesisList = new ArrayList<>();
+                        for (Token t : parenthesisStack) {
+                            if (t instanceof ParenthesisToken) {
+                                parenthesisList.add((ParenthesisToken) t);
+                            }
                         }
-                        //todo 초기화가 되었을거임 어차피 null로 처리됨
-                        continue;
-                    }
+                        parenthesisList.sort(Comparator.comparingInt(ParenthesisToken::getParenthesisPriority));
 
+                        for (int i = 0; i < parenthesisList.size() - 1; i++) {
+                            ParenthesisType before = parenthesisList.get(i).getParenthesisType();
+                            ParenthesisType after = parenthesisList.get(i + 1).getParenthesisType();
 
-                }
-
-                if (parenthesisStack.size() >= 2) { //note parenthesisStack에 들어있는 열린 괄호들을 우선순위로 정렬한다음 그 값이 isnectOpen인지
-                    List<ParenthesisToken> parenthesisList = new ArrayList<>();
-                    for (Token t : parenthesisStack) {
-                        if (t instanceof ParenthesisToken) {
-                            parenthesisList.add((ParenthesisToken) token);
-                        }
-                    }
-                    parenthesisList.sort(Comparator.comparingInt(ParenthesisToken::getParenthesisPriority));
-
-                    for (int i = 0; i < parenthesisList.size() - 1; i++) {
-                        ParenthesisType before = parenthesisList.get(i).getParenthesisType();
-                        ParenthesisType after = parenthesisList.get(i + 1).getParenthesisType();
-
-                        if (!ParenthesisType.isNextOpen(before, after)) {
-                            throw new IllegalArgumentException("우선순위가 높은 괄호부터 차례대로 사용해주세요");
+                            if (!ParenthesisType.isNextOpen(before, after)) {
+                                throw new IllegalArgumentException("우선순위가 높은 괄호부터 차례대로 사용해주세요");
+                            }
                         }
                     }
                 }
+
 
                 //note 닫힌 괄호 )}]
                 if(!nowParenthesis.isOpenParenthesis()){
                     if(beforeParenthesis.isOpenParenthesis()){
                         System.out.println("열린 -> 닫힌");
                         if(!ParenthesisType.isSamePriority(beforeParenthesis.getParenthesisType(), nowParenthesisType)){
-
-                            System.out.println(rightParenthesisCount+leftParenthesisCount);
-                            System.out.println(leftParenthesisCount);
                             throw new IllegalArgumentException("열리고, 닫힌 괄호의 종류가 달라요"); //fixme
                         } else if (rightParenthesisCount <= 1) {
                             if(nowParenthesis.getParenthesisPriority() != 1){
                                 throw new IllegalArgumentException("단독으로 사용하는 괄호는 소괄호를 사용하세요.");
                             }
                         }
-
-                        //todo output에 넣는 처리
-
-                        parenthesisStack.removeFirst();
-                        leftParenthesisCount++;
-
                     }
+
+                    parenthesisStack.removeFirst();
+                    leftParenthesisCount++;
+
+
                     if(rightParenthesisCount == leftParenthesisCount){ //note 중첩이 끝났는지 확인
                         System.out.println("초기화");
                         rightParenthesisCount = 0;
@@ -206,6 +183,10 @@ public class CalculatorService {
 
             }
 
+        }
+
+        if(rightParenthesisCount != leftParenthesisCount){
+            throw new IllegalArgumentException("괄호의 중첩이 끝나지 않았습니다.");
         }
 
         while (!operatorStack.isEmpty()) {
