@@ -53,6 +53,8 @@ public enum ParenthesisType {
     }
 
     public static boolean isNextOpen(ParenthesisType before, ParenthesisType now){
+        System.out.println("befor 우선순위" +before.symbol +before.getPriority());
+        System.out.println("nnow 우선순위" +now.symbol +now.getPriority());
         int subPriority = now.getPriority() - before.getPriority();
         return subPriority == 0 || subPriority == -1;
     }
@@ -63,8 +65,6 @@ public enum ParenthesisType {
     }
 
     public static boolean isSamePriority(ParenthesisType before, ParenthesisType now){
-        System.out.println("befor 우선순위" +before.symbol +before.getPriority());
-        System.out.println("nnow 우선순위" +now.symbol +now.getPriority());
         return before.getPriority() == now.getPriority();
     }
 
