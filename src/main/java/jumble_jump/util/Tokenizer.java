@@ -25,6 +25,21 @@ public class Tokenizer {
         List<Token> result = new ArrayList<>();
         char[] chars = inputProblem.toCharArray();
 
+        StringBuilder trimmedInput = new StringBuilder();
+        for (char c : chars) {
+            if (!Character.isWhitespace(c)) {
+                trimmedInput.append(c);
+            }
+        }
+        chars = trimmedInput.toString().toCharArray();
+
+        // 결과 출력 (테스트용)
+        for (char c : chars) {
+            System.out.print(c);
+        }
+
+
+
         for (char c : chars) {
             if(Character.isDigit(c)){
                 result.add(getNumberToken(c));
