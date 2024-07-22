@@ -12,7 +12,7 @@ public class Number implements NumberToken {
     }
 
     @Override
-    public int getNumber() {
+    public double getNumber() {
         return number;
     }
 

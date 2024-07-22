@@ -10,6 +10,11 @@ public class DivOperator implements OperatorToken {
     }
 
     @Override
+    public int getPriority() {
+        return 1;
+    }
+
+    @Override
     public double calculate(double number1, double number2) {
         return number1 / number2;
     }

@@ -15,7 +15,7 @@ public class ProblemToStringConverter {
         List<String> result = new ArrayList<>();
         for (Token token : problemTokens) {
             if(token instanceof NumberToken) {
-                int number = ((NumberToken) token).getNumber();
+                double number = ((NumberToken) token).getNumber();
                 result.add(String.valueOf(number));
             }else if(token instanceof OperatorToken) {
                 OperatorType operatorType = ((OperatorToken) token).getOperatorType();

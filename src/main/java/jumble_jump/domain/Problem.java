@@ -10,6 +10,7 @@ import jumble_jump.util.converter.ProblemToStringConverter;
 import java.util.ArrayList;
 import java.util.List;
 
+//todo 정적?
 public class Problem {
     private final List<Token> problemTokens;
 

@@ -6,24 +6,32 @@ import jumble_jump.util.converter.ProblemToStringConverter;
 import java.util.ArrayList;
 import java.util.List;
 
+//todo 정적?
 public class Solving {
-    private static int numberOfSolving = 0;
-    private static List<Token> intermediateStep = new ArrayList<>();
+    private int numberOfSolving = 0;
+    private List<Token> intermediateStep = new ArrayList<>();
 
-    public static void updateNumberOfSolving() {
+    public Solving() {
+    }
+
+    public void updateNumberOfSolving() {
         numberOfSolving++;
     }
 
-    public static void updateIntermediateStep(List<Token> intermediateProblem) {
+    public void updateIntermediateStep(List<Token> intermediateProblem) {
         intermediateStep = intermediateProblem;
     }
 
-    public static int getNumberOfSolving() {
+    public int getNumberOfSolving() {
         return numberOfSolving;
     }
 
-    public static String getIntermediateStepText(){
+    public String getIntermediateStepText(){
         return ProblemToStringConverter.getProblemText(intermediateStep);
+    }
+
+    public boolean isOverSolve(){
+        return intermediateStep.size() == 1;
     }
 
 

@@ -12,6 +12,11 @@ public class SubOperator implements OperatorToken {
     }
 
     @Override
+    public int getPriority() {
+        return 2;
+    }
+
+    @Override
     public double calculate(double number1, double number2) {
         return number1 - number2;
     }

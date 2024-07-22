@@ -1,6 +1,7 @@
 package jumble_jump.controller;
 
 import jumble_jump.domain.Problem;
+import jumble_jump.domain.Solving;
 import jumble_jump.domain.matcher.NumberMatcher;
 import jumble_jump.domain.matcher.OperatorMatcher;
 import jumble_jump.domain.matcher.ParenthesisMatcher;
@@ -21,18 +22,23 @@ public class MainController {
         Tokenizer tokenizer = createTokenizer();
         List<Token> tokens = getTokens(tokenizer);
         Problem problem = createProblem(tokens);
+        Solving solving = createSolving();
 
-        CalculatorService calculatorService = createCalculatorService(problem);
-
-
+        CalculatorService calculatorService = createCalculatorService(problem,solving);
+        calculatorService.calculate();
 
 
 
 
     }
 
-    private CalculatorService createCalculatorService(Problem problem) {
-        return new CalculatorService(problem);
+
+    private CalculatorService createCalculatorService(Problem problem, Solving solving) {
+        return new CalculatorService(problem,solving);
+    }
+
+    private Solving createSolving() {
+        return new Solving();
     }
 
     private Problem createProblem(List<Token> tokens) {
