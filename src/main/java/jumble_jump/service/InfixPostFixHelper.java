@@ -17,7 +17,7 @@ import java.util.*;
  * 중간 식 넘기기 - 괄호도 output에 추가?
  * 계산을 위한 list하고 조립을 위한 List를 따로
  */
-public class InfixPostFixHelper {
+public class InfixPostFixHelper implements InfixPostFixConverter{
 
     private List<Token> outputForIntermediateStep = new ArrayList<>();
     private List<Token> output = new ArrayList<>();
@@ -31,6 +31,7 @@ public class InfixPostFixHelper {
 
 
 
+    @Override
     public List<Token> convertToPostFix(Problem problem) {
 
         for(Token token : problem.getProblemTokens()){
@@ -42,8 +43,6 @@ public class InfixPostFixHelper {
                 updateParenthesisToken(nowParenthesis);
             }
         }
-
-
         ParenthesisValidator.validateNestedParentheses(openParenthesisPriorityList);
         ParenthesisValidator.validateNestedParenthesesEnd(rightParenthesisCount,leftParenthesisCount);
 
@@ -57,61 +56,73 @@ public class InfixPostFixHelper {
 
 
 
-    private void updateParenthesisToken(ParenthesisToken nowParenthesis) {
-        ParenthesisType nowParenthesisType = nowParenthesis.getParenthesisType();
+    @Override
+    public void updateParenthesisToken(ParenthesisToken nowParenthesis) {
         beforeParenthesis = (ParenthesisToken) parenthesisStack.peek();
 
         if(beforeParenthesis == null){
             ParenthesisValidator.validateBeforeParenthesisNull(nowParenthesis);
-
-            parenthesisStack.push(nowParenthesis);
-            openParenthesisPriorityList.add(nowParenthesis.getParenthesisPriority());
-            rightParenthesisCount++;
-            operatorStack.push(nowParenthesis);
+            updateWhenOpenNowParenthesis(nowParenthesis);
 
         } else if (nowParenthesis.isOpenParenthesis()) {
-            parenthesisStack.push(nowParenthesis);
-            openParenthesisPriorityList.add(nowParenthesis.getParenthesisPriority());
-            rightParenthesisCount++;
-            operatorStack.push(nowParenthesis);
+            updateWhenOpenNowParenthesis(nowParenthesis);
 
         } else if (!nowParenthesis.isOpenParenthesis()) {
-            if(beforeParenthesis.isOpenParenthesis()){
-                ParenthesisValidator.validateWhenNowBeforeOpenState(nowParenthesis,beforeParenthesis,rightParenthesisCount);
-
-                parenthesisStack.removeFirst();
-                leftParenthesisCount++;
-            }
-
-            if(ParenthesisValidator.isResetParenthesesData(rightParenthesisCount,leftParenthesisCount)){
-                rightParenthesisCount = 0;
-                leftParenthesisCount = 0;
-                parenthesisStack = new ArrayDeque<>();
-                beforeParenthesis = null;
-            }
-
-            while (!operatorStack.isEmpty() && !(operatorStack.peek() instanceof ParenthesisToken && ((ParenthesisToken) operatorStack.peek()).isOpenParenthesis())) {
-                output.add(operatorStack.pop());
-            }
-            if (!operatorStack.isEmpty() && operatorStack.peek() instanceof ParenthesisToken && ((ParenthesisToken) operatorStack.peek()).isOpenParenthesis()) {
-                operatorStack.pop(); // Remove the opening parenthesis
-            }
-
+            updateWhenCloseNowParenthesis(nowParenthesis);
         }
 
     }
 
+    private void updateWhenOpenNowParenthesis(ParenthesisToken nowParenthesis) {
+        parenthesisStack.push(nowParenthesis);
+        openParenthesisPriorityList.add(nowParenthesis.getParenthesisPriority());
+        rightParenthesisCount++;
+        operatorStack.push(nowParenthesis);
+    }
+
+    public void updateWhenCloseNowParenthesis(ParenthesisToken nowParenthesis){
+        if(beforeParenthesis.isOpenParenthesis()){
+            ParenthesisValidator.validateWhenNowBeforeOpenState(nowParenthesis,beforeParenthesis,rightParenthesisCount);
+            updateWhenParenthesisSectionClosed();
+        }
+        if(ParenthesisValidator.isResetParenthesesData(rightParenthesisCount,leftParenthesisCount)){
+            resetParenthesisData();
+        }
+        loopOperatorsUntilParenthesis();
+    }
+
+    private void loopOperatorsUntilParenthesis(){
+        while (!operatorStack.isEmpty() && !(operatorStack.peek() instanceof ParenthesisToken && ((ParenthesisToken) operatorStack.peek()).isOpenParenthesis())) {
+            output.add(operatorStack.pop());
+        }
+        if (!operatorStack.isEmpty() && operatorStack.peek() instanceof ParenthesisToken && ((ParenthesisToken) operatorStack.peek()).isOpenParenthesis()) {
+            operatorStack.pop();
+        }
+    }
+
+    private void resetParenthesisData() {
+        rightParenthesisCount = 0;
+        leftParenthesisCount = 0;
+        parenthesisStack = new ArrayDeque<>();
+        beforeParenthesis = null;
+    }
+
+    private void updateWhenParenthesisSectionClosed(){
+        parenthesisStack.removeFirst();
+        leftParenthesisCount++;
+    }
 
 
-    private void updateOperatorToken(Token token) {
+    @Override
+    public void updateOperatorToken(Token token) {
         while (!OperatorPostFixValidator.isValidOperator(operatorStack, token)) {
             output.add(operatorStack.pop());
         }
         operatorStack.push(token);
     }
 
-
-    private void updateNumberToken(Token token){
+    @Override
+    public void updateNumberToken(Token token){
         output.add(token);
     }
 
