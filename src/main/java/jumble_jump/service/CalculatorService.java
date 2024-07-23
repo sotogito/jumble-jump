@@ -21,6 +21,7 @@ public class CalculatorService {
     private final Solving solving;
     private final Problem problem;
 
+
     private final List<Token> intermediateTokens;
     private Deque<Double> operators = new ArrayDeque<>();
 
@@ -28,11 +29,10 @@ public class CalculatorService {
     private double num1 = 0;
     private double num2 = 0;
 
-    private OperatorToken nowOperator;
 
 
-
-
+    private List<Token> output = new ArrayList<>();
+    private Deque<Token> operatorStack = new ArrayDeque<>();
 
     private  Set<Integer> openParenthesisPriorityList = new HashSet<>();
     private Deque<Token> parenthesisStack = new ArrayDeque<>();
@@ -69,8 +69,6 @@ public class CalculatorService {
     }
 
     private List<Token> convertToPostfix() {
-        List<Token> output = new ArrayList<>();
-        Deque<Token> operatorStack = new ArrayDeque<>();
 
         for (Token token : problem.getProblemTokens()) {
             if (token instanceof NumberToken) {
