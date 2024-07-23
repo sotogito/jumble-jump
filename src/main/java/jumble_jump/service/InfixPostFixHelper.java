@@ -18,6 +18,7 @@ import java.util.*;
  * 계산을 위한 list하고 조립을 위한 List를 따로
  */
 public class InfixPostFixHelper implements InfixPostFixConverter{
+    private OperatorStackHelper operatorStackHelper;
 
     private List<Token> outputForIntermediateStep = new ArrayList<>();
     private List<Token> output = new ArrayList<>();
@@ -29,7 +30,11 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
     private int rightParenthesisCount = 0;
     private int leftParenthesisCount = 0;
 
-
+    public InfixPostFixHelper(OperatorStackHelper operatorStackHelper) {
+        this.operatorStackHelper = operatorStackHelper;
+        operatorStackHelper.setOperatorStack(operatorStack);
+        operatorStackHelper.setOutput(output);
+    }
 
     @Override
     public List<Token> convertToPostFix(Problem problem) {
@@ -46,14 +51,9 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
         ParenthesisValidator.validateNestedParentheses(openParenthesisPriorityList);
         ParenthesisValidator.validateNestedParenthesesEnd(rightParenthesisCount,leftParenthesisCount);
 
-        while (!operatorStack.isEmpty()) {
-            output.add(operatorStack.pop());
-        }
-
+        operatorStackHelper.loopPopRemainingOperators();
         return output;
     }
-
-
 
 
     @Override
@@ -68,9 +68,13 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
             updateWhenOpenNowParenthesis(nowParenthesis);
 
         } else if (!nowParenthesis.isOpenParenthesis()) {
-            updateWhenCloseNowParenthesis(nowParenthesis);
+            if(beforeParenthesis.isOpenParenthesis()){
+                ParenthesisValidator.validateWhenNowBeforeOpenState(nowParenthesis,beforeParenthesis,rightParenthesisCount);
+                updateWhenParenthesisSectionClosed();
+            }
+            validateIsResetParenthesisData(rightParenthesisCount,leftParenthesisCount);
+            operatorStackHelper.loopOperatorsUntilParenthesis();
         }
-
     }
 
     private void updateWhenOpenNowParenthesis(ParenthesisToken nowParenthesis) {
@@ -80,23 +84,15 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
         operatorStack.push(nowParenthesis);
     }
 
-    public void updateWhenCloseNowParenthesis(ParenthesisToken nowParenthesis){
-        if(beforeParenthesis.isOpenParenthesis()){
-            ParenthesisValidator.validateWhenNowBeforeOpenState(nowParenthesis,beforeParenthesis,rightParenthesisCount);
-            updateWhenParenthesisSectionClosed();
-        }
-        if(ParenthesisValidator.isResetParenthesesData(rightParenthesisCount,leftParenthesisCount)){
-            resetParenthesisData();
-        }
-        loopOperatorsUntilParenthesis();
+
+    private void updateWhenParenthesisSectionClosed(){
+        parenthesisStack.removeFirst();
+        leftParenthesisCount++;
     }
 
-    private void loopOperatorsUntilParenthesis(){
-        while (!operatorStack.isEmpty() && !(operatorStack.peek() instanceof ParenthesisToken && ((ParenthesisToken) operatorStack.peek()).isOpenParenthesis())) {
-            output.add(operatorStack.pop());
-        }
-        if (!operatorStack.isEmpty() && operatorStack.peek() instanceof ParenthesisToken && ((ParenthesisToken) operatorStack.peek()).isOpenParenthesis()) {
-            operatorStack.pop();
+    private void validateIsResetParenthesisData(int rightParenthesisCount, int leftParenthesisCount){
+        if(ParenthesisValidator.isResetParenthesesData(rightParenthesisCount,leftParenthesisCount)){
+            resetParenthesisData();
         }
     }
 
@@ -107,23 +103,18 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
         beforeParenthesis = null;
     }
 
-    private void updateWhenParenthesisSectionClosed(){
-        parenthesisStack.removeFirst();
-        leftParenthesisCount++;
-    }
-
 
     @Override
     public void updateOperatorToken(Token token) {
-        while (!OperatorPostFixValidator.isValidOperator(operatorStack, token)) {
-            output.add(operatorStack.pop());
-        }
-        operatorStack.push(token);
+        operatorStackHelper.loopUpdateOperatorToken(token);
     }
 
     @Override
     public void updateNumberToken(Token token){
         output.add(token);
     }
+
+
+
 
 }

@@ -9,6 +9,8 @@ import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.service.CalculatorService;
+import jumble_jump.service.InfixPostFixHelper;
+import jumble_jump.service.OperatorStackHelper;
 import jumble_jump.util.Token;
 import jumble_jump.util.Tokenizer;
 import jumble_jump.view.Input;
@@ -28,14 +30,6 @@ public class MainController {
 
         calculatorService.calculate();
 
-        /*
-        try{
-            calculatorService.calculate();
-        }catch (IllegalArgumentException e){
-
-        }
-
-         */
 
 
 
@@ -43,8 +37,12 @@ public class MainController {
 
 
     private CalculatorService createCalculatorService(Problem problem, Solving solving) {
-        return new CalculatorService(problem,solving);
+        OperatorStackHelper operatorStackHelper = new OperatorStackHelper();
+        InfixPostFixHelper infixPostFixHelper = new InfixPostFixHelper(operatorStackHelper);
+
+        return new CalculatorService(problem,solving,infixPostFixHelper);
     }
+
 
     private Solving createSolving() {
         return new Solving();

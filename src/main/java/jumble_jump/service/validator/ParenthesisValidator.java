@@ -55,7 +55,6 @@ public class ParenthesisValidator {
 
     public static boolean isResetParenthesesData(int rightParenthesisCount, int leftParenthesisCount){
         return rightParenthesisCount == leftParenthesisCount;
-
     }
 
 }

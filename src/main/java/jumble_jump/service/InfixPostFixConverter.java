@@ -6,11 +6,8 @@ import jumble_jump.util.Token;
 
 import java.util.List;
 
-public interface InfixPostFixConverter {
+public interface InfixPostFixConverter{
     List<Token> convertToPostFix(Problem problem);
-
-    void loopOperatorsUntilParenthesis();
-    void loopPopRemainingOperators();
 
     void updateNumberToken(Token token);
     void updateOperatorToken(Token token);
