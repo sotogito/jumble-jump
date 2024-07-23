@@ -5,12 +5,9 @@ import jumble_jump.domain.Solving;
 import jumble_jump.domain.matcher.NumberMatcher;
 import jumble_jump.domain.matcher.OperatorMatcher;
 import jumble_jump.domain.matcher.ParenthesisMatcher;
-import jumble_jump.domain.token.NumberToken;
-import jumble_jump.domain.token.OperatorToken;
-import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.service.CalculatorService;
 import jumble_jump.service.InfixPostFixHelper;
-import jumble_jump.service.OperatorStackHelper;
+import jumble_jump.service.PostfixExpressionManager;
 import jumble_jump.util.Token;
 import jumble_jump.util.Tokenizer;
 import jumble_jump.view.Input;
@@ -37,8 +34,8 @@ public class MainController {
 
 
     private CalculatorService createCalculatorService(Problem problem, Solving solving) {
-        OperatorStackHelper operatorStackHelper = new OperatorStackHelper();
-        InfixPostFixHelper infixPostFixHelper = new InfixPostFixHelper(operatorStackHelper);
+        PostfixExpressionManager postfixExpressionManager = new PostfixExpressionManager();
+        InfixPostFixHelper infixPostFixHelper = new InfixPostFixHelper(postfixExpressionManager);
 
         return new CalculatorService(problem,solving,infixPostFixHelper);
     }

@@ -4,12 +4,9 @@ import jumble_jump.domain.Problem;
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
-import jumble_jump.domain.type.ParenthesisType;
-import jumble_jump.service.validator.OperatorPostFixValidator;
 import jumble_jump.service.validator.ParenthesisValidator;
 import jumble_jump.util.Token;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
 /**
@@ -18,11 +15,8 @@ import java.util.*;
  * 계산을 위한 list하고 조립을 위한 List를 따로
  */
 public class InfixPostFixHelper implements InfixPostFixConverter{
-    private OperatorStackHelper operatorStackHelper;
-
+    private final PostfixExpressionManager postfixDataManager;
     private List<Token> outputForIntermediateStep = new ArrayList<>();
-    private List<Token> output = new ArrayList<>();
-    private Deque<Token> operatorStack = new ArrayDeque<>();
 
     private final Set<Integer> openParenthesisPriorityList = new HashSet<>();
     private Deque<Token> parenthesisStack = new ArrayDeque<>();
@@ -30,10 +24,8 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
     private int rightParenthesisCount = 0;
     private int leftParenthesisCount = 0;
 
-    public InfixPostFixHelper(OperatorStackHelper operatorStackHelper) {
-        this.operatorStackHelper = operatorStackHelper;
-        operatorStackHelper.setOperatorStack(operatorStack);
-        operatorStackHelper.setOutput(output);
+    public InfixPostFixHelper(PostfixExpressionManager operatorStackHelper) {
+        this.postfixDataManager = operatorStackHelper;
     }
 
     @Override
@@ -51,8 +43,18 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
         ParenthesisValidator.validateNestedParentheses(openParenthesisPriorityList);
         ParenthesisValidator.validateNestedParenthesesEnd(rightParenthesisCount,leftParenthesisCount);
 
-        operatorStackHelper.loopPopRemainingOperators();
-        return output;
+        postfixDataManager.loopPopRemainingOperators();
+        return postfixDataManager.getOutput();
+    }
+
+    @Override
+    public void updateOperatorToken(Token token) {
+        postfixDataManager.loopUpdateOperatorToken(token);
+    }
+
+    @Override
+    public void updateNumberToken(Token token){
+        postfixDataManager.pushNumberOutput(token);
     }
 
 
@@ -73,7 +75,7 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
                 updateWhenParenthesisSectionClosed();
             }
             validateIsResetParenthesisData(rightParenthesisCount,leftParenthesisCount);
-            operatorStackHelper.loopOperatorsUntilParenthesis();
+            postfixDataManager.loopOperatorsUntilParenthesis();
         }
     }
 
@@ -81,7 +83,7 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
         parenthesisStack.push(nowParenthesis);
         openParenthesisPriorityList.add(nowParenthesis.getParenthesisPriority());
         rightParenthesisCount++;
-        operatorStack.push(nowParenthesis);
+        postfixDataManager.pushParenthesisStack(nowParenthesis);
     }
 
 
@@ -102,18 +104,6 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
         parenthesisStack = new ArrayDeque<>();
         beforeParenthesis = null;
     }
-
-
-    @Override
-    public void updateOperatorToken(Token token) {
-        operatorStackHelper.loopUpdateOperatorToken(token);
-    }
-
-    @Override
-    public void updateNumberToken(Token token){
-        output.add(token);
-    }
-
 
 
 

@@ -29,6 +29,7 @@ public class ParenthesisValidator {
         }
     }
 
+    //note {[(1+1)]}
     public static void validateNestedParentheses(Set<Integer> openParenthesisPriorityList){
         if (openParenthesisPriorityList.size() >= 2) { //note parenthesisStack에 들어있는 열린 괄호들을 우선순위로 정렬한다음 그 값이 isnectOpen인지
             List<Integer> sortedPriorityList = new ArrayList<>(openParenthesisPriorityList);

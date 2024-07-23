@@ -4,27 +4,32 @@ import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.service.validator.OperatorPostFixValidator;
 import jumble_jump.util.Token;
 
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
-public class OperatorStackHelper implements OperatorStackHandler{
+public class PostfixExpressionManager implements OperatorStackHandler{
 
-    private Deque<Token> operatorStack;
-    private List<Token> output;
+    private final Deque<Token> operatorStack = new ArrayDeque<>();
+    private final List<Token> output = new ArrayList<>();
 
-    public OperatorStackHelper() {
+    public PostfixExpressionManager() {
     }
 
-    public void setOperatorStack(Deque<Token> operatorStack) {
-        this.operatorStack = operatorStack;
+    public List<Token> getOutput() {
+        return Collections.unmodifiableList(output);
     }
 
-    public void setOutput(List<Token> output) {
-        this.output = output;
+    public Deque<Token> getOperatorStack() {
+        return  operatorStack;
     }
 
-    //note InfixPostFixHelper의 output이 업데이트됨
-    //note static으로 해서 operatorStack넘겨서 업데이트 해도 됨
+    public void pushParenthesisStack(Token token) {
+        operatorStack.push(token);
+    }
+
+    public void pushNumberOutput(Token token) {
+        output.add(token);
+    }
+
     public void loopOperatorsUntilParenthesis() {
         while (!operatorStack.isEmpty() &&
                 !(operatorStack.peek() instanceof ParenthesisToken && ((ParenthesisToken) operatorStack.peek()).isOpenParenthesis())) {
