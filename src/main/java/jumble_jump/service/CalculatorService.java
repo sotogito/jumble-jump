@@ -42,11 +42,11 @@ public class CalculatorService {
     private int leftParenthesisCount = 0;
 
 
-    public CalculatorService(Problem problem, Solving solving) {
+    public CalculatorService(Problem problem, Solving solving, InfixPostFixHelper infixPostFixHelper) {
         this.problem = problem;
         this.intermediateTokens = problem.getProblemTokens();
         this.solving = solving;
-        infixPostFixHelper = new InfixPostFixHelper();
+        this.infixPostFixHelper = infixPostFixHelper;
     }
 
     public void calculate(){

@@ -17,6 +17,8 @@ public class OperatorStackHelper {
         this.operatorStack = operatorStack;
     }
 
+    //note InfixPostFixHelper의 output이 업데이트됨
+    //note static으로 해서 operatorStack넘겨서 업데이트 해도 됨
     public void loopOperatorsUntilParenthesis(List<Token> output) {
         while (!operatorStack.isEmpty() &&
                 !(operatorStack.peek() instanceof ParenthesisToken && ((ParenthesisToken) operatorStack.peek()).isOpenParenthesis())) {
@@ -25,6 +27,12 @@ public class OperatorStackHelper {
         if (!operatorStack.isEmpty() &&
                 operatorStack.peek() instanceof ParenthesisToken && ((ParenthesisToken) operatorStack.peek()).isOpenParenthesis()) {
             operatorStack.pop();
+        }
+    }
+
+    public void popRemainingOperators(List<Token> output){
+        while (!operatorStack.isEmpty()) {
+            output.add(operatorStack.pop());
         }
     }
 
