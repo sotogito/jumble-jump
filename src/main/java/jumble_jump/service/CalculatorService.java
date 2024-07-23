@@ -23,6 +23,8 @@ public class CalculatorService {
     private final Problem problem;
     private final InfixPostFixHelper infixPostFixHelper;
 
+    private Double result;
+
 
     public CalculatorService(Problem problem, Solving solving, InfixPostFixHelper infixPostFixHelper) {
         this.problem = problem;
@@ -33,6 +35,7 @@ public class CalculatorService {
     public void calculate(){
         List<Token> postfix = convertToPostfix();
         Deque<Double> operatorStack = new ArrayDeque<>();
+        List<Double> interMediateStep = new ArrayList<>();
 
         for (Token token : postfix) {
             if(token instanceof NumberToken) {
@@ -44,10 +47,30 @@ public class CalculatorService {
                 double num1 = operatorStack.pop();
                 double result = ((OperatorToken) token).calculate(num1,num2);
                 operatorStack.push(result);
+
+                /**
+                 * operatorStack에 있는거 집어 넣고
+                 * 나머지 postfix 넣기
+                 */
+
             }
+            //todo 중간 출력
+            solving.updateNumberOfSolving();
         }
-        System.out.println(DecimalPointFormatter.format(operatorStack.pop())+"정");
+        result = operatorStack.pop();
+        System.out.println(getFormattedResult()+"정");
     }
+
+    public Number getFormattedResult(){
+        return DecimalPointFormatter.format(result);
+    }
+
+    /*
+    public String getIntermediateStep(){
+
+    }
+
+     */
 
     private List<Token> convertToPostfix() {
         return infixPostFixHelper.convertToPostFix(problem);
