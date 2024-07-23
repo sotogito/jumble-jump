@@ -9,7 +9,6 @@ import java.util.List;
 //todo 정적?
 public class Solving {
     private int numberOfSolving = 0;
-    private List<Token> intermediateStep = new ArrayList<>();
 
     public Solving() {
     }
@@ -18,25 +17,9 @@ public class Solving {
         numberOfSolving++;
     }
 
-    public void updateIntermediateStep(List<Token> intermediateProblem) {
-        intermediateStep = intermediateProblem;
-    }
-
     public int getNumberOfSolving() {
         return numberOfSolving;
     }
-
-    public String getIntermediateStepText(){
-        return ProblemToStringConverter.getProblemText(intermediateStep);
-    }
-
-    public boolean isOverSolve(){
-        return intermediateStep.size() == 1;
-    }
-
-
-
-
 
 
 
