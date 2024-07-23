@@ -5,8 +5,8 @@ public class NumberValidator {
     private final static int MIN = 0;
     private final static int MAX = 100;
 
-    public static void validate(int number){
-        validateNumberInRange(number);
+    public static void validate(double number){
+        //validateNumberInRange(number);
     }
 
     private static void validateOnlyNumeric(String str) {
@@ -15,7 +15,7 @@ public class NumberValidator {
         }
     }
 
-    private static void validateNumberInRange(int number) {
+    private static void validateNumberInRange(double number) {
         if(number < MIN || number > MAX) {
             throw new IllegalArgumentException(
                     String.format("계산 숫자는 %d부터 %d까지 입력 가능합니다.",MIN,MAX));

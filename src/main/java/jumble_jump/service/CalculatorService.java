@@ -2,9 +2,11 @@ package jumble_jump.service;
 
 import jumble_jump.domain.Problem;
 import jumble_jump.domain.Solving;
+import jumble_jump.domain.matcher.NumberMatcher;
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
+import jumble_jump.domain.token.number.Number;
 import jumble_jump.domain.type.ParenthesisType;
 import jumble_jump.util.DecimalPointFormatter;
 import jumble_jump.util.Token;
@@ -34,34 +36,51 @@ public class CalculatorService {
 
     public void calculate(){
         List<Token> postfix = convertToPostfix();
-        Deque<Double> operatorStack = new ArrayDeque<>();
-        List<Double> interMediateStep = new ArrayList<>();
+        //Deque<Double> operatorStack = new ArrayDeque<>();//얘도 토큰
+        Deque<Token> operatorStack = new ArrayDeque<>();//얘도 토큰
 
-        for (Token token : postfix) {
-            if(token instanceof NumberToken) {
-                System.out.print(((NumberToken) token).getNumber()+" ");
-                operatorStack.push(((NumberToken) token).getNumber());
-            }else if(token instanceof OperatorToken) {
-                System.out.print(((OperatorToken) token).getOperatorType()+" ");
-                double num2 = operatorStack.pop();
-                double num1 = operatorStack.pop();
-                double result = ((OperatorToken) token).calculate(num1,num2);
-                operatorStack.push(result);
+        for (int i = 0; i < postfix.size(); i++) {
+            Token token = postfix.get(i);
+            if (token instanceof NumberToken) {
+                System.out.print(((NumberToken) token).getNumber() + " ");
+                operatorStack.push(token);
+                //todo interMediateStep에 추가
+            }else if (token instanceof OperatorToken) {
+                System.out.print(((OperatorToken) token).getOperatorType() + " ");
+                double num2 = (((NumberToken) operatorStack.pop()).getNumber());
+                double num1 = (((NumberToken) operatorStack.pop()).getNumber());
+                double result = ((OperatorToken) token).calculate(num1, num2);
 
-                /**
-                 * operatorStack에 있는거 집어 넣고
-                 * 나머지 postfix 넣기
-                 */
+                operatorStack.push(new Number(result));
+
+
+                convert(operatorStack,postfix,i);
 
             }
             //todo 중간 출력
             solving.updateNumberOfSolving();
         }
-        result = operatorStack.pop();
+
+        result = (((NumberToken)operatorStack.pop()).getNumber());
         System.out.println(getFormattedResult()+"정");
     }
 
-    public Number getFormattedResult(){
+    public void convert(Deque<Token> operatorStack, List<Token> postfix,int startIndex){
+        /**
+         * 숫자만 추가하다가
+         * 계산되면 계산식 추기
+         */
+
+        List<Token> result = new ArrayList<>(operatorStack);
+
+        for(int i=startIndex+1; i<postfix.size(); i++){
+            result.add(postfix.get(i));
+        }
+        System.out.println(result+"\n");
+
+    }
+
+    public java.lang.Number getFormattedResult(){
         return DecimalPointFormatter.format(result);
     }
 

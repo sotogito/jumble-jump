@@ -10,7 +10,7 @@ public class NumberMatcher implements Matcher{
         return new Number(validateNumber(input));
     }
 
-    private int validateNumber(char input) {
+    private double validateNumber(char input) {
         try {
             return Integer.parseInt(String.valueOf(input));
         } catch (NumberFormatException e) {

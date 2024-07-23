@@ -4,9 +4,9 @@ import jumble_jump.domain.token.NumberToken;
 import jumble_jump.util.validator.NumberValidator;
 
 public class Number implements NumberToken {
-    private int number;
+    private double number;
 
-    public Number(int number) {
+    public Number(double number) {
         NumberValidator.validate(number);
         this.number = number;
     }
