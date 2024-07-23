@@ -9,6 +9,9 @@ import java.util.List;
 public interface InfixPostFixConverter {
     List<Token> convertToPostFix(Problem problem);
 
+    void loopOperatorsUntilParenthesis();
+    void loopPopRemainingOperators();
+
     void updateNumberToken(Token token);
     void updateOperatorToken(Token token);
     void updateParenthesisToken(ParenthesisToken nowParenthesis);
