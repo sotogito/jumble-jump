@@ -25,8 +25,17 @@ public class MainController {
         Solving solving = createSolving();
 
         CalculatorService calculatorService = createCalculatorService(problem,solving);
+
         calculatorService.calculate();
 
+        /*
+        try{
+            calculatorService.calculate();
+        }catch (IllegalArgumentException e){
+
+        }
+
+         */
 
 
 
