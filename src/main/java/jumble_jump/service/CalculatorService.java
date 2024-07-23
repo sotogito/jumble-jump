@@ -20,6 +20,7 @@ public class CalculatorService {
 
     private final Solving solving;
     private final Problem problem;
+    private final InfixPostFixHelper infixPostFixHelper;
 
 
     private final List<Token> intermediateTokens;
@@ -45,6 +46,7 @@ public class CalculatorService {
         this.problem = problem;
         this.intermediateTokens = problem.getProblemTokens();
         this.solving = solving;
+        infixPostFixHelper = new InfixPostFixHelper();
     }
 
     public void calculate(){
@@ -64,11 +66,24 @@ public class CalculatorService {
                 problem.push(result);
             }
         }
-        System.out.println(problem.pop());
+        System.out.println(problem.pop() +"정답");
 
     }
 
     private List<Token> convertToPostfix() {
+        return infixPostFixHelper.convertToPostFix(problem);
+
+    }
+
+
+
+
+    /*
+
+
+    private List<Token> convertToPostfix() {
+
+
 
         for (Token token : problem.getProblemTokens()) {
             if (token instanceof NumberToken) {
@@ -91,8 +106,7 @@ public class CalculatorService {
 
 
 
-            } else if (token instanceof ParenthesisToken) {
-                ParenthesisToken nowParenthesis = (ParenthesisToken) token;
+            } else if (token instanceof ParenthesisToken nowParenthesis) {
                 ParenthesisType nowParenthesisType = nowParenthesis.getParenthesisType();
                 beforeParenthesis = (ParenthesisToken) parenthesisStack.peek();
 
@@ -191,6 +205,7 @@ public class CalculatorService {
 
 
 
+
         while (!operatorStack.isEmpty()) {
             output.add(operatorStack.pop());
         }
@@ -198,6 +213,7 @@ public class CalculatorService {
         return output;
     }
 
+     */
 
 
 
