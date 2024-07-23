@@ -22,6 +22,10 @@ public class Tokenizer {
     }
 
     public List<Token> tokenize(String inputProblem) {
+        if(inputProblem == null || inputProblem.isEmpty()) {
+            throw new IllegalArgumentException("식이 비어있어요.");
+        }
+
         List<Token> result = new ArrayList<>();
         char[] chars = inputProblem.toCharArray();
 

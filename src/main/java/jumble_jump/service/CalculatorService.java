@@ -6,6 +6,7 @@ import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.type.ParenthesisType;
+import jumble_jump.util.DecimalPointFormatter;
 import jumble_jump.util.Token;
 
 import java.lang.reflect.ParameterizedType;
@@ -23,56 +24,33 @@ public class CalculatorService {
     private final InfixPostFixHelper infixPostFixHelper;
 
 
-    private final List<Token> intermediateTokens;
-    private Deque<Double> operators = new ArrayDeque<>();
-
-
-    private double num1 = 0;
-    private double num2 = 0;
-
-
-
-    private List<Token> output = new ArrayList<>();
-    private Deque<Token> operatorStack = new ArrayDeque<>();
-
-    private  Set<Integer> openParenthesisPriorityList = new HashSet<>();
-    private Deque<Token> parenthesisStack = new ArrayDeque<>();
-    private ParenthesisToken beforeParenthesis;
-    private int rightParenthesisCount = 0;
-    private int leftParenthesisCount = 0;
-
-
     public CalculatorService(Problem problem, Solving solving, InfixPostFixHelper infixPostFixHelper) {
         this.problem = problem;
-        this.intermediateTokens = problem.getProblemTokens();
         this.solving = solving;
         this.infixPostFixHelper = infixPostFixHelper;
     }
 
     public void calculate(){
-        List<Token> postTokens = convertToPostfix();
-        Deque<Double> problem = new ArrayDeque<>();
+        List<Token> postfix = convertToPostfix();
+        Deque<Double> operatorStack = new ArrayDeque<>();
 
-
-        for (Token token : postTokens) {
+        for (Token token : postfix) {
             if(token instanceof NumberToken) {
                 System.out.print(((NumberToken) token).getNumber()+" ");
-                problem.push(((NumberToken) token).getNumber());
+                operatorStack.push(((NumberToken) token).getNumber());
             }else if(token instanceof OperatorToken) {
                 System.out.print(((OperatorToken) token).getOperatorType()+" ");
-                num2 = problem.pop();
-                num1 = problem.pop();
+                double num2 = operatorStack.pop();
+                double num1 = operatorStack.pop();
                 double result = ((OperatorToken) token).calculate(num1,num2);
-                problem.push(result);
+                operatorStack.push(result);
             }
         }
-        System.out.println(problem.pop() +"정답");
-
+        System.out.println(DecimalPointFormatter.format(operatorStack.pop())+"정");
     }
 
     private List<Token> convertToPostfix() {
         return infixPostFixHelper.convertToPostFix(problem);
     }
-
 
 }
