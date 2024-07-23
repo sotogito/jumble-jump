@@ -33,8 +33,9 @@ public class CalculatorService {
 
 
 
+
     private Deque<Token> parenthesisStack = new ArrayDeque<>();
-    private ParenthesisToken beforeParenthesis; //순위가 더 높은지 확인할때 사용
+    private ParenthesisToken beforeParenthesis;
     private int rightParenthesisCount = 0;
     private int leftParenthesisCount = 0;
 
@@ -96,6 +97,7 @@ public class CalculatorService {
                 ParenthesisType nowParenthesisType = nowParenthesis.getParenthesisType();
                 beforeParenthesis = (ParenthesisToken) parenthesisStack.peek();
 
+
                 System.out.println("----------------");
                 System.out.println(nowParenthesisType.getSymbol() +"현재");
                 if(beforeParenthesis == null){
@@ -104,12 +106,13 @@ public class CalculatorService {
                     System.out.println(beforeParenthesis.getParenthesisType().getSymbol() +"이전");
                 }
 
+
+
                 if(beforeParenthesis == null){ //첫 시작
                     System.out.println("첫괄호");
                     if(!nowParenthesis.isOpenParenthesis()){
                         throw new IllegalArgumentException("첫 괄호는 열림 괄호여야 합니다.");
                     }
-                    //beforeParenthesis = nowParenthesis;
                     parenthesisStack.push(nowParenthesis);
                     rightParenthesisCount++;
                     operatorStack.push(token);
@@ -122,28 +125,6 @@ public class CalculatorService {
                     parenthesisStack.push(nowParenthesis);
                     rightParenthesisCount++;
                     operatorStack.push(token);
-
-                    if (parenthesisStack.size() >= 2) { //note parenthesisStack에 들어있는 열린 괄호들을 우선순위로 정렬한다음 그 값이 isnectOpen인지
-
-                        List<Integer> parenthesisPriorityList = new ArrayList<>();
-                        for (Token t : parenthesisStack) {
-                            if (t instanceof ParenthesisToken) {
-                                parenthesisPriorityList.add(((ParenthesisToken) t).getParenthesisPriority());
-                                continue;
-                            }
-                            throw new IllegalArgumentException();
-                        }
-
-                        Collections.sort(parenthesisPriorityList);
-                        for (int i = 0; i < parenthesisPriorityList.size() - 1; i++) {
-                            if(parenthesisPriorityList.get(i + 1) - parenthesisPriorityList.get(i) != 1){
-                                throw new IllegalArgumentException("우선순위가 높은 괄호부터 차례대로 사용해주세요");
-                            }
-                        }
-
-
-
-                    }
                 }
 
 
@@ -186,11 +167,33 @@ public class CalculatorService {
 
             }
 
+            if (parenthesisStack.size() >= 2) { //note parenthesisStack에 들어있는 열린 괄호들을 우선순위로 정렬한다음 그 값이 isnectOpen인지
+
+                List<Integer> parenthesisPriorityList = new ArrayList<>();
+                for (Token t : parenthesisStack) {
+                    if (t instanceof ParenthesisToken) {
+                        parenthesisPriorityList.add(((ParenthesisToken) t).getParenthesisPriority());
+                        continue;
+                    }
+                    throw new IllegalArgumentException();
+                }
+
+                Collections.sort(parenthesisPriorityList);
+                for (int i = 0; i < parenthesisPriorityList.size() - 1; i++) {
+                    if(parenthesisPriorityList.get(i + 1) - parenthesisPriorityList.get(i) != 1){
+                        throw new IllegalArgumentException("우선순위가 높은 괄호부터 차례대로 사용해주세요");
+                    }
+                }
+
+            }
+
+            if(rightParenthesisCount != leftParenthesisCount){
+                throw new IllegalArgumentException("괄호의 중첩이 끝나지 않았습니다.");
+            }
+
         }
 
-        if(rightParenthesisCount != leftParenthesisCount){
-            throw new IllegalArgumentException("괄호의 중첩이 끝나지 않았습니다.");
-        }
+
 
         while (!operatorStack.isEmpty()) {
             output.add(operatorStack.pop());

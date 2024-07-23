@@ -1,4 +1,15 @@
-1. Number : 정수인지, 숫자 범위
+### 리팩토링
+1. calculate 기능 분리
+2. 숫자 포맷팅
+3. 계산 중간 식 출력
+3. output 요구사항
+4. 계산 알고리즘 이해하기
+5. 
+
+
+
+---
+8. Number : 정수인지, 숫자 범위
 2. Operator
 3. Parentheses
 4. Count
