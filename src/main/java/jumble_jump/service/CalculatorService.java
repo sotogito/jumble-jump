@@ -27,16 +27,63 @@ public class CalculatorService {
     private Stack<Token> resultStack = new Stack<>();
     private Double result;
 
+    private List<Token> postfix;
+
 
     public CalculatorService(Problem problem, Solving solving, InfixPostFixHelper infixPostFixHelper) {
         this.problem = problem;
         this.solving = solving;
         this.infixPostFixHelper = infixPostFixHelper;
+        this.postfix = infixPostFixHelper.convertToPostFix(problem);
     }
 
-    public void calculate(){
-        List<Token> postfix = convertToPostfix();
+    public int getPostfixSize() {
+        return this.postfix.size();
+    }
 
+    public boolean isSolveProblemOnce(int i){
+        Token token = postfix.get(i);
+
+        if (token instanceof NumberToken) {
+            resultStack.push(token);
+        }else if (token instanceof OperatorToken) {
+            double num2 = (((NumberToken) resultStack.pop()).getNumber());
+            double num1 = (((NumberToken) resultStack.pop()).getNumber());
+            double result = ((OperatorToken) token).calculate(num1, num2);
+            resultStack.push(new Number(result));
+
+            return true;
+        }
+        return false;
+    }
+
+    public String getIntermediateStep(int i){
+        return PostfixToInfixConverter.getIntermediateStep(resultStack,postfix,i+1);
+    }
+
+    public void setResult(){
+        result = (((NumberToken)resultStack.pop()).getNumber());
+    }
+
+    public Double getResult(){
+        return result;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    public void calculate(){
+        //List<Token> postfix = convertToPostfix();
+
+        /*
         StringBuilder sb = new StringBuilder();
         for(Token token : postfix) {
             if(token instanceof NumberToken) {
@@ -51,66 +98,28 @@ public class CalculatorService {
         System.out.println(sb);
         System.out.println("-----------");
 
+         */
+
 
         for (int i = 0; i < postfix.size(); i++) {
             Token token = postfix.get(i);
             if (token instanceof NumberToken) {
-                //System.out.print(((NumberToken) token).getNumber() + " ");
                 resultStack.push(token);
-                //todo interMediateStep에 추가
             }else if (token instanceof OperatorToken) {
-                //System.out.print(((OperatorToken) token).getOperatorType() + " ");
                 double num2 = (((NumberToken) resultStack.pop()).getNumber());
                 double num1 = (((NumberToken) resultStack.pop()).getNumber());
                 double result = ((OperatorToken) token).calculate(num1, num2);
                 resultStack.push(new Number(result));
 
-
                 //todo 중간 식 출력
+                solving.updateNumberOfSolving();
                 System.out.println("\n"+PostfixToInfixConverter.getIntermediateStep(resultStack,postfix,i+1)+"\n");
-            } else if (token instanceof ParenthesisToken) {
-                continue;
             }
-            //todo 괄호면 skip
-            solving.updateNumberOfSolving();
         }
-
         result = (((NumberToken)resultStack.pop()).getNumber());
         System.out.println(getFormattedResult()+"정");
     }
 
-    public void convert(Deque<Token> operatorStack, List<Token> postfix, int startIndex) {
-        //StringBuilder
-        /**
-         * 닫힌괄호 들어오면 열린괄호 만날때까지 식 num1,num2로 식 완성시키고 StringBuillder에 넣기
-         * 괄호 섹션이 완성되면 넣기 앞에? SB를 스택에 넣음
-         * 넣는 자료형은 Deque<String>이여야함 - 계산이 아니라 꺼내서 합치면 되기 때문에 상관 없음
-         *
-         * 만약에 같은 종류의 괄호가 나오면 괄호의 종류만 판단하고 처음 들어오는 괄호는 무조건 소 -> 중-> 대로 한다.
-         *
-         *
-         *
-         */
-        List<String> intermediateSteps = new ArrayList<>();
-        List<Token> result = new ArrayList<>(operatorStack);
-        for (int i = startIndex + 1; i < postfix.size(); i++) {
-            result.add(postfix.get(i));
-        }
-
-        Deque<String> stack = new ArrayDeque<>();
-        for (Token token : result) {
-            if (token instanceof NumberToken) {
-                stack.push(String.valueOf(((NumberToken) token).getNumber()));
-            } else if (token instanceof OperatorToken) {
-                String num2 = stack.pop();
-                String num1 = stack.pop();
-                String intermediateResult = "(" + num1 + " " + ((OperatorToken) token).getOperatorType().getSymbol() + " " + num2 + ")";
-                stack.push(intermediateResult);
-            }
-        }
-        intermediateSteps.add(stack.peek());
-        printIntermediateSteps(intermediateSteps);
-    }
 
     private void printIntermediateSteps(List<String> intermediateSteps) {
         for (String step : intermediateSteps) {
