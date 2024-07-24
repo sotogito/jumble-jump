@@ -42,9 +42,23 @@ public enum ParenthesisType {
         return false;
     }
 
+    public static ParenthesisType findCloseTypeByOpen(ParenthesisToken open) {
+        for (ParenthesisType p : values()) {
+            if(open.getParenthesisPriority() == p.getPriority() && !p.isOpen()) {
+                return p;
+            }
+        }
+        throw new IllegalArgumentException("존재하지 않는 괄호입니다.");
+    }
+
+
     public boolean isOpen() {
         return this == PARENTHESIS_OPEN || this == CURLY_BRACE_OPEN || this == BRACKET_OPEN;
     }
+
+
+
+
 
 
     public static boolean isNextParenthesis(ParenthesisType before, ParenthesisType now){
@@ -53,8 +67,6 @@ public enum ParenthesisType {
     }
 
     public static boolean isNextOpen(ParenthesisType before, ParenthesisType now){
-        System.out.println("befor 우선순위" +before.symbol +before.getPriority());
-        System.out.println("nnow 우선순위" +now.symbol +now.getPriority());
         int subPriority = now.getPriority() - before.getPriority();
         return subPriority == 0 || subPriority == -1;
     }

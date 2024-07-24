@@ -63,13 +63,12 @@ public class CalculatorService {
                 double num2 = (((NumberToken) resultStack.pop()).getNumber());
                 double num1 = (((NumberToken) resultStack.pop()).getNumber());
                 double result = ((OperatorToken) token).calculate(num1, num2);
-
                 resultStack.push(new Number(result));
 
 
+                //todo 중간 식 출력
                 System.out.println("\n"+PostfixToInfixConverter.getIntermediateStep(resultStack,postfix,i+1)+"\n");
             } else if (token instanceof ParenthesisToken) {
-                System.out.println("괄호"+((ParenthesisToken)token).getParenthesisType().getSymbol());
                 continue;
             }
             //todo 괄호면 skip

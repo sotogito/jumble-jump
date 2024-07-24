@@ -1,4 +1,4 @@
-package jumble_jump.service;
+package jumble_jump.domain.helper;
 
 import jumble_jump.util.Token;
 

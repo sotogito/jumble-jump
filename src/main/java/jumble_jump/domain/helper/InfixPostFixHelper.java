@@ -54,7 +54,7 @@ public class InfixPostFixHelper implements InfixPostFixConverter {
 
     @Override
     public void updateNumberToken(Token token){
-        postfixDataManager.pushNumberOutput(token);
+        postfixDataManager.pushOutput(token);
     }
 
 
@@ -72,7 +72,7 @@ public class InfixPostFixHelper implements InfixPostFixConverter {
         } else if (!nowParenthesis.isOpenParenthesis()) {
             if(beforeParenthesis.isOpenParenthesis()){
                 ParenthesisPostFixValidator.validateWhenNowBeforeOpenState(nowParenthesis,beforeParenthesis,rightParenthesisCount);
-                updateWhenParenthesisSectionClosed();
+                updateWhenParenthesisSectionClosed(nowParenthesis);
             }
             validateIsResetParenthesisData(rightParenthesisCount,leftParenthesisCount);
             postfixDataManager.loopOperatorsUntilParenthesis();
@@ -87,7 +87,9 @@ public class InfixPostFixHelper implements InfixPostFixConverter {
     }
 
 
-    private void updateWhenParenthesisSectionClosed(){
+    private void updateWhenParenthesisSectionClosed(ParenthesisToken nowParenthesis){
+        postfixDataManager.pushOutput(nowParenthesis);
+
         parenthesisStack.removeFirst();
         leftParenthesisCount++;
     }
