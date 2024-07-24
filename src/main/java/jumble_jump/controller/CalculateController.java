@@ -10,6 +10,18 @@ public class CalculateController {
         this.calculatorService = calculatorService;
     }
 
+    public void calculate() {
+        for (int i = 0; i < calculatorService.getPostfixSize()-1; i++) {
+            if(calculatorService.isSolveProblemOnce(i)){
+                System.out.println("중간식"+calculatorService.getIntermediateStep(i));
+            }
+        }
+        calculatorService.setResult();
+        System.out.println("정답"+calculatorService.getResult());
+
+
+    }
+
 
 
 
