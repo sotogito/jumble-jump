@@ -2,11 +2,13 @@ package jumble_jump.util;
 
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.number.Number;
+import jumble_jump.domain.token.parenthesis.Parenthesis;
 import jumble_jump.domain.type.OperatorType;
 import jumble_jump.domain.type.ParenthesisType;
 import jumble_jump.domain.matcher.NumberMatcher;
 import jumble_jump.domain.matcher.OperatorMatcher;
 import jumble_jump.domain.matcher.ParenthesisMatcher;
+import jumble_jump.util.validator.tokenizer.OperatorTokenizeValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,50 +46,38 @@ public class Tokenizer {
             System.out.print(c);
         }
 
-
-
-        /*
-        for (char c : chars) {
-            if(Character.isDigit(c)){
-                result.add(getNumberToken(c));
-                continue;
-            } else if (OperatorType.isOperatorType(c)) {
-                result.add(getOperatorToken(c));
-                continue;
-            } else if (ParenthesisType.isParenthesisType(c)) {
-                result.add(getParathesisToken(c));
-                continue;
-            }
-            throw new IllegalArgumentException("잘못된 양식의 식입니다.");
-        }
-
-         */
-
-        int i = 0;
-        while (i < chars.length) {
+        StringBuilder numberBuilder = new StringBuilder();
+        for (int i = 0; i < chars.length; i++) {
             char c = chars[i];
+
             if (Character.isDigit(c)) {
-                StringBuilder numberBuilder = new StringBuilder();
-                while (i < chars.length && (Character.isDigit(chars[i]) || chars[i] == '.')) {
+                while (isNotSingleDigitNumber(i,chars)) {
                     numberBuilder.append(chars[i]);
                     i++;
                 }
-                result.add(new Number(Double.parseDouble(numberBuilder.toString())));
-
+                result.add(getNumberToken(Double.parseDouble(numberBuilder.toString())));
+                numberBuilder = new StringBuilder();
+                i--;
+                continue;
             } else if (OperatorType.isOperatorType(c)) {
+                if (handleSignAtStart(c, i, numberBuilder)) {
+                    continue;
+                }
+                OperatorTokenizeValidator.validateLastOperator(i,chars.length);
                 result.add(getOperatorToken(c));
-                i++;
+                continue;
             } else if (ParenthesisType.isParenthesisType(c)) {
                 result.add(getParathesisToken(c));
-                i++;
-            } else {
-                throw new IllegalArgumentException("잘못된 양식의 식입니다.");
+                continue;
             }
+
+            throw new IllegalArgumentException("잘못된 양식의 식입니다.");
         }
         return result;
+
     }
 
-    private Token getNumberToken(char c){
+    private Token getNumberToken(Double c){
         return numberMatcher.match(c);
     }
 
@@ -98,6 +88,22 @@ public class Tokenizer {
     private Token getParathesisToken(char c){
         return parenthesisMatcher.match(c);
     }
+
+    private boolean handleSignAtStart(char c, int i, StringBuilder numberBuilder) {
+        if (i == 0 && OperatorTokenizeValidator.isNumberSign(c)) {
+            numberBuilder.append(c);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isNotSingleDigitNumber(int i, char[] chars) {
+        return i < chars.length && (Character.isDigit(chars[i]) || chars[i] == '.');
+    }
+
+
+
+
 
 
 

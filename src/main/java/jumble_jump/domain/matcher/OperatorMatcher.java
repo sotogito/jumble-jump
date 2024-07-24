@@ -8,7 +8,7 @@ import jumble_jump.util.Token;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OperatorMatcher implements Matcher {
+public class OperatorMatcher  {
 
     private final List<OperatorToken> operators = new ArrayList<>();
 
@@ -16,8 +16,6 @@ public class OperatorMatcher implements Matcher {
         initOperator();
     }
 
-    //note 반환은 Token으로 함
-    @Override
     public Token match(char inputOperator){
         OperatorType operatorType = OperatorType.fromSymbol(inputOperator);
 

@@ -7,7 +7,7 @@ public class Number implements NumberToken {
     private double number;
 
     public Number(double number) {
-        NumberValidator.validate(number);
+        //NumberValidator.validate(number);
         this.number = number;
     }
 
