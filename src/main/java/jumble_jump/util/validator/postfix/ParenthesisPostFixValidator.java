@@ -1,15 +1,14 @@
-package jumble_jump.service.validator;
+package jumble_jump.util.validator.postfix;
 
 import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.type.ParenthesisType;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-public class ParenthesisValidator {
+public class ParenthesisPostFixValidator {
 
     public static void validateBeforeParenthesisNull(ParenthesisToken nowParenthesis){
         if(!nowParenthesis.isOpenParenthesis()){

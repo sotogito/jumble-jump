@@ -1,4 +1,4 @@
-package jumble_jump.service.validator;
+package jumble_jump.util.validator.postfix;
 
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.util.Token;

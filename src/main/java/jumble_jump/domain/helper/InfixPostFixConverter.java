@@ -1,4 +1,4 @@
-package jumble_jump.service;
+package jumble_jump.domain.helper;
 
 import jumble_jump.domain.Problem;
 import jumble_jump.domain.token.ParenthesisToken;
@@ -6,7 +6,7 @@ import jumble_jump.util.Token;
 
 import java.util.List;
 
-public interface InfixPostFixConverter{
+public interface InfixPostFixConverter {
     List<Token> convertToPostFix(Problem problem);
 
     void updateNumberToken(Token token);

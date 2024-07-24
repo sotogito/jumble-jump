@@ -1,10 +1,10 @@
-package jumble_jump.service;
+package jumble_jump.domain.helper;
 
 import jumble_jump.domain.Problem;
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
-import jumble_jump.service.validator.ParenthesisValidator;
+import jumble_jump.util.validator.postfix.ParenthesisPostFixValidator;
 import jumble_jump.util.Token;
 
 import java.util.*;
@@ -14,7 +14,7 @@ import java.util.*;
  * 중간 식 넘기기 - 괄호도 output에 추가?
  * 계산을 위한 list하고 조립을 위한 List를 따로
  */
-public class InfixPostFixHelper implements InfixPostFixConverter{
+public class InfixPostFixHelper implements InfixPostFixConverter {
     private final PostfixExpressionManager postfixDataManager;
     private List<Token> outputForIntermediateStep = new ArrayList<>();
 
@@ -40,8 +40,8 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
                 updateParenthesisToken(nowParenthesis);
             }
         }
-        ParenthesisValidator.validateNestedParentheses(openParenthesisPriorityList);
-        ParenthesisValidator.validateNestedParenthesesEnd(rightParenthesisCount,leftParenthesisCount);
+        ParenthesisPostFixValidator.validateNestedParentheses(openParenthesisPriorityList);
+        ParenthesisPostFixValidator.validateNestedParenthesesEnd(rightParenthesisCount,leftParenthesisCount);
 
         postfixDataManager.loopPopRemainingOperators();
         return postfixDataManager.getOutput();
@@ -63,7 +63,7 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
         beforeParenthesis = (ParenthesisToken) parenthesisStack.peek();
 
         if(beforeParenthesis == null){
-            ParenthesisValidator.validateBeforeParenthesisNull(nowParenthesis);
+            ParenthesisPostFixValidator.validateBeforeParenthesisNull(nowParenthesis);
             updateWhenOpenNowParenthesis(nowParenthesis);
 
         } else if (nowParenthesis.isOpenParenthesis()) {
@@ -71,7 +71,7 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
 
         } else if (!nowParenthesis.isOpenParenthesis()) {
             if(beforeParenthesis.isOpenParenthesis()){
-                ParenthesisValidator.validateWhenNowBeforeOpenState(nowParenthesis,beforeParenthesis,rightParenthesisCount);
+                ParenthesisPostFixValidator.validateWhenNowBeforeOpenState(nowParenthesis,beforeParenthesis,rightParenthesisCount);
                 updateWhenParenthesisSectionClosed();
             }
             validateIsResetParenthesisData(rightParenthesisCount,leftParenthesisCount);
@@ -93,7 +93,7 @@ public class InfixPostFixHelper implements InfixPostFixConverter{
     }
 
     private void validateIsResetParenthesisData(int rightParenthesisCount, int leftParenthesisCount){
-        if(ParenthesisValidator.isResetParenthesesData(rightParenthesisCount,leftParenthesisCount)){
+        if(ParenthesisPostFixValidator.isResetParenthesesData(rightParenthesisCount,leftParenthesisCount)){
             resetParenthesisData();
         }
     }

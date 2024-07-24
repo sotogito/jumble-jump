@@ -1,12 +1,12 @@
-package jumble_jump.service;
+package jumble_jump.domain.helper;
 
 import jumble_jump.domain.token.ParenthesisToken;
-import jumble_jump.service.validator.OperatorPostFixValidator;
+import jumble_jump.util.validator.postfix.OperatorPostFixValidator;
 import jumble_jump.util.Token;
 
 import java.util.*;
 
-public class PostfixExpressionManager implements OperatorStackHandler{
+public class PostfixExpressionManager implements OperatorStackHandler {
 
     private final Deque<Token> operatorStack = new ArrayDeque<>();
     private final List<Token> output = new ArrayList<>();
