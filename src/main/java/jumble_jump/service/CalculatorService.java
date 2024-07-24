@@ -52,6 +52,8 @@ public class CalculatorService {
             double result = ((OperatorToken) token).calculate(num1, num2);
             resultStack.push(new Number(result));
 
+            solving.updateNumberOfSolving();
+
             return true;
         }
         return false;
@@ -59,6 +61,10 @@ public class CalculatorService {
 
     public String getIntermediateStep(int i){
         return PostfixToInfixConverter.getIntermediateStep(resultStack,postfix,i+1);
+    }
+
+    public int getNumberOfSolving(){
+        return this.solving.getNumberOfSolving();
     }
 
     public void setResult(){

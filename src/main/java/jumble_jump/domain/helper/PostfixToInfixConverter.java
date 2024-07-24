@@ -53,6 +53,7 @@ public class PostfixToInfixConverter {
         for(int i  = 0; i < intermediateStepPostfix.size(); i++){
             Token token = intermediateStepPostfix.get(i);
 
+
             if(token instanceof NumberToken){
                 Number numberFormat = DecimalPointFormatter.format(((NumberToken) token).getNumber());
                 resultStack.push(String.valueOf(numberFormat));

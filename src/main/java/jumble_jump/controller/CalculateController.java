@@ -14,12 +14,15 @@ public class CalculateController {
     public void calculate() {
         for (int i = 0; i < calculatorService.getPostfixSize(); i++) {
             if(calculatorService.isSolveProblemOnce(i)){
-                System.out.println("중간식"+calculatorService.getIntermediateStep(i));
+                System.out.println("풀이 횟수 : "+calculatorService.getNumberOfSolving());
+                System.out.println("중간식 : "+calculatorService.getIntermediateStep(i));
+                System.out.println();
             }
         }
+        System.out.println("--------------");
         calculatorService.setResult();
         Number result = DecimalPointFormatter.format(calculatorService.getResult());
-        System.out.println("정답"+result);
+        System.out.println("정답 : "+result);
 
 
     }
