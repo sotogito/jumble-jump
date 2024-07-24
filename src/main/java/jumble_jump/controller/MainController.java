@@ -25,9 +25,8 @@ public class MainController {
 
         CalculatorService calculatorService = createCalculatorService(problem,solving);
 
-        calculatorService.calculate();
-
-
+        CalculateController calculateController = new CalculateController(calculatorService);
+        calculateController.calculate();
 
 
     }
