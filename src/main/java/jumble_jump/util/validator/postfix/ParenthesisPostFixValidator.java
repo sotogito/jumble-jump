@@ -45,9 +45,6 @@ public class ParenthesisPostFixValidator {
     }
 
     public static void validateNestedParenthesesEnd(int rightParenthesisCount, int leftParenthesisCount){
-
-        System.out.println(rightParenthesisCount);
-        System.out.println(leftParenthesisCount);
         if(rightParenthesisCount != leftParenthesisCount){
             throw new IllegalArgumentException("괄호의 중첩이 끝나지 않았습니다.");
         }
