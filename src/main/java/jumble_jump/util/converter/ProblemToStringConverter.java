@@ -4,6 +4,7 @@ import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.type.OperatorType;
+import jumble_jump.util.DecimalPointFormatter;
 import jumble_jump.util.Token;
 
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class ProblemToStringConverter {
         List<String> result = new ArrayList<>();
         for (Token token : problemTokens) {
             if(token instanceof NumberToken) {
-                double number = ((NumberToken) token).getNumber();
+                Number number = DecimalPointFormatter.format(((NumberToken) token).getNumber());
                 result.add(String.valueOf(number));
             }else if(token instanceof OperatorToken) {
                 OperatorType operatorType = ((OperatorToken) token).getOperatorType();
