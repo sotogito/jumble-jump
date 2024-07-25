@@ -36,7 +36,7 @@ public class MainController {
                 calculateController.calculate();
                 break;
             }catch (IllegalArgumentException e){
-                e.printStackTrace();
+                Output.printError(e.getMessage());
             }
         }
     }
@@ -61,13 +61,7 @@ public class MainController {
     }
 
     private List<Token> getTokens(Tokenizer tokenizer, String inputProblem) {
-        while (true){
-            try{
-                return tokenizer.tokenize(inputProblem);
-            }catch (IllegalArgumentException e){
-                Output.printError(e.getMessage());
-            }
-        }
+        return tokenizer.tokenize(inputProblem);
     }
 
     private String inputProblem(){
