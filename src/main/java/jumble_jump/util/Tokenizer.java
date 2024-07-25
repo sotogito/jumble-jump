@@ -42,13 +42,6 @@ public class Tokenizer {
         }
         chars = trimmedInput.toString().toCharArray();
 
-        // 결과 출력 (테스트용)
-        for (char c : chars) {
-            System.out.print(c);
-        }
-        /**
-         * 숫자 다음에 바로 괄호거나 괄호 다음이 바로 숫자일때
-         */
 
         StringBuilder numberBuilder = new StringBuilder();
         boolean isFirstNumber = true;
@@ -71,6 +64,7 @@ public class Tokenizer {
                         result.add(getOperatorToken(OperatorType.MULTIPLY.getSymbol()));
                     }
                 }
+
 
                 continue;
             }

@@ -2,7 +2,6 @@ package jumble_jump.domain.helper;
 
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
-import jumble_jump.util.validator.postfix.OperatorPostFixValidator;
 import jumble_jump.util.Token;
 
 import java.util.*;
