@@ -48,7 +48,9 @@ public class Tokenizer {
         boolean isFirstNumber = true;
         for (int i = 0; i < chars.length; i++) {
             char c = chars[i];
-
+/**
+ * while문으로 안되는 조건일떄까지 변경해야될듯
+ */
             if (Character.isDigit(c)) {
                 isFirstNumber = false;
                 while (isNotSingleDigitNumber(i,chars)) {
@@ -77,9 +79,11 @@ public class Tokenizer {
                         result.add(getNumberToken(Double.parseDouble(numberBuilder.toString())));
                         result.add(getOperatorToken(OperatorType.MULTIPLY.getSymbol()));
                         numberBuilder = new StringBuilder();
-
                     }
                     continue;
+                }
+                if(OperatorType.isOperatorType(chars[i+1])){
+                    isFirstNumber = true;
                 }
 
                 OperatorTokenizeValidator.validateLastOperator(i,chars.length);
