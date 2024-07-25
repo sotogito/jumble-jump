@@ -2,6 +2,7 @@ package jumble_jump.controller;
 
 import jumble_jump.service.CalculatorService;
 import jumble_jump.util.DecimalPointFormatter;
+import jumble_jump.view.Output;
 
 public class CalculateController {
 
@@ -12,22 +13,33 @@ public class CalculateController {
     }
 
     public void calculate() {
+        printCalculateIntro();
         for (int i = 0; i < calculatorService.getPostfixSize(); i++) {
             if(calculatorService.isSolveProblemOnce(i)){
-                System.out.println("풀이 횟수 : "+calculatorService.getNumberOfSolving());
-                System.out.println("중간식 : "+calculatorService.getIntermediateStep(i));
-                System.out.println();
+                printIntermediateStepAndCount(i);
             }
         }
-        System.out.println("--------------");
-        calculatorService.setResult();
-        Number result = DecimalPointFormatter.format(calculatorService.getResult());
-        System.out.println("정답 : "+result);
-
-
+        printResult();
     }
 
+    private void printIntermediateStepAndCount(int order) {
+        int numberOfSolving = calculatorService.getNumberOfSolving();
+        String intermediateStep = calculatorService.getIntermediateStep(order);
 
+        Output.printIntermediateStepAndCount(numberOfSolving,intermediateStep);
+    }
 
+    private void printResult(){
+        calculatorService.setResult();
+        Number result = DecimalPointFormatter.format(calculatorService.getResult());
+        String problem = calculatorService.getProblem();
+        int totalNumberOfSolving = calculatorService.getNumberOfSolving();
+
+        Output.printResult(totalNumberOfSolving,problem,result);
+    }
+
+    private void printCalculateIntro(){
+        Output.printServiceMessage("\n-------계산중-------\n");
+    }
 
 }

@@ -20,34 +20,30 @@ import java.util.List;
 
 public class MainController {
 
+    private CalculateController calculateController;
+
     public void main(){
         Tokenizer tokenizer = createTokenizer();
-        List<Token> tokens = getTokens(tokenizer);
 
-        StringBuilder sb = new StringBuilder();
-        for (Token token : tokens) {
-            if(token instanceof NumberToken){
-                sb.append(((NumberToken) token).getNumber());
-            }else if(token instanceof ParenthesisToken){
-                sb.append(((ParenthesisToken) token).getParenthesisType().getSymbol());
-            }else if(token instanceof OperatorToken){
-                sb.append(((OperatorToken) token).getOperatorType().getSymbol());
+        while (true){
+            try{
+                List<Token> tokens = getTokens(tokenizer,inputProblem());
+                Problem problem = createProblem(tokens);
+                Solving solving = createSolving();
+                CalculatorService calculatorService = createCalculatorService(problem,solving);
+
+                calculateController = createCalculateController(calculatorService);
+                calculateController.calculate();
+                break;
+            }catch (IllegalArgumentException e){
+                e.printStackTrace();
             }
         }
-
-        System.out.println("토큰"+sb);
-
-        Problem problem = createProblem(tokens);
-        Solving solving = createSolving();
-
-        CalculatorService calculatorService = createCalculatorService(problem,solving);
-
-        CalculateController calculateController = new CalculateController(calculatorService);
-        calculateController.calculate();
-
-
     }
 
+    private CalculateController createCalculateController(CalculatorService calculatorService){
+        return new CalculateController(calculatorService);
+    }
 
     private CalculatorService createCalculatorService(Problem problem, Solving solving) {
         PostfixExpressionManager postfixExpressionManager = new PostfixExpressionManager();
@@ -55,7 +51,6 @@ public class MainController {
 
         return new CalculatorService(problem,solving,infixPostFixHelper);
     }
-
 
     private Solving createSolving() {
         return new Solving();
@@ -65,14 +60,18 @@ public class MainController {
         return new Problem(tokens);
     }
 
-    private List<Token> getTokens(Tokenizer tokenizer) {
+    private List<Token> getTokens(Tokenizer tokenizer, String inputProblem) {
         while (true){
             try{
-                return tokenizer.tokenize(Input.inputProblem());
+                return tokenizer.tokenize(inputProblem);
             }catch (IllegalArgumentException e){
                 Output.printError(e.getMessage());
             }
         }
+    }
+
+    private String inputProblem(){
+        return Input.inputProblem();
     }
 
     private Tokenizer createTokenizer() {
@@ -82,4 +81,5 @@ public class MainController {
 
         return new Tokenizer(numberMatcher, operatorMatcher, parenthesisMatcher);
     }
+
 }
