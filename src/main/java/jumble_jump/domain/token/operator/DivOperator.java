@@ -18,4 +18,5 @@ public class DivOperator implements OperatorToken {
     public double calculate(double number1, double number2) {
         return number1 / number2;
     }
+
 }

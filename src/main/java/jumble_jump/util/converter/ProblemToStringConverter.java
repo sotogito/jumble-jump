@@ -25,7 +25,6 @@ public class ProblemToStringConverter {
                 result.add(((ParenthesisToken) token).getParenthesisText());
             }
         }
-
         return String.join(" ", result);
     }
 

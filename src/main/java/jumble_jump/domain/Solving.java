@@ -21,6 +21,4 @@ public class Solving {
         return numberOfSolving;
     }
 
-
-
 }

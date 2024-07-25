@@ -11,11 +11,6 @@ import jumble_jump.util.Token;
 
 import java.util.*;
 
-/**
- * 곱하기 빈칸일때
- * 마지막 괄호는 확인하는 프로세스를 넣어ㅑ할거같은데
- */
-//todo 곱하기 빈칸일때 괄호 바로 다음에
 public class CalculatorService {
 
     private final Solving solving;
@@ -27,7 +22,6 @@ public class CalculatorService {
 
     private final List<Token> postfix;
 
-
     public CalculatorService(Problem problem, Solving solving, ProblemToPostFixConverter problemToPostFixConverter) {
         this.problem = problem;
         this.solving = solving;
@@ -35,8 +29,8 @@ public class CalculatorService {
         this.postfix = problemToPostFixConverter.convertToPostFix(problem);
     }
 
-    public int getPostfixSize() {
-        return this.postfix.size();
+    public void setResult(){
+        result = (((NumberToken)resultStack.pop()).getNumber());
     }
 
     public boolean isSolveProblemOnce(int i){
@@ -64,10 +58,6 @@ public class CalculatorService {
         return this.solving.getNumberOfSolving();
     }
 
-    public void setResult(){
-        result = (((NumberToken)resultStack.pop()).getNumber());
-    }
-
     public Double getResult(){
         return result;
     }
@@ -76,5 +66,8 @@ public class CalculatorService {
         return problem.getProblemText();
     }
 
+    public int getPostfixSize() {
+        return this.postfix.size();
+    }
 
 }

@@ -12,4 +12,5 @@ public interface InfixToPostFixConverter {
     void updateNumberToken(Token token);
     void updateOperatorToken(Token token);
     void updateParenthesisToken(ParenthesisToken nowParenthesis);
+
 }

@@ -10,5 +10,4 @@ public class NumberMatcher {
         return new Number(input);
     }
 
-
 }

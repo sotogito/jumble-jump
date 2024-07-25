@@ -28,7 +28,7 @@ public enum OperatorType {
                 return op;
             }
         }
-        throw new IllegalArgumentException("사칙연사에 해당하지 않는 연산자가 있습니다.");
+        throw new IllegalArgumentException("사칙연산에 해당 연산 기능은 제공하지 않습니다.");
     }
 
     public static boolean isOperatorType(char symbol) {

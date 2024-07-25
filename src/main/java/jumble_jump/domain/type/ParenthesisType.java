@@ -30,7 +30,7 @@ public enum ParenthesisType {
                 return p;
             }
         }
-        throw new IllegalArgumentException("존재하지 않는 심븛입니다.");
+        throw new IllegalArgumentException("존재하지 않는 괄호입니다.");
     }
 
     public static boolean isParenthesisType(char input) {
@@ -51,39 +51,12 @@ public enum ParenthesisType {
         throw new IllegalArgumentException("존재하지 않는 괄호입니다.");
     }
 
-
     public boolean isOpen() {
         return this == PARENTHESIS_OPEN || this == CURLY_BRACE_OPEN || this == BRACKET_OPEN;
-    }
-
-
-
-    public static boolean isNextParenthesis(ParenthesisType before, ParenthesisType now){
-        int subPriority = now.getPriority() - before.getPriority();
-        return subPriority == 0 || subPriority == 1;
-    }
-
-    public static boolean isNextOpen(ParenthesisType before, ParenthesisType now){
-        int subPriority = now.getPriority() - before.getPriority();
-        return subPriority == 0 || subPriority == -1;
-    }
-
-    public static boolean isNextClose(ParenthesisType before, ParenthesisType now){
-        int subPriority = now.getPriority() - before.getPriority();
-        return subPriority == 0 || subPriority == 1;
     }
 
     public static boolean isSamePriority(ParenthesisType before, ParenthesisType now){
         return before.getPriority() == now.getPriority();
     }
-
-
-    public static boolean isSameOpenState(ParenthesisType before, ParenthesisType now){
-        return (before.isOpen() && now.isOpen()) || (!before.isOpen() && !now.isOpen());
-    }
-
-
-
-
 
 }

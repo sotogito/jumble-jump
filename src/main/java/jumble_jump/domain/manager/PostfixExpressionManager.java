@@ -18,10 +18,6 @@ public class PostfixExpressionManager implements OperatorStackHandler {
         return Collections.unmodifiableList(output);
     }
 
-    public Deque<Token> getOperatorStack() {
-        return  operatorStack;
-    }
-
     public void pushParenthesisStack(Token token) {
         operatorStack.push(token);
     }
@@ -37,7 +33,7 @@ public class PostfixExpressionManager implements OperatorStackHandler {
         }
         if (!operatorStack.isEmpty() &&
                 operatorStack.peek() instanceof ParenthesisToken && ((ParenthesisToken) operatorStack.peek()).isOpenParenthesis()) {
-            //operatorStack.pop(); //fixme
+            //operatorStack.pop(); //NOTE 원래 괄호는 넣는게 아님
             output.add(operatorStack.pop());
         }
     }
@@ -54,15 +50,6 @@ public class PostfixExpressionManager implements OperatorStackHandler {
             output.add(operatorStack.pop());
         }
         operatorStack.push(token);
-    }
-
-    public  boolean isValidOperator(Deque<Token> operatorStack,Token token) {
-        if (operatorStack.isEmpty() || !(operatorStack.peek() instanceof OperatorToken topOperator)) {
-            return true;
-        } else if (((OperatorToken) token).getPriority() < topOperator.getPriority()) { //note * < - : pop안해도 됨 그냥 operator에 추가
-            return true;
-        }
-        return false;
     }
 
 }

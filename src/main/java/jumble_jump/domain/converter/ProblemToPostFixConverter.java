@@ -10,14 +10,8 @@ import jumble_jump.util.Token;
 
 import java.util.*;
 
-/**
- * 불변으로 list넘기기
- * 중간 식 넘기기 - 괄호도 output에 추가?
- * 계산을 위한 list하고 조립을 위한 List를 따로
- */
 public class ProblemToPostFixConverter implements InfixToPostFixConverter {
     private final PostfixExpressionManager postfixDataManager;
-    private List<Token> outputForIntermediateStep = new ArrayList<>();
 
     private final Set<Integer> openParenthesisPriorityList = new HashSet<>();
     private Deque<Token> parenthesisStack = new ArrayDeque<>();
@@ -31,7 +25,6 @@ public class ProblemToPostFixConverter implements InfixToPostFixConverter {
 
     @Override
     public List<Token> convertToPostFix(Problem problem) {
-
         for(Token token : problem.getProblemTokens()){
             if(token instanceof NumberToken){
                 updateNumberToken(token);
@@ -49,13 +42,14 @@ public class ProblemToPostFixConverter implements InfixToPostFixConverter {
     }
 
     @Override
-    public void updateOperatorToken(Token token) {
-        postfixDataManager.loopUpdateOperatorToken(token);
-    }
-
-    @Override
     public void updateNumberToken(Token token){
         postfixDataManager.pushOutput(token);
+    }
+
+
+    @Override
+    public void updateOperatorToken(Token token) {
+        postfixDataManager.loopUpdateOperatorToken(token);
     }
 
 
@@ -75,7 +69,7 @@ public class ProblemToPostFixConverter implements InfixToPostFixConverter {
                 ParenthesisPostFixValidator.validateWhenNowBeforeOpenState(nowParenthesis,beforeParenthesis,rightParenthesisCount);
                 updateWhenParenthesisSectionClosed(nowParenthesis);
             }
-            validateIsResetParenthesisData(rightParenthesisCount,leftParenthesisCount);
+            checkResetParenthesisData(rightParenthesisCount,leftParenthesisCount);
             postfixDataManager.loopOperatorsUntilParenthesis();
         }
     }
@@ -89,14 +83,13 @@ public class ProblemToPostFixConverter implements InfixToPostFixConverter {
 
 
     private void updateWhenParenthesisSectionClosed(ParenthesisToken nowParenthesis){
-        postfixDataManager.pushOutput(nowParenthesis);
-
+        postfixDataManager.pushOutput(nowParenthesis); //note 추가
         parenthesisStack.removeFirst();
         leftParenthesisCount++;
     }
 
-    private void validateIsResetParenthesisData(int rightParenthesisCount, int leftParenthesisCount){
-        if(ParenthesisPostFixValidator.isResetParenthesesData(rightParenthesisCount,leftParenthesisCount)){
+    private void checkResetParenthesisData(int rightParenthesisCount, int leftParenthesisCount){
+        if(isResetParenthesesData(rightParenthesisCount,leftParenthesisCount)){
             resetParenthesisData();
         }
     }
@@ -108,6 +101,8 @@ public class ProblemToPostFixConverter implements InfixToPostFixConverter {
         beforeParenthesis = null;
     }
 
-
+    public boolean isResetParenthesesData(int rightParenthesisCount, int leftParenthesisCount){
+        return rightParenthesisCount == leftParenthesisCount;
+    }
 
 }

@@ -8,12 +8,13 @@ public class OperatorTokenizeValidator {
         if(c == OperatorType.SUBTRACT.getSymbol() || c == OperatorType.ADD.getSymbol()){
             return true;
         }
-        throw new IllegalArgumentException("첫자리 연산자는 더하기와 곱하기만 가능합니다.");
+        throw new IllegalArgumentException("문제 첫 자리 연산자는 더하기와 빼기만 가능합니다.");
     }
 
     public static void validateLastOperator(int i, int length){
         if(i == length-1){
-            throw new IllegalArgumentException("마지막에 연산자가가 올 수 없습니다.");
+            throw new IllegalArgumentException("문제 마지막 자리에 연산자가 올 수 없습니다.");
         }
     }
+
 }

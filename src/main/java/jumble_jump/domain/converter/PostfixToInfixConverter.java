@@ -11,19 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-/**
- * 괄호사이에 숫자가 ㅎ나거나 연산가+숫자가 하나면 없앰
- *
- * 1. 숫자 그냥 집어 넣음
- * 1. 연산자 만나면 num1 넣고 -> operator -> num2넣음 => 하나의 String으로 넣음
- * 2. 연산자 만나면 위에하고 똑같이 함
- * 3 열린괄호 앞에 연산자의 개수가 없으면 괄호도 없앤다.
- * 4. 1개면 괄호 생략, 1개 이상이면 열린괄호 + 닫힌괄호부터 stack + 닫힌괄호 로 넣음
- * 5. 반복
- * stack에 데이터가 하나 남으면 그게 최종 문제
- *
- */
-
 public class PostfixToInfixConverter {
 
     private static List<Token> intermediateStepPostfix;

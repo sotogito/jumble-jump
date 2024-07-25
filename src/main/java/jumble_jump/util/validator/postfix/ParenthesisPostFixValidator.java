@@ -12,7 +12,7 @@ public class ParenthesisPostFixValidator {
 
     public static void validateBeforeParenthesisNull(ParenthesisToken nowParenthesis){
         if(!nowParenthesis.isOpenParenthesis()){
-            throw new IllegalArgumentException("첫 괄호는 열림 괄호여야 합니다.");
+            throw new IllegalArgumentException("첫 괄호는 열린 괄호여야 합니다.");
         }
     }
 
@@ -20,7 +20,7 @@ public class ParenthesisPostFixValidator {
         ParenthesisType nowParenthesisType = nowParenthesis.getParenthesisType();
 
         if(!ParenthesisType.isSamePriority(beforeParenthesis.getParenthesisType(), nowParenthesisType)){
-            throw new IllegalArgumentException("열리고, 닫힌 괄호의 종류가 달라요"); //fixme
+            throw new IllegalArgumentException("열린 괄호와 닫힌 괄호의 종류가 달라요. ex) {]"); //fixme
         } else if (rightParenthesisCount <= 1) {
             if(nowParenthesis.getParenthesisPriority() != 1){
                 throw new IllegalArgumentException("단독으로 사용하는 괄호는 소괄호를 사용하세요.");
@@ -36,9 +36,9 @@ public class ParenthesisPostFixValidator {
 
             for (int i = 0; i < sortedPriorityList.size() - 1; i++) {
                 if(sortedPriorityList.get(0) != 1){
-                    throw new IllegalArgumentException("중첩을 위해서는 소괄호가 반드시 사용되어야합니다.");
+                    throw new IllegalArgumentException("중첩을 위해서는 소괄호가 반드시 사용되어야 합니다.");
                 }else if (sortedPriorityList.get(i + 1) - sortedPriorityList.get(i) != 1) {
-                    throw new IllegalArgumentException("우선순위가 높은 괄호부터 차례대로 사용해주세요");
+                    throw new IllegalArgumentException("중첩 시 괄호의 우선순위를 지켜주세요."); //ex) [(1+1)]
                 }
             }
         }
@@ -48,10 +48,6 @@ public class ParenthesisPostFixValidator {
         if(rightParenthesisCount != leftParenthesisCount){
             throw new IllegalArgumentException("괄호의 중첩이 끝나지 않았습니다.");
         }
-    }
-
-    public static boolean isResetParenthesesData(int rightParenthesisCount, int leftParenthesisCount){
-        return rightParenthesisCount == leftParenthesisCount;
     }
 
 }
