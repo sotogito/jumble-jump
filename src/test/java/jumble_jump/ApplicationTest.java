@@ -1,11 +1,10 @@
 package jumble_jump;
 
 import jumble_jump.controller.CalculateController;
-import jumble_jump.controller.MainController;
 import jumble_jump.domain.Problem;
 import jumble_jump.domain.Solving;
-import jumble_jump.domain.helper.InfixPostFixHelper;
-import jumble_jump.domain.helper.PostfixExpressionManager;
+import jumble_jump.domain.converter.ProblemToPostFixConverter;
+import jumble_jump.domain.manager.PostfixExpressionManager;
 import jumble_jump.domain.matcher.NumberMatcher;
 import jumble_jump.domain.matcher.OperatorMatcher;
 import jumble_jump.domain.matcher.ParenthesisMatcher;
@@ -14,13 +13,9 @@ import jumble_jump.util.Token;
 import jumble_jump.util.Tokenizer;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
 
 class ApplicationTest {
 
@@ -31,10 +26,10 @@ class ApplicationTest {
         OperatorMatcher operatorMatcher = new OperatorMatcher();
         ParenthesisMatcher parenthesisMatcher = new ParenthesisMatcher();
         PostfixExpressionManager postfixExpressionManager = new PostfixExpressionManager();
-        InfixPostFixHelper infixPostFixHelper = new InfixPostFixHelper(postfixExpressionManager);
+        ProblemToPostFixConverter infixPostFixHelper = new ProblemToPostFixConverter(postfixExpressionManager);
 
-        String inputProblem = "1+1";
-        double expected = 2;
+        String inputProblem = "({5 - 3} * [2 + (3 - 1)])";
+        double expected = 8;
 
         Tokenizer tokenizer = new Tokenizer(numberMatcher, operatorMatcher, parenthesisMatcher);
         List<Token> tokens = tokenizer.tokenize(inputProblem);

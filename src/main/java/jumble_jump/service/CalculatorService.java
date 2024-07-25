@@ -2,8 +2,8 @@ package jumble_jump.service;
 
 import jumble_jump.domain.Problem;
 import jumble_jump.domain.Solving;
-import jumble_jump.domain.helper.ProblemToPostFixConverter;
-import jumble_jump.domain.helper.PostfixToInfixConverter;
+import jumble_jump.domain.converter.ProblemToPostFixConverter;
+import jumble_jump.domain.converter.PostfixToInfixConverter;
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.number.Number;

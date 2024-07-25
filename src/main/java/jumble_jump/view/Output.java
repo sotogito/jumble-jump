@@ -3,7 +3,7 @@ package jumble_jump.view;
 public class Output {
 
     public static void printError(String error) {
-        System.out.printf("⚠ %s\n",error);
+        System.out.printf("\n⚠ %s\n",error);
     }
 
 

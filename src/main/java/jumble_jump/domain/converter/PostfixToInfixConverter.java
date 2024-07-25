@@ -1,4 +1,4 @@
-package jumble_jump.domain.helper;
+package jumble_jump.domain.converter;
 
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
@@ -6,10 +6,8 @@ import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.type.ParenthesisType;
 import jumble_jump.util.DecimalPointFormatter;
 import jumble_jump.util.Token;
-import org.springframework.expression.spel.ast.Operator;
 
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 import java.util.Stack;
 

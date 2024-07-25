@@ -1,6 +1,7 @@
-package jumble_jump.domain.helper;
+package jumble_jump.domain.converter;
 
 import jumble_jump.domain.Problem;
+import jumble_jump.domain.manager.PostfixExpressionManager;
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
@@ -14,7 +15,7 @@ import java.util.*;
  * 중간 식 넘기기 - 괄호도 output에 추가?
  * 계산을 위한 list하고 조립을 위한 List를 따로
  */
-public class ProblemToPostFixConverter implements InfixPostFixConverter {
+public class ProblemToPostFixConverter implements InfixToPostFixConverter {
     private final PostfixExpressionManager postfixDataManager;
     private List<Token> outputForIntermediateStep = new ArrayList<>();
 
