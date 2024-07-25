@@ -11,7 +11,7 @@ public class DivOperator implements OperatorToken {
 
     @Override
     public int getPriority() {
-        return 1;
+        return OperatorType.DIVIDE.getPriority();
     }
 
     @Override

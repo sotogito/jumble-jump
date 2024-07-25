@@ -12,7 +12,7 @@ public class MulOperator implements OperatorToken {
 
     @Override
     public int getPriority() {
-        return 1;
+        return OperatorType.MULTIPLY.getPriority();
     }
 
     @Override

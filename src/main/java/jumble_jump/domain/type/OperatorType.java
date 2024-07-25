@@ -1,19 +1,25 @@
 package jumble_jump.domain.type;
 
 public enum OperatorType {
-    ADD('+'),
-    SUBTRACT('-'),
-    MULTIPLY('*'),
-    DIVIDE('/');
+    ADD('+',2),
+    SUBTRACT('-',2),
+    MULTIPLY('*',1),
+    DIVIDE('/',1);
 
     private final char symbol;
+    private final int priority;
 
-    OperatorType(char symbol) {
+    OperatorType(char symbol, int priority) {
         this.symbol = symbol;
+        this.priority = priority;
     }
 
     public char getSymbol() {
         return symbol;
+    }
+
+    public int getPriority() {
+        return priority;
     }
 
     public static OperatorType fromSymbol(char symbol) {

@@ -13,7 +13,7 @@ public class SubOperator implements OperatorToken {
 
     @Override
     public int getPriority() {
-        return 2;
+        return OperatorType.SUBTRACT.getPriority();
     }
 
     @Override

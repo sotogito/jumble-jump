@@ -13,7 +13,7 @@ public class AddOperator implements OperatorToken {
 
     @Override
     public int getPriority() {
-        return 2;
+        return OperatorType.ADD.getPriority();
     }
 
     @Override
