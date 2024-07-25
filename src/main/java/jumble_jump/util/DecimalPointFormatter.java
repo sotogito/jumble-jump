@@ -19,5 +19,14 @@ public class DecimalPointFormatter {
         return bd.doubleValue();
     }
 
+    public static Number problemFormat(double value) {
+        BigDecimal bd = BigDecimal.valueOf(value);
+
+        if (bd.stripTrailingZeros().scale() <= 0) { //note 정수인지 확인
+            return bd.longValue();
+        }
+        return bd.doubleValue();
+    }
+
 
 }

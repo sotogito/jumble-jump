@@ -16,7 +16,7 @@ public class ProblemToStringConverter {
         List<String> result = new ArrayList<>();
         for (Token token : problemTokens) {
             if(token instanceof NumberToken) {
-                Number number = DecimalPointFormatter.format(((NumberToken) token).getNumber());
+                Number number = DecimalPointFormatter.problemFormat(((NumberToken) token).getNumber());
                 result.add(String.valueOf(number));
             }else if(token instanceof OperatorToken) {
                 OperatorType operatorType = ((OperatorToken) token).getOperatorType();
