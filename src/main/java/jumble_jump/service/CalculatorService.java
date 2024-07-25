@@ -2,13 +2,11 @@ package jumble_jump.service;
 
 import jumble_jump.domain.Problem;
 import jumble_jump.domain.Solving;
-import jumble_jump.domain.helper.InfixPostFixHelper;
+import jumble_jump.domain.helper.ProblemToPostFixConverter;
 import jumble_jump.domain.helper.PostfixToInfixConverter;
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
-import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.token.number.Number;
-import jumble_jump.util.DecimalPointFormatter;
 import jumble_jump.util.Token;
 
 import java.util.*;
@@ -22,19 +20,19 @@ public class CalculatorService {
 
     private final Solving solving;
     private final Problem problem;
-    private final InfixPostFixHelper infixPostFixHelper;
+    private final ProblemToPostFixConverter problemToPostFixConverter;
 
-    private Stack<Token> resultStack = new Stack<>();
+    private final Stack<Token> resultStack = new Stack<>();
     private Double result;
 
-    private List<Token> postfix;
+    private final List<Token> postfix;
 
 
-    public CalculatorService(Problem problem, Solving solving, InfixPostFixHelper infixPostFixHelper) {
+    public CalculatorService(Problem problem, Solving solving, ProblemToPostFixConverter problemToPostFixConverter) {
         this.problem = problem;
         this.solving = solving;
-        this.infixPostFixHelper = infixPostFixHelper;
-        this.postfix = infixPostFixHelper.convertToPostFix(problem);
+        this.problemToPostFixConverter = problemToPostFixConverter;
+        this.postfix = problemToPostFixConverter.convertToPostFix(problem);
     }
 
     public int getPostfixSize() {

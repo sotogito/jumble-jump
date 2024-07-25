@@ -14,7 +14,7 @@ import java.util.*;
  * 중간 식 넘기기 - 괄호도 output에 추가?
  * 계산을 위한 list하고 조립을 위한 List를 따로
  */
-public class InfixPostFixHelper implements InfixPostFixConverter {
+public class ProblemToPostFixConverter implements InfixPostFixConverter {
     private final PostfixExpressionManager postfixDataManager;
     private List<Token> outputForIntermediateStep = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class InfixPostFixHelper implements InfixPostFixConverter {
     private int rightParenthesisCount = 0;
     private int leftParenthesisCount = 0;
 
-    public InfixPostFixHelper(PostfixExpressionManager operatorStackHelper) {
+    public ProblemToPostFixConverter(PostfixExpressionManager operatorStackHelper) {
         this.postfixDataManager = operatorStackHelper;
     }
 
