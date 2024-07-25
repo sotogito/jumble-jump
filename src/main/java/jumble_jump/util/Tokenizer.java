@@ -1,6 +1,7 @@
 package jumble_jump.util;
 
 import jumble_jump.domain.token.NumberToken;
+import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.token.number.Number;
 import jumble_jump.domain.token.parenthesis.Parenthesis;
@@ -73,6 +74,7 @@ public class Tokenizer {
                 if (handleSignAtStart(c, isFirstNumber, numberBuilder)) {
                     continue;
                 }
+
                 OperatorTokenizeValidator.validateLastOperator(i,chars.length);
                 result.add(getOperatorToken(c));
                 continue;
@@ -83,6 +85,12 @@ public class Tokenizer {
                 ParenthesisToken nowParenthesisToken = (ParenthesisToken) getParathesisToken(c);
                 result.add(nowParenthesisToken);
 
+                if(nowParenthesisToken.isOpenParenthesis()){
+                    if(i + 2 < chars.length && OperatorType.isOperatorType(chars[i+1]) &&Character.isDigit(chars[i+2])){
+                        numberBuilder.append(chars[i+1]);
+                        i++;
+                    }
+                }
                 if(i != chars.length - 1) {
                     if(!nowParenthesisToken.isOpenParenthesis() && Character.isDigit(chars[i+1])){ //닫힌 괄호 다음 숫자
                         result.add(getOperatorToken(OperatorType.MULTIPLY.getSymbol()));
@@ -120,6 +128,21 @@ public class Tokenizer {
 
     private boolean isNotSingleDigitNumber(int i, char[] chars) {
         return i < chars.length && (Character.isDigit(chars[i]) || chars[i] == '.');
+    }
+    private boolean isPreviousCharOperator(List<Token> tokens) {
+        if (tokens.isEmpty()) {
+            return false;
+        }
+        Token lastToken = tokens.get(tokens.size() - 1);
+        return lastToken instanceof OperatorToken;
+    }
+
+    private boolean isPreviousCharOpenParenthesis(List<Token> tokens) {
+        if (tokens.isEmpty()) {
+            return false;
+        }
+        Token lastToken = tokens.get(tokens.size() - 1);
+        return lastToken instanceof ParenthesisToken && ((ParenthesisToken) lastToken).getParenthesisType().isOpen();
     }
 
 
