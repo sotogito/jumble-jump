@@ -1,6 +1,7 @@
 package jumble_jump.util;
 
 import jumble_jump.domain.token.NumberToken;
+import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.token.number.Number;
 import jumble_jump.domain.token.parenthesis.Parenthesis;
 import jumble_jump.domain.type.OperatorType;
@@ -45,6 +46,9 @@ public class Tokenizer {
         for (char c : chars) {
             System.out.print(c);
         }
+        /**
+         * 숫자 다음에 바로 괄호거나 괄호 다음이 바로 숫자일때
+         */
 
         StringBuilder numberBuilder = new StringBuilder();
         boolean isFirstNumber = true;
@@ -60,16 +64,37 @@ public class Tokenizer {
                 result.add(getNumberToken(Double.parseDouble(numberBuilder.toString())));
                 numberBuilder = new StringBuilder();
                 i--;
+
+                if (i + 1 < chars.length && ParenthesisType.isParenthesisType(chars[i + 1])) {
+                    ParenthesisType type = ParenthesisType.fromSymbol(chars[i + 1]);
+                    if (type.isOpen()) {
+                        result.add(getOperatorToken(OperatorType.MULTIPLY.getSymbol()));
+                    }
+                }
+
                 continue;
-            } else if (OperatorType.isOperatorType(c)) {
+            }
+
+            else if (OperatorType.isOperatorType(c)) {
                 if (handleSignAtStart(c, isFirstNumber, numberBuilder)) {
                     continue;
                 }
                 OperatorTokenizeValidator.validateLastOperator(i,chars.length);
                 result.add(getOperatorToken(c));
                 continue;
-            } else if (ParenthesisType.isParenthesisType(c)) {
-                result.add(getParathesisToken(c));
+            }
+
+
+            else if (ParenthesisType.isParenthesisType(c)) {
+                ParenthesisToken nowParenthesisToken = (ParenthesisToken) getParathesisToken(c);
+                result.add(nowParenthesisToken);
+
+                if(i != chars.length - 1) {
+                    if(!nowParenthesisToken.isOpenParenthesis() && Character.isDigit(chars[i+1])){ //닫힌 괄호 다음 숫자
+                        result.add(getOperatorToken(OperatorType.MULTIPLY.getSymbol()));
+                    }
+                }
+
                 continue;
             }
 

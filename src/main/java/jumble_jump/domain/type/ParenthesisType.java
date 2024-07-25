@@ -30,7 +30,7 @@ public enum ParenthesisType {
                 return p;
             }
         }
-        throw new IllegalArgumentException("존재하지 않는 괄호입니다.");
+        throw new IllegalArgumentException("존재하지 않는 심븛입니다.");
     }
 
     public static boolean isParenthesisType(char input) {
@@ -55,9 +55,6 @@ public enum ParenthesisType {
     public boolean isOpen() {
         return this == PARENTHESIS_OPEN || this == CURLY_BRACE_OPEN || this == BRACKET_OPEN;
     }
-
-
-
 
 
 

@@ -35,6 +35,19 @@ public class CalculatorService {
         this.solving = solving;
         this.infixPostFixHelper = infixPostFixHelper;
         this.postfix = infixPostFixHelper.convertToPostFix(problem);
+
+        StringBuilder sb = new StringBuilder();
+        for (Token token : postfix) {
+            if(token instanceof NumberToken){
+                sb.append(((NumberToken) token).getNumber());
+            }else if(token instanceof ParenthesisToken){
+                sb.append(((ParenthesisToken) token).getParenthesisType().getSymbol());
+            }else if(token instanceof OperatorToken){
+                sb.append(((OperatorToken) token).getOperatorType().getSymbol());
+            }
+        }
+
+        System.out.println("토큰"+sb);
     }
 
     public int getPostfixSize() {
@@ -47,8 +60,10 @@ public class CalculatorService {
         if (token instanceof NumberToken) {
             resultStack.push(token);
         }else if (token instanceof OperatorToken) {
-            double num2 = (((NumberToken) resultStack.pop()).getNumber());
-            double num1 = (((NumberToken) resultStack.pop()).getNumber());
+            double num2 = ((NumberToken) resultStack.pop()).getNumber();
+            double num1 = ((NumberToken) resultStack.pop()).getNumber();
+
+
             double result = ((OperatorToken) token).calculate(num1, num2);
             resultStack.push(new Number(result));
 
@@ -73,6 +88,13 @@ public class CalculatorService {
 
     public Double getResult(){
         return result;
+    }
+
+    private Double getOrDefault(Double defaultValue) {
+        if (resultStack.isEmpty()) {
+            return defaultValue;
+        }
+        return ((NumberToken) resultStack.pop()).getNumber();
     }
 
 

@@ -5,6 +5,9 @@ import jumble_jump.domain.Solving;
 import jumble_jump.domain.matcher.NumberMatcher;
 import jumble_jump.domain.matcher.OperatorMatcher;
 import jumble_jump.domain.matcher.ParenthesisMatcher;
+import jumble_jump.domain.token.NumberToken;
+import jumble_jump.domain.token.OperatorToken;
+import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.service.CalculatorService;
 import jumble_jump.domain.helper.InfixPostFixHelper;
 import jumble_jump.domain.helper.PostfixExpressionManager;
@@ -20,6 +23,20 @@ public class MainController {
     public void main(){
         Tokenizer tokenizer = createTokenizer();
         List<Token> tokens = getTokens(tokenizer);
+
+        StringBuilder sb = new StringBuilder();
+        for (Token token : tokens) {
+            if(token instanceof NumberToken){
+                sb.append(((NumberToken) token).getNumber());
+            }else if(token instanceof ParenthesisToken){
+                sb.append(((ParenthesisToken) token).getParenthesisType().getSymbol());
+            }else if(token instanceof OperatorToken){
+                sb.append(((OperatorToken) token).getOperatorType().getSymbol());
+            }
+        }
+
+        System.out.println("토큰"+sb);
+
         Problem problem = createProblem(tokens);
         Solving solving = createSolving();
 
