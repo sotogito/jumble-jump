@@ -47,10 +47,12 @@ public class Tokenizer {
         }
 
         StringBuilder numberBuilder = new StringBuilder();
+        boolean isFirstNumber = true;
         for (int i = 0; i < chars.length; i++) {
             char c = chars[i];
 
             if (Character.isDigit(c)) {
+                isFirstNumber = false;
                 while (isNotSingleDigitNumber(i,chars)) {
                     numberBuilder.append(chars[i]);
                     i++;
@@ -60,7 +62,7 @@ public class Tokenizer {
                 i--;
                 continue;
             } else if (OperatorType.isOperatorType(c)) {
-                if (handleSignAtStart(c, i, numberBuilder)) {
+                if (handleSignAtStart(c, isFirstNumber, numberBuilder)) {
                     continue;
                 }
                 OperatorTokenizeValidator.validateLastOperator(i,chars.length);
@@ -89,8 +91,8 @@ public class Tokenizer {
         return parenthesisMatcher.match(c);
     }
 
-    private boolean handleSignAtStart(char c, int i, StringBuilder numberBuilder) {
-        if (i == 0 && OperatorTokenizeValidator.isNumberSign(c)) {
+    private boolean handleSignAtStart(char c, boolean isFirstNumber, StringBuilder numberBuilder) {
+        if (isFirstNumber && OperatorTokenizeValidator.isNumberSign(c)) {
             numberBuilder.append(c);
             return true;
         }
