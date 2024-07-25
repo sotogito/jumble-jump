@@ -8,12 +8,12 @@ import jumble_jump.util.Token;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OperatorMatcher  {
+public class OperatorMatcher implements Matcher{
 
     private final List<OperatorToken> operators = new ArrayList<>();
 
     public OperatorMatcher() {
-        initOperator();
+        register();
     }
 
     public Token match(char inputOperator){
@@ -27,11 +27,11 @@ public class OperatorMatcher  {
         throw new IllegalArgumentException("찾을 수 없는 연산자입니다");
     }
 
-
-    private void initOperator(){
+    public void register(){
         operators.add(new AddOperator());
         operators.add(new SubOperator());
         operators.add(new MulOperator());
         operators.add(new DivOperator());
     }
+
 }
