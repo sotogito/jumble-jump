@@ -72,6 +72,13 @@ public class Tokenizer {
 
             else if (OperatorType.isOperatorType(c)) {
                 if (handleSignAtStart(c, isFirstNumber, numberBuilder)) {
+                    if(ParenthesisType.isParenthesisType(chars[i+1])){
+                        numberBuilder.append(1);
+                        result.add(getNumberToken(Double.parseDouble(numberBuilder.toString())));
+                        result.add(getOperatorToken(OperatorType.MULTIPLY.getSymbol()));
+                        numberBuilder = new StringBuilder();
+
+                    }
                     continue;
                 }
 
@@ -86,10 +93,7 @@ public class Tokenizer {
                 result.add(nowParenthesisToken);
 
                 if(nowParenthesisToken.isOpenParenthesis()){
-                    if(i + 2 < chars.length && OperatorType.isOperatorType(chars[i+1]) &&Character.isDigit(chars[i+2])){
-                        numberBuilder.append(chars[i+1]);
-                        i++;
-                    }
+                    isFirstNumber = true;
                 }
                 if(i != chars.length - 1) {
                     if(!nowParenthesisToken.isOpenParenthesis() && Character.isDigit(chars[i+1])){ //닫힌 괄호 다음 숫자
