@@ -15,7 +15,7 @@ import jumble_jump.util.validator.tokenizer.OperatorTokenizeValidator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tokenizer {
+public class Tokenizer implements TokenizeConvertor{
     private final NumberMatcher numberMatcher;
     private final OperatorMatcher operatorMatcher;
     private final ParenthesisMatcher parenthesisMatcher;
@@ -70,7 +70,7 @@ public class Tokenizer {
         return tokenizedResult;
     }
 
-    private int updateNumber(int index){
+    public int updateNumber(int index){
         isFirstNumber = false;
         int updateIndex = handleMultiDigitNumber(numberBuilder, index);
         index += updateIndex-1; //note 숫자로 집어 넣은 마지막 인덱스 만큼이 현재 인덱스여야함.
@@ -81,13 +81,13 @@ public class Tokenizer {
         return index;
     }
 
-    private int updateOperator(char c,int index){
+    public int updateOperator(char c,int index){
         OperatorTokenizeValidator.validateLastOperator(index, problemChars.length);
         tokenizedResult.add(getOperatorToken(c));
         return index;
     }
 
-    private int updateParenthesis(ParenthesisToken nowParenthesisToken, int index){
+    public int updateParenthesis(ParenthesisToken nowParenthesisToken, int index){
         tokenizedResult.add(nowParenthesisToken);
         return index;
     }
@@ -186,7 +186,7 @@ public class Tokenizer {
     }
 
 
-    private void problemToChars(String problemString){
+    public void problemToChars(String problemString){
         if (problemString == null || problemString.isEmpty()) {
             throw new IllegalArgumentException("식이 비어있어요.");
         }
