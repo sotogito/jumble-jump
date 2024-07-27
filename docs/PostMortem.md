@@ -44,3 +44,26 @@ if(연산자  없거나, 괄호 안쓰였거나, 숫자 없거나){throw 예외}
 - 괄호 다음 숫자 즉 곱하기가 생략된 경우
 - 중간식 출력에서 괄호 출력하기 - 문제에 썻던 괄호 ㄷ그대로 출력하기 + 괄호가 없어도 되는 풀이식일 경우 업쇼야기
 - 
+
+
+
+2-3-7
+이 과정에서 내가 한가지 간과한게 있었다.. 
+나는 로직을 만약 연산자의 우선순위가 클 경우만 Operator에서 꺼내 rsult에 담았다.
+내 로직대로하면 위 문제의 후위표기법은 다음과 같다 -> 2,3,7,-,-
+문제는 각 -의 연산자가 어느 숫자와의 연산할 짝인지를 구분하지 못한다는거다.
+
+문제는 stack에서 연산자를 꺼내는 로직에 있었다.
+1. stack의 연산자가 now보다 우선순위가 클때
+1. stack의 연산자가 now보다 우선순위가 같을때
+이 두가지의 경우 데이터를 꺼내는 로직으로 수정했다.
+```java
+
+public void loopUpdateOperatorToken(Token token){
+    while (!operatorStack.isEmpty() && operatorStack.peek() instanceof OperatorToken &&
+            ((OperatorToken) operatorStack.peek()).getPriority() <= ((OperatorToken) token).getPriority()) {
+        output.add(operatorStack.pop());
+    }
+    operatorStack.push(token);
+}
+```
