@@ -20,6 +20,12 @@ public class Tokenizer {
     private final OperatorMatcher operatorMatcher;
     private final ParenthesisMatcher parenthesisMatcher;
 
+    private char[] problemChars;
+    private boolean isFirstNumber = true;
+    private StringBuilder numberBuilder = new StringBuilder();
+    
+    private final List<Token> tokenizedResult = new ArrayList<>();
+
     public Tokenizer(
             NumberMatcher numberMatcher, OperatorMatcher operatorMatcher, ParenthesisMatcher parenthesisMatcher) {
         this.numberMatcher = numberMatcher;
@@ -27,106 +33,121 @@ public class Tokenizer {
         this.parenthesisMatcher = parenthesisMatcher;
     }
 
-    public List<Token> tokenize(String inputProblem) {
-        if(inputProblem == null || inputProblem.isEmpty()) {
-            throw new IllegalArgumentException("식이 비어있어요.");
-        }
+    public List<Token> tokenize(String inputProblem){
+        problemToChars(inputProblem);
+        return getTokenizedResult(inputProblem);
 
-        List<Token> result = new ArrayList<>();
-        char[] chars = inputProblem.toCharArray();
-
-        StringBuilder trimmedInput = new StringBuilder();
-        for (char c : chars) {
-            if (!Character.isWhitespace(c)) {
-                trimmedInput.append(c);
-            }
-        }
-        chars = trimmedInput.toString().toCharArray();
+    }
 
 
-        StringBuilder numberBuilder = new StringBuilder();
-        boolean isFirstNumber = true;
-        for (int i = 0; i < chars.length; i++) {
-            char c = chars[i];
-/**
- * while문으로 안되는 조건일떄까지 변경해야될듯
- */
-            if (Character.isDigit(c)) {
-                isFirstNumber = false;
-                while (isNotSingleDigitNumber(i,chars)) {
-                    numberBuilder.append(chars[i]);
-                    i++;
-                }
-                result.add(getNumberToken(Double.parseDouble(numberBuilder.toString())));
-                numberBuilder = new StringBuilder();
-                i--;
+    public List<Token> getTokenizedResult(String inputProblem) {
+        problemToChars(inputProblem);
 
-                if (i + 1 < chars.length && ParenthesisType.isParenthesisType(chars[i + 1])) {
-                    ParenthesisType type = ParenthesisType.fromSymbol(chars[i + 1]);
-                    if (type.isOpen()) {
-                        result.add(getOperatorToken(OperatorType.MULTIPLY.getSymbol()));
-                    }
-                }
+        for (int i = 0; i < problemChars.length; i++) {
+            char c = problemChars[i];
 
-
+            if (Character.isDigit(c)) { //note 숫자
+                i = updateNumber(i);
+                handleNumberFollowedByParenthesis(tokenizedResult,i);
                 continue;
-            }
-
-            else if (OperatorType.isOperatorType(c)) {
-                if (handleSignAtStart(c, isFirstNumber, numberBuilder)) {
-                    if(ParenthesisType.isParenthesisType(chars[i+1])){
-                        numberBuilder.append(1);
-                        result.add(getNumberToken(Double.parseDouble(numberBuilder.toString())));
-                        result.add(getOperatorToken(OperatorType.MULTIPLY.getSymbol()));
-                        numberBuilder = new StringBuilder();
-                    }
+            } else if (OperatorType.isOperatorType(c)) {  //note 연산자
+                if(handleOperatorAtStartFollowedByParenthesis(c,i)){
                     continue;
                 }
-                if(OperatorType.isOperatorType(chars[i+1])){
-                    isFirstNumber = true;
-                }
-
-                OperatorTokenizeValidator.validateLastOperator(i,chars.length);
-                result.add(getOperatorToken(c));
+                handleOperatorFollowedByOperator(i);
+                i = updateOperator(c,i);
                 continue;
-            }
-
-
-            else if (ParenthesisType.isParenthesisType(c)) {
+            } else if (ParenthesisType.isParenthesisType(c)) { //note 괄호
                 ParenthesisToken nowParenthesisToken = (ParenthesisToken) getParathesisToken(c);
-                result.add(nowParenthesisToken);
+                i = updateParenthesis(nowParenthesisToken,i);
 
-                if(nowParenthesisToken.isOpenParenthesis()){
-                    isFirstNumber = true;
-                }
-                if(i != chars.length - 1) {
-                    if(!nowParenthesisToken.isOpenParenthesis() && Character.isDigit(chars[i+1])){ //닫힌 괄호 다음 숫자
-                        result.add(getOperatorToken(OperatorType.MULTIPLY.getSymbol()));
-                    }
-                }
-
+                handleOpenParenthesisToResetFirstNumber(nowParenthesisToken);
+                handleCloseParenthesisFollowedByNumber(nowParenthesisToken,i);
                 continue;
             }
-
-            throw new IllegalArgumentException("잘못된 양식의 식입니다.");
+            throw new IllegalArgumentException("잘못된 양식의 식입니다.- tk");
         }
-        return result;
-
+        return tokenizedResult;
     }
 
-    private Token getNumberToken(Double c){
-        return numberMatcher.match(c);
+    private int updateNumber(int index){
+        isFirstNumber = false;
+        int updateIndex = handleMultiDigitNumber(numberBuilder, index);
+        index += updateIndex-1; //note 숫자로 집어 넣은 마지막 인덱스 만큼이 현재 인덱스여야함.
+
+        tokenizedResult.add(getNumberToken(Double.parseDouble(numberBuilder.toString()))); //함수화
+        numberBuilder = new StringBuilder();
+
+        return index;
     }
 
-    private Token getOperatorToken(char c){
-        return operatorMatcher.match(c);
+    private int updateOperator(char c,int index){
+        OperatorTokenizeValidator.validateLastOperator(index, problemChars.length);
+        tokenizedResult.add(getOperatorToken(c));
+        return index;
     }
 
-    private Token getParathesisToken(char c){
-        return parenthesisMatcher.match(c);
+    private int updateParenthesis(ParenthesisToken nowParenthesisToken, int index){
+        tokenizedResult.add(nowParenthesisToken);
+        return index;
     }
 
-    private boolean handleSignAtStart(char c, boolean isFirstNumber, StringBuilder numberBuilder) {
+
+
+    private void handleCloseParenthesisFollowedByNumber(ParenthesisToken nowParenthesisToken, int index){
+        if (index != problemChars.length - 1) {
+            if (!nowParenthesisToken.isOpenParenthesis() && Character.isDigit(problemChars[index + 1])) { //닫힌 괄호 다음 숫자
+                tokenizedResult.add(getOperatorToken(OperatorType.MULTIPLY.getSymbol()));
+            }
+        }
+    }
+
+    private void handleOpenParenthesisToResetFirstNumber(ParenthesisToken nowParenthesisToken) {
+        if (nowParenthesisToken.isOpenParenthesis()) {
+            isFirstNumber = true;
+        }
+    }
+
+
+    private boolean handleOperatorAtStartFollowedByParenthesis(char c,int index){
+        if (handleSignAtStart(c, numberBuilder)) { //note -()
+            if (isNextCharIsParenthesis(index)) {
+                numberBuilder.append(1);
+                tokenizedResult.add(getNumberToken(Double.parseDouble(numberBuilder.toString())));
+                tokenizedResult.add(getOperatorToken(OperatorType.MULTIPLY.getSymbol()));
+                numberBuilder = new StringBuilder();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void handleOperatorFollowedByOperator(int index){
+        if (isNextCharIsOperator(index)) { //note * -2
+            isFirstNumber = true;
+        }
+    }
+
+    private int handleMultiDigitNumber(StringBuilder numberBuilder , int index){
+        int updateIndex = 0;
+        while (isNotSingleDigitNumber(index, problemChars)) {  //note 숫자 뒤에 숫자 or 소수점
+            numberBuilder.append(problemChars[index]);
+            index++;
+            updateIndex++;
+        }
+        return updateIndex;
+    }
+
+    public void handleNumberFollowedByParenthesis(List<Token> result, int index){
+        if (isNextCharIsParenthesis(index)) { //note 6(1+1)
+            ParenthesisType type = ParenthesisType.fromSymbol(problemChars[index + 1]);
+            if (type.isOpen()) {
+                result.add(getOperatorToken(OperatorType.MULTIPLY.getSymbol()));
+            }
+        }
+    }
+
+    private boolean handleSignAtStart(char c, StringBuilder numberBuilder) {
         if (isFirstNumber && OperatorTokenizeValidator.isNumberSign(c)) {
             numberBuilder.append(c);
             return true;
@@ -134,30 +155,51 @@ public class Tokenizer {
         return false;
     }
 
+    private boolean isNextCharIsOperator(int index){
+        return isNextCharWithinBounds(index) && OperatorType.isOperatorType(problemChars[index + 1]);
+    }
+
+    private boolean isNextCharIsParenthesis(int index){
+        return isNextCharWithinBounds(index) && ParenthesisType.isParenthesisType(problemChars[index + 1]);
+    }
+
+    private boolean isNextCharWithinBounds(int index) {
+        return index >= 0 && index + 1 < problemChars.length;
+
+    }
+
     private boolean isNotSingleDigitNumber(int i, char[] chars) {
         return i < chars.length && (Character.isDigit(chars[i]) || chars[i] == '.');
     }
-    private boolean isPreviousCharOperator(List<Token> tokens) {
-        if (tokens.isEmpty()) {
-            return false;
-        }
-        Token lastToken = tokens.get(tokens.size() - 1);
-        return lastToken instanceof OperatorToken;
+
+
+    private Token getNumberToken(Double c) {
+        return numberMatcher.match(c);
     }
 
-    private boolean isPreviousCharOpenParenthesis(List<Token> tokens) {
-        if (tokens.isEmpty()) {
-            return false;
-        }
-        Token lastToken = tokens.get(tokens.size() - 1);
-        return lastToken instanceof ParenthesisToken && ((ParenthesisToken) lastToken).getParenthesisType().isOpen();
+    private Token getOperatorToken(char c) {
+        return operatorMatcher.match(c);
+    }
+
+    private Token getParathesisToken(char c) {
+        return parenthesisMatcher.match(c);
     }
 
 
+    private void problemToChars(String problemString){
+        if (problemString == null || problemString.isEmpty()) {
+            throw new IllegalArgumentException("식이 비어있어요.");
+        }
+        problemChars = problemString.toCharArray();
 
-
-
-
+        StringBuilder trimmedInput = new StringBuilder();
+        for (char c : problemChars) {
+            if (!Character.isWhitespace(c)) {
+                trimmedInput.append(c);
+            }
+        }
+        problemChars = trimmedInput.toString().toCharArray();
+    }
 
 
 }
