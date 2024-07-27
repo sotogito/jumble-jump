@@ -38,3 +38,6 @@ throw new IllegalArgumentException("열리고, 닫힌 괄호의 종류가 달라
 
 아니 tokenizer에서 for문은 length까진데 왜 마지막 연산자 확인은 -1로하는데?
 
+
+
+{2 * [3 * (4 - 1)]} - 6

@@ -27,29 +27,7 @@ public class PostfixToInfixConverter {
             } else if (token instanceof OperatorToken) {
                 updateOperator(token);
             } else if (token instanceof ParenthesisToken) {
-                ParenthesisToken parenthesisToken = (ParenthesisToken) token;
-
-                if(parenthesisToken.isOpenParenthesis()){
-                    //열린괄호 바로 앞에 operator이 아닐떄까지 int ++
-
-                    int count = 0;
-                    for(int j = i-1; j > 0 ; j--){
-                        Token token1 = intermediateStepPostfix.get(j);
-                        if(!(intermediateStepPostfix.get(j) instanceof OperatorToken)){//열린괄호의 바오 앞에 있는 연산자만
-                           break;
-                        }
-                        count++;
-                    }
-
-                    if(count != 0){
-                        String problemPart = resultStack.pop();
-                        char openParenthesis = parenthesisToken.getParenthesisType().getSymbol();
-                        char closeParenthesis = ParenthesisType.findCloseTypeByOpen(parenthesisToken).getSymbol();
-                        resultStack.push(
-                                String.format("%s%s%s", openParenthesis, problemPart, closeParenthesis)
-                        );
-                    }
-                }
+                updateParenthesis(token,i);
             }
         }
         return resultStack.pop();
@@ -59,40 +37,39 @@ public class PostfixToInfixConverter {
         ParenthesisToken parenthesisToken = (ParenthesisToken) token;
 
         if(parenthesisToken.isOpenParenthesis()){
-            //열린괄호 바로 앞에 operator이 아닐떄까지 int ++
-
-            int count = 0;
-            for(int j = i-1; j > 0 ; j--){
-                Token token1 = intermediateStepPostfix.get(j);
-                if(!(intermediateStepPostfix.get(j) instanceof OperatorToken)){//열린괄호의 바오 앞에 있는 연산자만
-                    break;
-                }
-                count++;
-            }
-
-            if(count > 0){
-                String problemPart = resultStack.pop();
-                char openParenthesis = parenthesisToken.getParenthesisType().getSymbol();
-                char closeParenthesis = ParenthesisType.findCloseTypeByOpen(parenthesisToken).getSymbol();
-                resultStack.push(
-                        String.format("%s%s%s", openParenthesis, problemPart, closeParenthesis)
-                );
+            int numberOfOperator = getOperatorsCalculatedInParenthesis(i); //note 3,1,2,)+-( => 1+2-3 => (1+2-3)
+            if(numberOfOperator > 0){
+                wrapNegativeNumberInParentheses(parenthesisToken);
             }
         }
     }
 
-    //private static void
+    private static void wrapNegativeNumberInParentheses(ParenthesisToken parenthesisToken){
+        String problemPart = resultStack.pop();
+        char openParenthesis = parenthesisToken.getParenthesisType().getSymbol();
+        char closeParenthesis = ParenthesisType.findCloseTypeByOpen(parenthesisToken).getSymbol();
+        resultStack.push(
+                String.format("%s%s%s", openParenthesis, problemPart, closeParenthesis)
+        );
+    }
+
+    private static int getOperatorsCalculatedInParenthesis(int index){
+        int count = 0;
+        for(int j = index-1; j > 0 ; j--){
+            if(!(intermediateStepPostfix.get(j) instanceof OperatorToken)){//열린괄호의 바오 앞에 있는 연산자만
+                break;
+            }
+            count++;
+        }
+        return count;
+    }
+
 
     private static void updateNumber(Token token){
         Number numberFormat = DecimalPointFormatter.format(((NumberToken) token).getNumber());
-//
-//        double number = ((NumberToken) token).getNumber();
-//        if(number < 0){
-//            resultStack.push("("+String.valueOf(numberFormat)+")");
-//            return;
-//        }
-
-
+        if(wrapNegativeNumberInParentheses(token,numberFormat)){
+            return;
+        }
         resultStack.push(String.valueOf(numberFormat));
     }
 
@@ -106,9 +83,15 @@ public class PostfixToInfixConverter {
     }
 
 
-
-
-
+    private static boolean wrapNegativeNumberInParentheses(Token token, Number numberFormat){
+        double number = ((NumberToken) token).getNumber();
+        if(number < 0){
+            resultStack.push(
+                    ParenthesisType.PARENTHESIS_OPEN.getSymbol()+String.valueOf(numberFormat)+ParenthesisType.PARENTHESIS_CLOSE.getSymbol());
+            return true;
+        }
+        return false;
+    }
 
     private static void makeIntermediateStepPostfix(Stack<Token> operatorStack, List<Token> postfix, int startIndex){
         intermediateStepPostfix = new ArrayList<>(operatorStack);
