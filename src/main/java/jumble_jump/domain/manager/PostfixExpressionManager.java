@@ -46,7 +46,7 @@ public class PostfixExpressionManager implements OperatorStackHandler {
 
     public void loopUpdateOperatorToken(Token token){
         while (!operatorStack.isEmpty() && operatorStack.peek() instanceof OperatorToken &&
-                ((OperatorToken) operatorStack.peek()).getPriority() < ((OperatorToken) token).getPriority()) {
+                ((OperatorToken) operatorStack.peek()).getPriority() <= ((OperatorToken) token).getPriority()) {
             output.add(operatorStack.pop());
         }
         operatorStack.push(token);
