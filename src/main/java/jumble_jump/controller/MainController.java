@@ -34,6 +34,7 @@ public class MainController {
                 break;
             }catch (IllegalArgumentException e){
                 Output.printError(e.getMessage());
+                e.printStackTrace();
             }
         }
     }
