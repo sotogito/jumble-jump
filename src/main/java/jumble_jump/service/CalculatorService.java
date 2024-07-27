@@ -30,7 +30,7 @@ public class CalculatorService {
     }
 
     public void setResult(){
-        result = (((NumberToken)resultStack.pop()).getNumber());
+        result = popNumberFromResultStack();
     }
 
     public boolean isSolveProblemOnce(int i){
@@ -39,8 +39,8 @@ public class CalculatorService {
         if (token instanceof NumberToken) {
             resultStack.push(token);
         }else if (token instanceof OperatorToken) {
-            double num2 = ((NumberToken) resultStack.pop()).getNumber();
-            double num1 = ((NumberToken) resultStack.pop()).getNumber();
+            double num2 = popNumberFromResultStack();
+            double num1 = popNumberFromResultStack();
             double result = ((OperatorToken) token).calculate(num1, num2);
             resultStack.push(new Number(result));
             solving.updateNumberOfSolving();
@@ -48,6 +48,14 @@ public class CalculatorService {
             return true;
         }
         return false;
+    }
+
+    private Double popNumberFromResultStack(){
+        try{
+            return ((NumberToken) resultStack.pop()).getNumber();
+        }catch (Exception e){
+            throw new IllegalArgumentException("잘못된 식입니다 - CS");
+        }
     }
 
     public String getIntermediateStep(int i){
