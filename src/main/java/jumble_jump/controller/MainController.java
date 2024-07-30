@@ -2,6 +2,7 @@ package jumble_jump.controller;
 
 import jumble_jump.domain.Problem;
 import jumble_jump.domain.Solving;
+import jumble_jump.domain.SolvingRepository;
 import jumble_jump.domain.matcher.NumberMatcher;
 import jumble_jump.domain.matcher.OperatorMatcher;
 import jumble_jump.domain.matcher.ParenthesisMatcher;
@@ -26,8 +27,7 @@ public class MainController {
                 Tokenizer tokenizer = createTokenizer();
                 List<Token> tokens = getTokens(tokenizer,inputProblem());
                 Problem problem = createProblem(tokens);
-                Solving solving = createSolving();
-                CalculatorService calculatorService = createCalculatorService(problem,solving);
+                CalculatorService calculatorService = createCalculatorService(problem);
 
                 calculateController = createCalculateController(calculatorService);
                 calculateController.calculate();
@@ -43,16 +43,14 @@ public class MainController {
         return new CalculateController(calculatorService);
     }
 
-    private CalculatorService createCalculatorService(Problem problem, Solving solving) {
+    private CalculatorService createCalculatorService(Problem problem) {
         PostfixExpressionManager postfixExpressionManager = new PostfixExpressionManager();
         ProblemToPostFixConverter problemToPostFixConverter = new ProblemToPostFixConverter(postfixExpressionManager);
+        SolvingRepository solvingRepository = new SolvingRepository();
 
-        return new CalculatorService(problem,solving,problemToPostFixConverter);
+        return new CalculatorService(problem,solvingRepository,problemToPostFixConverter);
     }
 
-    private Solving createSolving() {
-        return new Solving();
-    }
 
     private Problem createProblem(List<Token> tokens) {
         return new Problem(tokens);
