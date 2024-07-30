@@ -15,7 +15,7 @@ public class ProblemToPostFixConverter implements InfixToPostFixConverter {
 
     private final Set<Integer> openParenthesisPriorityList = new HashSet<>();
     private Deque<Token> parenthesisStack = new ArrayDeque<>();
-    private  ParenthesisToken beforeParenthesis;
+    private  ParenthesisToken beforeParenthesis = null;
     private int rightParenthesisCount = 0;
     private int leftParenthesisCount = 0;
 

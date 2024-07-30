@@ -20,10 +20,10 @@ public class MainController {
     private CalculateController calculateController;
 
     public void main(){
-        Tokenizer tokenizer = createTokenizer();
 
         while (true){
             try{
+                Tokenizer tokenizer = createTokenizer();
                 List<Token> tokens = getTokens(tokenizer,inputProblem());
                 Problem problem = createProblem(tokens);
                 Solving solving = createSolving();
