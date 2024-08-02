@@ -3,10 +3,11 @@
 <body>
 <div class="container">
     <div>
-        <h1>Welcome Sukipi's Calculator</h1> <p>수키피의 계산기는 사칙연산이 가능한 계산 프로그램입니다.</p>
+        <h1>Welcome Sukipi's Calculator</h1>
+        <p>수키피의 계산기는 사칙연산이 가능한 계산 프로그램입니다.</p>
         <form action="/calculate" method="post">
             <div class="form-group">
-                <input type="text" id="problem" name="problem" placeholder="문제를 입력하세요.">
+                <textarea id="problem" name="problem" placeholder="문제를 입력하세요."></textarea>
             </div>
             <button type="submit">계산하기</button>
         </form>
@@ -14,8 +15,3 @@
 </div> <!-- /container -->
 </body>
 </html>
-<!--
-위에 데이터를 submit해서 String 으로 받아서 계산 로직에 돌린 린 후
-출력해야됨
-한번에 출력해야하기 때문에 중간 결과를 List에 저장하고 그걸 출력해야됨
--->
