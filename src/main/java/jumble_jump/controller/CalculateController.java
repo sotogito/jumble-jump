@@ -1,12 +1,7 @@
 package jumble_jump.controller;
 
-import jumble_jump.domain.Solving;
-import jumble_jump.service.CalculatorService;
-import jumble_jump.util.DecimalPointFormatter;
-import jumble_jump.view.Output;
-
 public class CalculateController {
-
+/*
     private CalculatorService calculatorService;
 
     public CalculateController(CalculatorService calculatorService) {
@@ -41,5 +36,7 @@ public class CalculateController {
     private void printCalculateIntro(){
         Output.printServiceMessage("\n-------계산중-------\n");
     }
+
+ */
 
 }

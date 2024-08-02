@@ -1,21 +1,20 @@
-package jumble_jump.util;
+package jumble_jump.domain.converter.token;
 
-import jumble_jump.domain.token.NumberToken;
-import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
-import jumble_jump.domain.token.number.Number;
-import jumble_jump.domain.token.parenthesis.Parenthesis;
+import jumble_jump.domain.token.Token;
 import jumble_jump.domain.type.OperatorType;
 import jumble_jump.domain.type.ParenthesisType;
 import jumble_jump.domain.matcher.NumberMatcher;
 import jumble_jump.domain.matcher.OperatorMatcher;
 import jumble_jump.domain.matcher.ParenthesisMatcher;
 import jumble_jump.util.validator.tokenizer.OperatorTokenizeValidator;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tokenizer implements TokenizeConvertor{
+@Component
+public class Tokenizer implements TokenizeConvertor {
     private final NumberMatcher numberMatcher;
     private final OperatorMatcher operatorMatcher;
     private final ParenthesisMatcher parenthesisMatcher;

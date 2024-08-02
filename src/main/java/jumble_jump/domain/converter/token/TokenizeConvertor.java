@@ -1,6 +1,7 @@
-package jumble_jump.util;
+package jumble_jump.domain.converter.token;
 
 import jumble_jump.domain.token.ParenthesisToken;
+import jumble_jump.domain.token.Token;
 
 import java.util.List;
 

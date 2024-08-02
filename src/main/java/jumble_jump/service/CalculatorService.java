@@ -1,53 +1,63 @@
 package jumble_jump.service;
 
 import jumble_jump.domain.Problem;
-import jumble_jump.domain.Solving;
-import jumble_jump.domain.SolvingRepository;
+import jumble_jump.domain.repository.Solving;
+import jumble_jump.domain.repository.SolvingRepository;
 import jumble_jump.domain.converter.ProblemToPostFixConverter;
 import jumble_jump.domain.converter.PostfixToInfixConverter;
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
-import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.token.number.Number;
-import jumble_jump.domain.type.ParenthesisType;
-import jumble_jump.util.Token;
+import jumble_jump.domain.token.Token;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class CalculatorService {
 
     private final SolvingRepository solvingRepository;
-    private final Problem problem;
+    private  Problem problem;
     private final ProblemToPostFixConverter problemToPostFixConverter;
 
     private final Stack<Token> resultStack = new Stack<>();
     private Double result;
 
-    private final List<Token> postfix;
+    private  List<Token> postfix;
 
-    public CalculatorService(Problem problem,SolvingRepository solvingRepository, ProblemToPostFixConverter problemToPostFixConverter) {
-        this.problem = problem;
+
+    public CalculatorService(SolvingRepository solvingRepository, ProblemToPostFixConverter problemToPostFixConverter) {
         this.solvingRepository = solvingRepository;
         this.problemToPostFixConverter = problemToPostFixConverter;
-        this.postfix = problemToPostFixConverter.convertToPostFix(problem);
     }
 
     public void setResult(){
         result = popNumberFromResultStack();
     }
 
-    public void isSolveProblemOnce(int i){
-        Token token = postfix.get(i);
+    public void setProblem(Problem problem) {
+        this.problem = problem;
+        this.postfix = problemToPostFixConverter.convertToPostFix(problem);
+        this.resultStack.clear(); // 상태 초기화
+        this.result = null; // 결과 초기화
+        solvingRepository.reset();
+    }
 
-        if (token instanceof NumberToken) {
-            resultStack.push(token);
-        }else if (token instanceof OperatorToken) {
-            double num2 = popNumberFromResultStack();
-            double num1 = popNumberFromResultStack();
-            double result = ((OperatorToken) token).calculate(num1, num2);
-            resultStack.push(new Number(result));
-            solvingRepository.saveSolving(getIntermediateStep(i));
+    public void calculate(){
+        for(int i = 0; i < getPostfixSize(); i++){
+            Token token = postfix.get(i);
+
+            if (token instanceof NumberToken) {
+                resultStack.push(token);
+            }else if (token instanceof OperatorToken) {
+                double num2 = popNumberFromResultStack();
+                double num1 = popNumberFromResultStack();
+                double result = ((OperatorToken) token).calculate(num1, num2);
+                resultStack.push(new Number(result));
+                solvingRepository.saveSolving(getIntermediateStep(i));
+            }
         }
+        setResult();
     }
 
     private Double popNumberFromResultStack(){

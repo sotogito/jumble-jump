@@ -1,9 +1,10 @@
 package jumble_jump.domain.matcher;
 
-import jumble_jump.domain.token.NumberToken;
-import jumble_jump.util.Token;
+import jumble_jump.domain.token.Token;
 import jumble_jump.domain.token.number.Number;
+import org.springframework.stereotype.Component;
 
+@Component
 public class NumberMatcher {
 
     public Token match(Double input) {

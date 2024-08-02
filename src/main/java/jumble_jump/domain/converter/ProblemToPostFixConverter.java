@@ -6,10 +6,12 @@ import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.util.validator.postfix.ParenthesisPostFixValidator;
-import jumble_jump.util.Token;
+import jumble_jump.domain.token.Token;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public class ProblemToPostFixConverter implements InfixToPostFixConverter {
     private final PostfixExpressionManager postfixDataManager;
 

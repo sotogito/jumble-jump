@@ -5,7 +5,7 @@ import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.type.ParenthesisType;
 import jumble_jump.util.DecimalPointFormatter;
-import jumble_jump.util.Token;
+import jumble_jump.domain.token.Token;
 
 import java.util.ArrayList;
 import java.util.List;

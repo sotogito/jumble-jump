@@ -3,11 +3,13 @@ package jumble_jump.domain.matcher;
 import jumble_jump.domain.type.OperatorType;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.operator.*;
-import jumble_jump.util.Token;
+import jumble_jump.domain.token.Token;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class OperatorMatcher implements Matcher{
 
     private final List<OperatorToken> operators = new ArrayList<>();

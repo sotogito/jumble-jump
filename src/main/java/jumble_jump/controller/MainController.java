@@ -1,23 +1,7 @@
 package jumble_jump.controller;
 
-import jumble_jump.domain.Problem;
-import jumble_jump.domain.Solving;
-import jumble_jump.domain.SolvingRepository;
-import jumble_jump.domain.matcher.NumberMatcher;
-import jumble_jump.domain.matcher.OperatorMatcher;
-import jumble_jump.domain.matcher.ParenthesisMatcher;
-import jumble_jump.service.CalculatorService;
-import jumble_jump.domain.converter.ProblemToPostFixConverter;
-import jumble_jump.domain.manager.PostfixExpressionManager;
-import jumble_jump.util.Token;
-import jumble_jump.util.Tokenizer;
-import jumble_jump.view.Input;
-import jumble_jump.view.Output;
-
-import java.util.List;
-
 public class MainController {
-
+/*
     private CalculateController calculateController;
 
     public void main(){
@@ -71,5 +55,7 @@ public class MainController {
 
         return new Tokenizer(numberMatcher, operatorMatcher, parenthesisMatcher);
     }
+
+ */
 
 }

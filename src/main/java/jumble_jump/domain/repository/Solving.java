@@ -1,10 +1,4 @@
-package jumble_jump.domain;
-
-import jumble_jump.util.Token;
-import jumble_jump.util.converter.ProblemToStringConverter;
-
-import java.util.ArrayList;
-import java.util.List;
+package jumble_jump.domain.repository;
 
 //todo 정적?
 public class Solving {

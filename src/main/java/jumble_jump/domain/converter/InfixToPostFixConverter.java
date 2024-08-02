@@ -2,7 +2,7 @@ package jumble_jump.domain.converter;
 
 import jumble_jump.domain.Problem;
 import jumble_jump.domain.token.ParenthesisToken;
-import jumble_jump.util.Token;
+import jumble_jump.domain.token.Token;
 
 import java.util.List;
 
