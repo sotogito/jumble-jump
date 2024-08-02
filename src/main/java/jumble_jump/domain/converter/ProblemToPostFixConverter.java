@@ -15,7 +15,7 @@ import java.util.*;
 public class ProblemToPostFixConverter implements InfixToPostFixConverter {
     private final PostfixExpressionManager postfixDataManager;
 
-    private final Set<Integer> openParenthesisPriorityList = new HashSet<>();
+    private Set<Integer> openParenthesisPriorityList = new HashSet<>();
     private Deque<Token> parenthesisStack = new ArrayDeque<>();
     private  ParenthesisToken beforeParenthesis = null;
     private int rightParenthesisCount = 0;
@@ -109,6 +109,12 @@ public class ProblemToPostFixConverter implements InfixToPostFixConverter {
 
     public void reset(){
         postfixDataManager.reset();
+        rightParenthesisCount= 0;
+        leftParenthesisCount = 0;
+
+        openParenthesisPriorityList = new HashSet<>();
+        parenthesisStack.clear();
+        beforeParenthesis = null;
     }
 
 }
