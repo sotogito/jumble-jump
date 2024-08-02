@@ -1,4 +1,4 @@
-package jumble_jump.domain;
+package jumble_jump.domain.repository;
 
 import jumble_jump.domain.token.Token;
 import jumble_jump.util.converter.ProblemToStringConverter;

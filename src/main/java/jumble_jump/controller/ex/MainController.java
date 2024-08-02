@@ -1,4 +1,4 @@
-package jumble_jump.controller;
+package jumble_jump.controller.ex;
 
 public class MainController {
 /*

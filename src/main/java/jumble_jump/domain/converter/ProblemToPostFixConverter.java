@@ -1,6 +1,6 @@
 package jumble_jump.domain.converter;
 
-import jumble_jump.domain.Problem;
+import jumble_jump.domain.repository.Problem;
 import jumble_jump.domain.manager.PostfixExpressionManager;
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;

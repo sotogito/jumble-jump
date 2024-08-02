@@ -1,6 +1,6 @@
 package jumble_jump.service;
 
-import jumble_jump.domain.Problem;
+import jumble_jump.domain.repository.Problem;
 import jumble_jump.domain.repository.Solving;
 import jumble_jump.domain.repository.SolvingRepository;
 import jumble_jump.domain.converter.ProblemToPostFixConverter;
@@ -31,18 +31,6 @@ public class CalculatorService {
         this.problemToPostFixConverter = problemToPostFixConverter;
     }
 
-    public void setResult(){
-        result = popNumberFromResultStack();
-    }
-
-    public void setProblem(Problem problem) {
-        this.problem = problem;
-        this.postfix = problemToPostFixConverter.convertToPostFix(problem);
-        this.resultStack.clear(); // 상태 초기화
-        this.result = null; // 결과 초기화
-        solvingRepository.reset();
-    }
-
     public void calculate(){
         for(int i = 0; i < getPostfixSize(); i++){
             Token token = postfix.get(i);
@@ -60,6 +48,19 @@ public class CalculatorService {
         setResult();
     }
 
+    public void setProblem(Problem problem) {
+        this.problem = problem;
+        this.postfix = problemToPostFixConverter.convertToPostFix(problem);
+        this.resultStack.clear(); // 상태 초기화
+        this.result = null; // 결과 초기화
+        solvingRepository.reset();
+    }
+
+    public void setResult(){
+        solvingRepository.setResult(popNumberFromResultStack());
+        //result = popNumberFromResultStack();
+    }
+
     private Double popNumberFromResultStack(){
         try{
             return ((NumberToken) resultStack.pop()).getNumber();
@@ -72,24 +73,28 @@ public class CalculatorService {
         return PostfixToInfixConverter.getIntermediateStep(resultStack,postfix,i+1);
     }
 
-    public Double getResult(){
-        return result;
-    }
-
-    public String getProblem(){
-        return problem.getProblemText();
-    }
-
     public int getPostfixSize() {
         return this.postfix.size();
     }
 
-    public List<Solving> getSolvings() {
-        return solvingRepository.getSolvings();
+
+
+    //note 출력을 위한
+    public String getProblemText(){
+        return problem.getProblemText();
     }
 
-    public int getTotalNumberOfSolvings() {
+    public List<Solving> getSolvingList() {
+        return solvingRepository.getSolving();
+    }
+
+    public java.lang.Number getResult() {
+        return solvingRepository.getResult();
+    }
+
+    public int getTotalNumberOfSolving(){
         return solvingRepository.getTotalNumberOfSolve();
     }
+
 
 }

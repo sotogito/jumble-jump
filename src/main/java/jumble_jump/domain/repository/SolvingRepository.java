@@ -4,7 +4,12 @@ import java.util.List;
 
 public interface SolvingRepository {
     void saveSolving(String intermediateStep);
-    List<Solving> getSolvings();
+    void setResult(Double result);
+
+    List<Solving> getSolving();
+    Number getResult();
+
+
     int getTotalNumberOfSolve();
     void reset();
 }
