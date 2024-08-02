@@ -5,10 +5,12 @@ import jumble_jump.domain.repository.Solving;
 import jumble_jump.domain.repository.SolvingRepository;
 import jumble_jump.domain.converter.ProblemToPostFixConverter;
 import jumble_jump.domain.converter.PostfixToInfixConverter;
+import jumble_jump.domain.repository.SolvingRepositoryImpl;
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.number.Number;
 import jumble_jump.domain.token.Token;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -21,14 +23,20 @@ public class CalculatorService {
     private final ProblemToPostFixConverter problemToPostFixConverter;
 
     private final Stack<Token> resultStack = new Stack<>();
-    private Double result;
-
-    private  List<Token> postfix;
+    private List<Token> postfix;
 
 
     public CalculatorService(SolvingRepository solvingRepository, ProblemToPostFixConverter problemToPostFixConverter) {
         this.solvingRepository = solvingRepository;
         this.problemToPostFixConverter = problemToPostFixConverter;
+    }
+
+    public void setProblem(Problem problem) {
+        problemToPostFixConverter.reset();
+        this.problem = problem;
+        this.postfix = problemToPostFixConverter.convertToPostFix(problem);
+        this.resultStack.clear();
+        this.solvingRepository.reset();
     }
 
     public void calculate(){
@@ -46,15 +54,6 @@ public class CalculatorService {
             }
         }
         setResult();
-    }
-
-    public void setProblem(Problem problem) {
-        this.problem = problem;
-        this.postfix = problemToPostFixConverter.convertToPostFix(problem);
-        this.resultStack.clear(); // 상태 초기화
-        this.result = null; // 결과 초기화
-
-        solvingRepository.reset();
     }
 
     public void setResult(){

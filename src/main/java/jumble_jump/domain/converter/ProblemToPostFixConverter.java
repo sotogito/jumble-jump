@@ -107,4 +107,8 @@ public class ProblemToPostFixConverter implements InfixToPostFixConverter {
         return rightParenthesisCount == leftParenthesisCount;
     }
 
+    public void reset(){
+        postfixDataManager.reset();
+    }
+
 }

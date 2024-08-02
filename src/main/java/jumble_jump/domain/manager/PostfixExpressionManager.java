@@ -54,4 +54,9 @@ public class PostfixExpressionManager implements OperatorStackHandler {
         operatorStack.push(token);
     }
 
+    public void reset(){
+        operatorStack.clear();
+        output.clear();
+    }
+
 }

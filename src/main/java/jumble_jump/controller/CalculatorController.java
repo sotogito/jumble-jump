@@ -38,25 +38,27 @@ public class CalculatorController {
         List<Token> tokens = tokenizer.tokenize(problemText);
         Problem problem = new Problem(tokens);
 
-        PostfixExpressionManager postfixExpressionManager = new PostfixExpressionManager();
-        ProblemToPostFixConverter problemToPostFixConverter = new ProblemToPostFixConverter(postfixExpressionManager);
-        SolvingRepository solvingRepository = new SolvingRepositoryImpl();
-        CalculatorService calculatorService = new CalculatorService(solvingRepository, problemToPostFixConverter);
+        //PostfixExpressionManager postfixExpressionManager = new PostfixExpressionManager();
+        //ProblemToPostFixConverter problemToPostFixConverter = new ProblemToPostFixConverter(postfixExpressionManager);
+        //SolvingRepository solvingRepository = new SolvingRepositoryImpl();
+        //CalculatorService calculatorService = new CalculatorService(solvingRepository, problemToPostFixConverter);
 
         calculatorService.setProblem(problem);
         calculatorService.calculate();
 
 
         for(Solving solving : calculatorService.getSolvingList()) {
-            System.out.println(solving.getNumberOfSolving());
-            System.out.println(solving.getIntermediateStep());
+            System.out.println("풀이 횟수 : "+solving.getNumberOfSolving());
+            System.out.println("중간식 : "+solving.getIntermediateStep());
         }
 
-        System.out.println(tokens.size()+"tkdlwm");
-        System.out.println(calculatorService.getSolvingList().size());
-        System.out.println(calculatorService.getResult());
+        System.out.println(tokens.size()+"토큰사이즈");
+        System.out.println("총 풀이 횟수 : "+calculatorService.getSolvingList().size());
+        System.out.println("결과 : "+calculatorService.getResult());
 
     }
+
+
 
     private Tokenizer createTokenizer() {
         NumberMatcher numberMatcher = new NumberMatcher();

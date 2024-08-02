@@ -1,6 +1,7 @@
 package jumble_jump.domain.repository;
 
 import jumble_jump.util.DecimalPointFormatter;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class SolvingRepositoryImpl implements SolvingRepository {
     }
 
     public void reset() {
+        result = 0.0;
         solving.clear();  // 모든 Solving 객체를 삭제
         sequence = 0;      // 식별 번호를 0으로 초기화
     }
