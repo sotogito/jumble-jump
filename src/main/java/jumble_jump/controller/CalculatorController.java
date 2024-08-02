@@ -12,6 +12,7 @@ import jumble_jump.service.CalculatorService;
 import jumble_jump.domain.token.Token;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import jumble_jump.domain.converter.token.Tokenizer;
@@ -32,39 +33,22 @@ public class CalculatorController {
     }
 
     @PostMapping("/calculate")
-    public void calculate(@RequestParam("problem") String problemText) {
+    public String calculate(@RequestParam("problem") String problemText, Model model) {
 
-        //Tokenizer tokenizer = createTokenizer();
         List<Token> tokens = tokenizer.tokenize(problemText);
         Problem problem = new Problem(tokens);
-
-        //PostfixExpressionManager postfixExpressionManager = new PostfixExpressionManager();
-        //ProblemToPostFixConverter problemToPostFixConverter = new ProblemToPostFixConverter(postfixExpressionManager);
-        //SolvingRepository solvingRepository = new SolvingRepositoryImpl();
-        //CalculatorService calculatorService = new CalculatorService(solvingRepository, problemToPostFixConverter);
 
         calculatorService.setProblem(problem);
         calculatorService.calculate();
 
+        model.addAttribute("problem", calculatorService.getProblemText());
+        model.addAttribute("postfix",calculatorService.getProblemPostFix());
+        model.addAttribute("tokensSize", tokens.size());
+        model.addAttribute("solvingList", calculatorService.getSolvingList());
+        model.addAttribute("totalSolvingCount", calculatorService.getTotalNumberOfSolving());
+        model.addAttribute("result", calculatorService.getResult());
 
-        for(Solving solving : calculatorService.getSolvingList()) {
-            System.out.println("풀이 횟수 : "+solving.getNumberOfSolving());
-            System.out.println("중간식 : "+solving.getIntermediateStep());
-        }
-
-        System.out.println(tokens.size()+"토큰사이즈");
-        System.out.println("총 풀이 횟수 : "+calculatorService.getSolvingList().size());
-        System.out.println("결과 : "+calculatorService.getResult());
-
+        return "result"; // 결과를 출력할 뷰의 이름
     }
 
-
-
-    private Tokenizer createTokenizer() {
-        NumberMatcher numberMatcher = new NumberMatcher();
-        OperatorMatcher operatorMatcher = new OperatorMatcher();
-        ParenthesisMatcher parenthesisMatcher = new ParenthesisMatcher();
-
-        return new Tokenizer(numberMatcher, operatorMatcher, parenthesisMatcher);
-    }
 }
