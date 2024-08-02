@@ -23,16 +23,18 @@ import java.util.List;
 public class CalculatorController {
 
     private final CalculatorService calculatorService;
+    private final Tokenizer tokenizer;
 
     @Autowired
-    public CalculatorController(CalculatorService calculatorService) {
+    public CalculatorController(CalculatorService calculatorService,Tokenizer tokenizer) {
         this.calculatorService = calculatorService;
+        this.tokenizer = tokenizer;
     }
 
     @PostMapping("/calculate")
     public void calculate(@RequestParam("problem") String problemText) {
 
-        Tokenizer tokenizer = createTokenizer();
+        //Tokenizer tokenizer = createTokenizer();
         List<Token> tokens = tokenizer.tokenize(problemText);
         Problem problem = new Problem(tokens);
 

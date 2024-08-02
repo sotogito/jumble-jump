@@ -23,7 +23,7 @@ public class Tokenizer implements TokenizeConvertor {
     private boolean isFirstNumber = true;
     private StringBuilder numberBuilder = new StringBuilder();
     
-    private final List<Token> tokenizedResult = new ArrayList<>();
+    private List<Token> tokenizedResult = new ArrayList<>();
 
     public Tokenizer(
             NumberMatcher numberMatcher, OperatorMatcher operatorMatcher, ParenthesisMatcher parenthesisMatcher) {
@@ -33,6 +33,7 @@ public class Tokenizer implements TokenizeConvertor {
     }
 
     public List<Token> tokenize(String inputProblem){
+        tokenizedResult = new ArrayList<>();
         problemToChars(inputProblem);
         return getTokenizedResult(inputProblem);
 

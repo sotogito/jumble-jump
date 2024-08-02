@@ -16,6 +16,9 @@ public class SolvingRepositoryImpl implements SolvingRepository {
     private final List<Solving> solving = new ArrayList<>();
     private static int sequence = 0;
 
+    public SolvingRepositoryImpl() {
+    }
+
     public void saveSolving(String intermediateStep){
         solving.add(new Solving(intermediateStep, ++sequence));
     }

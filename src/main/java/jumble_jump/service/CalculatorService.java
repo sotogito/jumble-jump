@@ -53,6 +53,7 @@ public class CalculatorService {
         this.postfix = problemToPostFixConverter.convertToPostFix(problem);
         this.resultStack.clear(); // 상태 초기화
         this.result = null; // 결과 초기화
+
         solvingRepository.reset();
     }
 
