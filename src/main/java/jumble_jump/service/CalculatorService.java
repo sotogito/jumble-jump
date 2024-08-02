@@ -11,6 +11,7 @@ import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.token.number.Number;
 import jumble_jump.domain.token.Token;
+import jumble_jump.util.DecimalPointFormatter;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
@@ -104,14 +105,15 @@ public class CalculatorService {
 
         for(Token token : postfix){
             if(token instanceof NumberToken){
-                result.add(String.valueOf(((NumberToken) token).getNumber()));
+                java.lang.Number num = DecimalPointFormatter.problemFormat(((NumberToken) token).getNumber());
+                result.add(String.valueOf(num));
             }else if (token instanceof OperatorToken){
                 result.add(String.valueOf(((OperatorToken)token).getOperatorType().getSymbol()));
             }else if (token instanceof ParenthesisToken){
                 result.add(((ParenthesisToken)token).getParenthesisText());
             }
         }
-        return String.join(" ", result);
+        return String.join(" , ", result);
     }
 
 

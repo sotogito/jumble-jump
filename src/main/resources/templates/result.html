@@ -2,20 +2,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Calculation Result</title>
+    <style>
+        h2 {
+            margin-top: 30px; /* 'Solving Details' 위 여백 추가 */
+            margin-bottom: 6px; /* 'Solving Details' 아래 여백 줄이기 */
+        }
+
+        /* 버튼 아래 여백 추가 */
+        form {
+            margin-top: 50px; /* 버튼 위쪽 여백 */
+        }
+
+        /* result 출력 글자 크기 및 스타일 추가 */
+        .result {
+            color: red;
+            font-weight: bold; /* 글자 굵게 */
+            font-size: inherit;  /* 기본 크기 유지 */
+        }
+    </style>
 </head>
 <body>
 <h1>Calculation Results</h1>
 
 <p>Problem : <span th:text="${problem}"></span></p>
 <p>Postfix : <span th:text="${postfix}"></span></p>
-<p>Token Size: <span th:text="${tokensSize}"></span></p>
+<p>Token Size : <span th:text="${tokensSize}"></span></p>
 
 <h2>Solving Details</h2>
-<table>
+<table border="1" cellpadding="6" cellspacing="0">
     <thead>
     <tr>
-        <th>풀이 횟수</th>
-        <th>중간식</th>
+        <th>&lt; Solving Count &gt;</th>
+        <th>&lt; Intermediate Expression &gt;</th>
     </tr>
     </thead>
     <tbody>
@@ -26,7 +44,12 @@
     </tbody>
 </table>
 
-<p>Total Solving Count: <span th:text="${totalSolvingCount}"></span></p>
-<p>Result: <span th:text="${result}"></span></p>
+<p>Total Solving Count : <span th:text="${totalSolvingCount}"></span></p>
+<p class="result">Result : <span th:text="${result}"></span></p>
+
+<!-- 홈으로 이동하는 버튼 -->
+<form action="/" method="get">
+    <button type="submit">Home</button>
+</form>
 </body>
 </html>
