@@ -32,11 +32,9 @@ public class CalculatorService {
     }
 
     public void setProblem(Problem problem) {
-        problemToPostFixConverter.reset();
+        reset();
         this.problem = problem;
         this.postfix = problemToPostFixConverter.convertToPostFix(problem);
-        this.resultStack.clear();
-        this.solvingRepository.reset();
     }
 
     public void calculate(){
@@ -58,7 +56,6 @@ public class CalculatorService {
 
     public void setResult(){
         solvingRepository.setResult(popNumberFromResultStack());
-        //result = popNumberFromResultStack();
     }
 
     private Double popNumberFromResultStack(){
@@ -77,6 +74,11 @@ public class CalculatorService {
         return this.postfix.size();
     }
 
+    private void reset(){
+        this.problemToPostFixConverter.reset();
+        this.resultStack.clear();
+        this.solvingRepository.reset();
+    }
 
 
     //note 출력을 위한
