@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error</title>
+    <script>
+        window.onload = function() {
+            var errorMessage = /*[[${errorMessage}]]*/ '';
+            if (errorMessage) {
+                alert("Error: " + errorMessage);
+            }
+        };
+    </script>
+</head>
+<body>
+<h1>Error</h1>
+<p th:text="${errorMessage}"></p>
+</body>
+</html>
