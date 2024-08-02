@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calculation Result</title>
+</head>
+<body>
+<h1>Calculation Results</h1>
+
+<p>Problem : <span th:text="${problem}"></span></p>
+<p>Postfix : <span th:text="${postfix}"></span></p>
+<p>Token Size: <span th:text="${tokensSize}"></span></p>
+
+<h2>Solving Details</h2>
+<table>
+    <thead>
+    <tr>
+        <th>풀이 횟수</th>
+        <th>중간식</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="solving : ${solvingList}">
+        <td th:text="${solving.numberOfSolving}"></td>
+        <td th:text="${solving.intermediateStep}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<p>Total Solving Count: <span th:text="${totalSolvingCount}"></span></p>
+<p>Result: <span th:text="${result}"></span></p>
+</body>
+</html>

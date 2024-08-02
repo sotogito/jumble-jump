@@ -8,6 +8,7 @@ import jumble_jump.domain.converter.PostfixToInfixConverter;
 import jumble_jump.domain.repository.SolvingRepositoryImpl;
 import jumble_jump.domain.token.NumberToken;
 import jumble_jump.domain.token.OperatorToken;
+import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.token.number.Number;
 import jumble_jump.domain.token.Token;
 import org.springframework.context.annotation.Scope;
@@ -96,6 +97,21 @@ public class CalculatorService {
 
     public int getTotalNumberOfSolving(){
         return solvingRepository.getTotalNumberOfSolve();
+    }
+
+    public String getProblemPostFix(){
+        List<String> result = new ArrayList<>();
+
+        for(Token token : postfix){
+            if(token instanceof NumberToken){
+                result.add(String.valueOf(((NumberToken) token).getNumber()));
+            }else if (token instanceof OperatorToken){
+                result.add(String.valueOf(((OperatorToken)token).getOperatorType().getSymbol()));
+            }else if (token instanceof ParenthesisToken){
+                result.add(((ParenthesisToken)token).getParenthesisText());
+            }
+        }
+        return String.join(" ", result);
     }
 
 
