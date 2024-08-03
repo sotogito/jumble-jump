@@ -1,8 +1,10 @@
 package jumble_jump.domain.repository;
 
+import jumble_jump.domain.Resettable;
+
 import java.util.List;
 
-public interface SolvingRepository {
+public interface SolvingRepository extends Resettable {
     void saveSolving(String intermediateStep);
     void setResult(Double result);
 
@@ -11,5 +13,4 @@ public interface SolvingRepository {
 
 
     int getTotalNumberOfSolve();
-    void reset();
 }

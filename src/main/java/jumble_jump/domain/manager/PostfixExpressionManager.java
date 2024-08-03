@@ -1,5 +1,6 @@
 package jumble_jump.domain.manager;
 
+import jumble_jump.domain.Resettable;
 import jumble_jump.domain.token.OperatorToken;
 import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.token.Token;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 @Component
-public class PostfixExpressionManager implements OperatorStackHandler {
+public class PostfixExpressionManager implements OperatorStackHandler , Resettable {
 
     private final Deque<Token> operatorStack = new ArrayDeque<>();
     private final List<Token> output = new ArrayList<>();

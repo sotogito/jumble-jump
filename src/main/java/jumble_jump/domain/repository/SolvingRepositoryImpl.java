@@ -43,7 +43,7 @@ public class SolvingRepositoryImpl implements SolvingRepository {
     public void reset() {
         result = 0.0;
         solving.clear();  // 모든 Solving 객체를 삭제
-        sequence = 0;      // 식별 번호를 0으로 초기화
+        sequence = 0;// 식별 번호를 0으로 초기화
     }
 
 

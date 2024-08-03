@@ -1,5 +1,6 @@
 package jumble_jump.domain.converter;
 
+import jumble_jump.domain.Resettable;
 import jumble_jump.domain.repository.Problem;
 import jumble_jump.domain.manager.PostfixExpressionManager;
 import jumble_jump.domain.token.NumberToken;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 @Component
-public class ProblemToPostFixConverter implements InfixToPostFixConverter {
+public class ProblemToPostFixConverter implements InfixToPostFixConverter, Resettable {
     private final PostfixExpressionManager postfixDataManager;
 
     private Set<Integer> openParenthesisPriorityList = new HashSet<>();

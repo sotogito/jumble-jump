@@ -1,5 +1,6 @@
 package jumble_jump.domain.converter.token;
 
+import jumble_jump.domain.Resettable;
 import jumble_jump.domain.token.ParenthesisToken;
 import jumble_jump.domain.token.Token;
 import jumble_jump.domain.type.OperatorType;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class Tokenizer implements TokenizeConvertor {
+public class Tokenizer implements TokenizeConvertor , Resettable {
     private final NumberMatcher numberMatcher;
     private final OperatorMatcher operatorMatcher;
     private final ParenthesisMatcher parenthesisMatcher;
@@ -202,7 +203,7 @@ public class Tokenizer implements TokenizeConvertor {
         problemChars = trimmedInput.toString().toCharArray();
     }
 
-    private void reset(){
+    public void reset(){
         tokenizedResult = new ArrayList<>();
         isFirstNumber = true;
     }

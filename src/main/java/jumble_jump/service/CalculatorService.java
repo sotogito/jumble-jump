@@ -1,5 +1,6 @@
 package jumble_jump.service;
 
+import jumble_jump.domain.Resettable;
 import jumble_jump.domain.repository.Problem;
 import jumble_jump.domain.repository.Solving;
 import jumble_jump.domain.repository.SolvingRepository;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 
 @Service
-public class CalculatorService {
+public class CalculatorService implements Resettable {
 
     private final SolvingRepository solvingRepository;
     private  Problem problem;
@@ -76,7 +77,7 @@ public class CalculatorService {
         return this.postfix.size();
     }
 
-    private void reset(){
+    public void reset(){
         this.problemToPostFixConverter.reset();
         this.resultStack.clear();
         this.solvingRepository.reset();
