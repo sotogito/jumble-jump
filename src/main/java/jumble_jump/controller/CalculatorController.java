@@ -34,7 +34,6 @@ public class CalculatorController {
 
     @PostMapping("/calculate")
     public String calculate(@RequestParam("problem") String problemText, Model model) {
-
         List<Token> tokens = tokenizer.tokenize(problemText);
         Problem problem = new Problem(tokens);
 

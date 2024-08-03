@@ -33,7 +33,8 @@ public class Tokenizer implements TokenizeConvertor {
     }
 
     public List<Token> tokenize(String inputProblem){
-        tokenizedResult = new ArrayList<>();
+        reset();
+
         problemToChars(inputProblem);
         return getTokenizedResult(inputProblem);
 
@@ -199,6 +200,11 @@ public class Tokenizer implements TokenizeConvertor {
             }
         }
         problemChars = trimmedInput.toString().toCharArray();
+    }
+
+    private void reset(){
+        tokenizedResult = new ArrayList<>();
+        isFirstNumber = true;
     }
 
 
