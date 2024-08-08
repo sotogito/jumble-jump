@@ -40,6 +40,10 @@ public class Map {
         return length;
     }
 
+    public List<List<Integer>> getMap(){
+        return map;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

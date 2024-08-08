@@ -20,16 +20,13 @@ public class GameController {
     public void run() {
         Map map = createMap();
         UserMoveManager userMoveManager = createUserMoveManager(map);
-
         inputMapType(map, userMoveManager);
 
         createGameServer(map, userMoveManager);
-
         gameServer.run();
 
-        System.out.println(userMoveManager.getMoveCount());
-
-
+        Output.printMap(map);
+        Output.printMoveCountResult(userMoveManager);
     }
 
     public void createGameServer(Map map,UserMoveManager userMoveManager){
