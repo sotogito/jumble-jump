@@ -1,4 +1,4 @@
-package jumble_jump.util;
+package jumble_jump.util.parser;
 
 import jumble_jump.domain.Map;
 import jumble_jump.domain.Point;

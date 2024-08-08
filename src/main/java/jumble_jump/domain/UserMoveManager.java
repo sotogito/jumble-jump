@@ -1,7 +1,9 @@
 package jumble_jump.domain;
 
 import jumble_jump.domain.type.Direction;
+import jumble_jump.domain.type.MapType;
 
+import java.nio.channels.Pipe;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +71,15 @@ public class UserMoveManager {
 
     public boolean isMovedPoint(Point point) {
         return moved.contains(point);
+    }
+
+    public boolean isStartPointLandAtInputLine(List<Integer> startPointInputMapLine){
+        int x = startPointInputMapLine.get(currentPoint.getX());
+        return x == MapType.LAND.getValue();
+    }
+
+    public boolean isStartPointYLine(int inputOrder){
+        return inputOrder == currentPoint.getY();
     }
 
     public Point getCurrentPoint() {

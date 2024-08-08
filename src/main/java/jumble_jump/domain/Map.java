@@ -18,6 +18,8 @@ public class Map {
     }
 
     public void addMapLine(List<Integer> line) {
+        MapValidator.validateMapTypes(line);
+        MapValidator.validateMapSIzeByInputMapTypes(length,line);
         this.map.add(line);
     }
 
@@ -34,10 +36,17 @@ public class Map {
         return x >= 0 && x < with && y >= 0 && y < length;
     }
 
+    public int getMapSize(){
+        return length;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(length).append("x").append(with).append("\n");
+        for (List<Integer> line : map) {
+            sb.append(line).append("\n");
+        }
         return sb.toString();
     }
 }

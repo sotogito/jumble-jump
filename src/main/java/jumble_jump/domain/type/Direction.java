@@ -37,7 +37,7 @@ public enum Direction {
                 return direction;
             }
         }
-        throw new RuntimeException("Direction number not found");
+        throw new RuntimeException("Direction number not found\n");
     }
 
     // Optional: Adding a method to get direction by number
@@ -47,6 +47,6 @@ public enum Direction {
                 return dir;
             }
         }
-        throw new IllegalArgumentException("Invalid direction number: " + number);
+        throw new IllegalArgumentException("Invalid direction number: " + number+"\n");
     }
 }

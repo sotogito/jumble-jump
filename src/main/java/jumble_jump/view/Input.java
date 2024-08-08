@@ -1,5 +1,6 @@
 package jumble_jump.view;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Input {
@@ -17,6 +18,11 @@ public class Input {
 
     public static String inputUserStartPointAndDirection(){
         System.out.println("x,y 시작 위치와, 방향을 입력해주세요 ex) 1 2 2");
+        return scanner.nextLine();
+    }
+
+    public static String inputMapTypesLine(int lineCount){
+        System.out.printf("%d번째 맵을 생성해주세요. ex) 1 1 0 1%n",lineCount);
         return scanner.nextLine();
     }
 
