@@ -5,14 +5,11 @@ import jumble_jump.domain.type.Direction;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TurnLeftCalculator {
-    private final List<Integer> dx = new ArrayList<>(
-            List.of(-1, 0, 1, 0));
+public class MovePointCalculator {
+    private final List<Integer> dx = new ArrayList<>(List.of(-1, 0, 1, 0));
+    private final List<Integer> dy = new ArrayList<>(List.of(0, 1, 0, -1));
 
-    private final List<Integer> dy = new ArrayList<>(
-            List.of(0, 1, 0, -1));
-
-    public TurnLeftCalculator() {
+    public MovePointCalculator() {
     }
 
     public Direction getNextDirection(Direction nowDirection){

@@ -9,7 +9,6 @@ public enum Direction {
     private final int number;
     private final String korean;
 
-    // Enum constructor
     Direction(int number, String korean) {
         this.number = number;
         this.korean = korean;
@@ -17,10 +16,6 @@ public enum Direction {
 
     public int getNumber() {
         return number;
-    }
-
-    public String getKorean() {
-        return korean;
     }
 
     public static Direction getLeftTurnDirection(Direction nowDirection){
@@ -40,7 +35,6 @@ public enum Direction {
         throw new RuntimeException("Direction number not found\n");
     }
 
-    // Optional: Adding a method to get direction by number
     public static Direction fromNumber(int number) {
         for (Direction dir : Direction.values()) {
             if (dir.getNumber() == number) {
@@ -49,4 +43,5 @@ public enum Direction {
         }
         throw new IllegalArgumentException("Invalid direction number: " + number+"\n");
     }
+
 }

@@ -1,4 +1,4 @@
-package jumble_jump.domain.dto;
+package jumble_jump.dto;
 
 import jumble_jump.domain.Point;
 import jumble_jump.domain.type.Direction;

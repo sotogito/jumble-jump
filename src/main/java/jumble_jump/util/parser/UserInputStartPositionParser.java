@@ -2,7 +2,7 @@ package jumble_jump.util.parser;
 
 import jumble_jump.domain.Map;
 import jumble_jump.domain.Point;
-import jumble_jump.domain.dto.StartPositionDTO;
+import jumble_jump.dto.StartPositionDTO;
 import jumble_jump.domain.type.Direction;
 
 import java.util.ArrayList;

@@ -8,7 +8,8 @@ import java.util.List;
 
 public class Map {
 
-    private int length,with;
+    private final int length;
+    private final int with;
     private final List<List<Integer>> map = new ArrayList<>();
 
     public Map(int size) {
@@ -53,4 +54,5 @@ public class Map {
         }
         return sb.toString();
     }
+
 }

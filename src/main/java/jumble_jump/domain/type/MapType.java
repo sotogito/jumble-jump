@@ -7,7 +7,6 @@ public enum MapType {
     private final int value;
     private final String description;
 
-    // Enum constructor
     MapType(int value, String description) {
         this.value = value;
         this.description = description;
@@ -17,11 +16,6 @@ public enum MapType {
         return value;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    // Optional: Adding a method to get MapType by value
     public static MapType fromValue(int value) {
         for (MapType type : MapType.values()) {
             if (type.getValue() == value) {
@@ -30,4 +24,5 @@ public enum MapType {
         }
         throw new IllegalArgumentException("Invalid map type value: " + value+"\n");
     }
+
 }

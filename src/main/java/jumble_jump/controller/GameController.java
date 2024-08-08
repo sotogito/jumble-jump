@@ -1,11 +1,9 @@
 package jumble_jump.controller;
 
 import jumble_jump.domain.Map;
-import jumble_jump.domain.Point;
-import jumble_jump.domain.TurnLeftCalculator;
+import jumble_jump.domain.MovePointCalculator;
 import jumble_jump.domain.UserMoveManager;
-import jumble_jump.domain.dto.StartPositionDTO;
-import jumble_jump.domain.type.Direction;
+import jumble_jump.dto.StartPositionDTO;
 import jumble_jump.service.GameServer;
 import jumble_jump.util.MapValidator;
 import jumble_jump.util.parser.MapLineParser;
@@ -65,8 +63,8 @@ public class GameController {
         return UserInputStartPositionParser.parse(Input.inputUserStartPointAndDirection(), map);
     }
 
-    public TurnLeftCalculator createTurnLeftCalculator() {
-        return new TurnLeftCalculator();
+    public MovePointCalculator createTurnLeftCalculator() {
+        return new MovePointCalculator();
     }
 
     public Map createMap() {
@@ -80,6 +78,5 @@ public class GameController {
             }
         }
     }
-
 
 }
