@@ -11,15 +11,7 @@ import java.util.List;
 public class UserInputStartPositionParser {
 
     public static StartPositionDTO parse(String input, Map map){
-        List<Integer> result = new ArrayList<>();
-        String[] tokens = input.split(" ");
-        for (String token : tokens) {
-            try {
-                result.add(Integer.parseInt(token.trim()));
-            }catch (NumberFormatException e){
-                throw new IllegalArgumentException("숫자로 입력해주세요\n");
-            }
-        }
+        List<Integer> result = MapLineParser.parse(input);
 
         validatePoint(result.get(0), result.get(1),map);
         validateValue(result);
