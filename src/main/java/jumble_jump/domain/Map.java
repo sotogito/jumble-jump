@@ -20,28 +20,28 @@ public class Map {
 
     public void addMapLine(List<Integer> line) {
         MapValidator.validateMapTypes(line);
-        MapValidator.validateMapSIzeByInputMapTypes(length,line);
+        MapValidator.validateMapSIzeByInputMapTypes(length, line);
         this.map.add(line);
     }
 
-    public boolean isCanMoveLand(Point point){
+    public boolean isCanMoveLand(Point point) {
         int x = point.getX();
         int y = point.getY();
         return map.get(x).get(y) == MapType.LAND.getValue();
     }
 
-    public boolean isWithinMap(Point point){
+    public boolean isWithinMap(Point point) {
         int x = point.getX();
         int y = point.getY();
 
         return x >= 0 && x < with && y >= 0 && y < length;
     }
 
-    public int getMapSize(){
+    public int getMapSize() {
         return length;
     }
 
-    public List<List<Integer>> getMap(){
+    public List<List<Integer>> getMap() {
         return map;
     }
 

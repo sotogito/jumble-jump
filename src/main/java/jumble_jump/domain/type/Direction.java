@@ -18,17 +18,17 @@ public enum Direction {
         return number;
     }
 
-    public static Direction getLeftTurnDirection(Direction nowDirection){
-        if(nowDirection == NORTH){
+    public static Direction getLeftTurnDirection(Direction nowDirection) {
+        if (nowDirection == NORTH) {
             return WEST;
         }
         return findDirectionByNextNumber(nowDirection);
     }
 
-    public static Direction findDirectionByNextNumber(Direction nowDirection){
-        int nextNumber = nowDirection.number -1;
-        for(Direction direction : Direction.values()){
-            if(direction.number == nextNumber){
+    public static Direction findDirectionByNextNumber(Direction nowDirection) {
+        int nextNumber = nowDirection.number - 1;
+        for (Direction direction : Direction.values()) {
+            if (direction.number == nextNumber) {
                 return direction;
             }
         }
@@ -41,7 +41,7 @@ public enum Direction {
                 return dir;
             }
         }
-        throw new IllegalArgumentException("Invalid direction number: " + number+"\n");
+        throw new IllegalArgumentException("Invalid direction number: " + number + "\n");
     }
 
 }

@@ -22,7 +22,7 @@ public enum MapType {
                 return type;
             }
         }
-        throw new IllegalArgumentException("Invalid map type value: " + value+"\n");
+        throw new IllegalArgumentException("Invalid map type value: " + value + "\n");
     }
 
 }

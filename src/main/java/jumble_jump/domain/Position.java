@@ -19,23 +19,23 @@ public class Position {
         return direction;
     }
 
-    public int getDirectionNumber(){
+    public int getDirectionNumber() {
         return direction.getNumber();
     }
 
-    public int getX(){
+    public int getX() {
         return point.getX();
     }
 
-    public int getY(){
+    public int getY() {
         return point.getY();
     }
 
-    public void setPoint(Point nextPoint){
+    public void setPoint(Point nextPoint) {
         point = nextPoint;
     }
 
-    public void setDirection(Direction newDirection){
+    public void setDirection(Direction newDirection) {
         direction = newDirection;
     }
 

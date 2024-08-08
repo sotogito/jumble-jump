@@ -14,7 +14,7 @@ public class UserMoveManager {
 
     private int moveCount = 1;
 
-    public UserMoveManager(MovePointCalculator turnLeftCalculator,Position currentPosition) {
+    public UserMoveManager(MovePointCalculator turnLeftCalculator, Position currentPosition) {
         this.movePointCalculator = turnLeftCalculator;
         this.currentPosition = currentPosition;
     }
@@ -27,11 +27,11 @@ public class UserMoveManager {
         moved.add(currentPosition.getPoint());
     }
 
-    public void setTurnLeftDirection(){
+    public void setTurnLeftDirection() {
         currentPosition.setDirection(movePointCalculator.getNextDirection(currentPosition.getDirection()));
     }
 
-    public void setCurrentPoint(Point nextPoint){
+    public void setCurrentPoint(Point nextPoint) {
         currentPosition.setPoint(nextPoint);
     }
 
@@ -40,33 +40,33 @@ public class UserMoveManager {
         int y = currentPosition.getY();
         int directionIndex = currentPosition.getDirectionNumber();
 
-        int nx = movePointCalculator.getNextX(x,directionIndex);
-        int ny = movePointCalculator.getNextY(y,directionIndex);
+        int nx = movePointCalculator.getNextX(x, directionIndex);
+        int ny = movePointCalculator.getNextY(y, directionIndex);
 
-        return new Point(nx,ny); //note 새로 값을 반환해야 moved에 넣을때 각자 다른 객체를 넣을 수 있음
+        return new Point(nx, ny); //note 새로 값을 반환해야 moved에 넣을때 각자 다른 객체를 넣을 수 있음
     }
 
-    public Point getBackPoint(){
+    public Point getBackPoint() {
         int x = currentPosition.getX();
         int y = currentPosition.getY();
         int directionIndex = currentPosition.getDirectionNumber();
 
-        int bx = movePointCalculator.getBackX(x,directionIndex);
-        int by = movePointCalculator.getBackY(y,directionIndex);
+        int bx = movePointCalculator.getBackX(x, directionIndex);
+        int by = movePointCalculator.getBackY(y, directionIndex);
 
-        return new Point(bx,by);
+        return new Point(bx, by);
     }
 
     public boolean isMovedPoint(Point point) {
         return moved.contains(point);
     }
 
-    public boolean isStartPointLandAtInputLine(List<Integer> startPointInputMapLine){
+    public boolean isStartPointLandAtInputLine(List<Integer> startPointInputMapLine) {
         int x = startPointInputMapLine.get(currentPosition.getX());
         return x == MapType.LAND.getValue();
     }
 
-    public boolean isStartPointYLine(int inputOrder){
+    public boolean isStartPointYLine(int inputOrder) {
         return inputOrder == currentPosition.getY();
     }
 

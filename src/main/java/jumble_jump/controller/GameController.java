@@ -30,16 +30,16 @@ public class GameController {
         Output.printMoveCountResult(userMoveManager);
     }
 
-    public void createGameServer(Map map,UserMoveManager userMoveManager){
+    public void createGameServer(Map map, UserMoveManager userMoveManager) {
         gameServer = new GameServer(map, userMoveManager);
     }
 
-    public void inputMapType(Map map,UserMoveManager userMoveManager) {
+    public void inputMapType(Map map, UserMoveManager userMoveManager) {
         for (int i = 0; i < map.getMapSize(); i++) {
             while (true) {
                 try {
                     List<Integer> mapLine = MapLineParser.parse(Input.inputMapTypesLine(i + 1));
-                    MapValidator.validateStartPointInInputLine(i,mapLine,userMoveManager);
+                    MapValidator.validateStartPointInInputLine(i, mapLine, userMoveManager);
                     map.addMapLine(mapLine);
                     break;
                 } catch (IllegalArgumentException e) {
@@ -60,11 +60,11 @@ public class GameController {
         }
     }
 
-    public Position createPosition(StartPositionDTO dto){
+    public Position createPosition(StartPositionDTO dto) {
         return new Position(dto.getStartPosition(), dto.getDirection());
     }
 
-    public StartPositionDTO getStartPositionDTO(Map map){
+    public StartPositionDTO getStartPositionDTO(Map map) {
         return UserInputStartPositionParser.parse(Input.inputUserStartPointAndDirection(), map);
     }
 

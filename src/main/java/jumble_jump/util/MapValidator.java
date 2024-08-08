@@ -7,29 +7,28 @@ import java.util.List;
 
 public class MapValidator {
 
-    public static void validateMapSIze(int size){
+    public static void validateMapSIze(int size) {
         if (size < 4 || size > 10) {
             throw new IllegalArgumentException("맵의 사이즈는 4~10까지 입력 가능합니다.\n");
         }
     }
 
-    public static void validateMapSIzeByInputMapTypes(int size, List<Integer> inputMapTypes){
-        if(size != inputMapTypes.size()){
+    public static void validateMapSIzeByInputMapTypes(int size, List<Integer> inputMapTypes) {
+        if (size != inputMapTypes.size()) {
             throw new IllegalArgumentException("맵의 사이즈 크기만큼 입력해주세요.\n");
         }
     }
 
-    public static void validateMapTypes(List<Integer> inputMapTypes){
+    public static void validateMapTypes(List<Integer> inputMapTypes) {
         for (Integer inputMapType : inputMapTypes) {
             MapType.fromValue(inputMapType);
         }
     }
 
-    public static void validateStartPointInInputLine(int i ,List<Integer> mapLine, UserMoveManager userMoveManager){
-        if(userMoveManager.isStartPointYLine(i) && !userMoveManager.isStartPointLandAtInputLine(mapLine)){
+    public static void validateStartPointInInputLine(int i, List<Integer> mapLine, UserMoveManager userMoveManager) {
+        if (userMoveManager.isStartPointYLine(i) && !userMoveManager.isStartPointLandAtInputLine(mapLine)) {
             throw new IllegalArgumentException("시작점 x y는 항상 0이여야합니다.");
         }
     }
-
 
 }

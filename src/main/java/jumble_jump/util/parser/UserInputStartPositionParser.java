@@ -10,10 +10,10 @@ import java.util.List;
 
 public class UserInputStartPositionParser {
 
-    public static StartPositionDTO parse(String input, Map map){
+    public static StartPositionDTO parse(String input, Map map) {
         List<Integer> result = MapLineParser.parse(input);
 
-        validatePoint(result.get(0), result.get(1),map);
+        validatePoint(result.get(0), result.get(1), map);
         validateValue(result);
 
         Point point = new Point(result.get(0), result.get(1));
@@ -21,14 +21,14 @@ public class UserInputStartPositionParser {
         return new StartPositionDTO(point, direction);
     }
 
-    public static void validatePoint(int x, int y,Map map){
-        if(!map.isWithinMap(new Point(x, y))){
+    public static void validatePoint(int x, int y, Map map) {
+        if (!map.isWithinMap(new Point(x, y))) {
             throw new IllegalArgumentException("x,y 좌표는 맵의 크기를 벗어날 수 없어요.\n");
         }
     }
 
-    public static void validateValue(List<Integer> result){
-        if(result.size() != 3){
+    public static void validateValue(List<Integer> result) {
+        if (result.size() != 3) {
             throw new IllegalArgumentException("x, y, 방향 3가지를 입력해주세요.");
         }
     }

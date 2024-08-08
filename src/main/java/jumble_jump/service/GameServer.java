@@ -15,27 +15,27 @@ public class GameServer {
         this.userMoveManager = userMoveManager;
     }
 
-    public void run(){
+    public void run() {
         while (true) {
             userMoveManager.setTurnLeftDirection();
             Point nextPoint = userMoveManager.getLeftPoint();
 
-            if(isCanMoveToLeftPoint(nextPoint)) {
+            if (isCanMoveToLeftPoint(nextPoint)) {
                 userMoveManager.addMovedPoint();
                 userMoveManager.setCurrentPoint(nextPoint);
                 userMoveManager.incrementMoveCount();
                 initBlockMoveCounter();
                 continue;
             }
-            blockMoveCounter ++;
+            blockMoveCounter++;
 
-            if(blockMoveCounter == 4){
+            if (blockMoveCounter == 4) {
                 Point backPoint = userMoveManager.getBackPoint();
 
-                if(isCanMoveToBackPoint(backPoint)) {
-                    userMoveManager.addMovedPoint(); //2,2안들어가는 이슈
+                if (isCanMoveToBackPoint(backPoint)) {
+                    userMoveManager.addMovedPoint();
                     userMoveManager.setCurrentPoint(backPoint);
-                    initBlockMoveCounter(); //뒤로 간다음에 5+부터 하는 이슈
+                    initBlockMoveCounter();
                     continue;
                 }
                 break;
@@ -58,6 +58,5 @@ public class GameServer {
     public void initBlockMoveCounter() {
         blockMoveCounter = 0;
     }
-
 
 }

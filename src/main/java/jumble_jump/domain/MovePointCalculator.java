@@ -12,23 +12,23 @@ public class MovePointCalculator {
     public MovePointCalculator() {
     }
 
-    public Direction getNextDirection(Direction nowDirection){
+    public Direction getNextDirection(Direction nowDirection) {
         return Direction.getLeftTurnDirection(nowDirection);
     }
 
-    public int getNextX(int x, int directionIndex){
+    public int getNextX(int x, int directionIndex) {
         return x + dx.get(directionIndex);
     }
 
-    public int getNextY(int y,int directionIndex){
+    public int getNextY(int y, int directionIndex) {
         return y + dy.get(directionIndex);
     }
 
-    public int getBackX(int x, int directionIndex){
+    public int getBackX(int x, int directionIndex) {
         return x - dx.get(directionIndex);
     }
 
-    public int getBackY(int y,int directionIndex){
+    public int getBackY(int y, int directionIndex) {
         return y - dy.get(directionIndex);
     }
 
