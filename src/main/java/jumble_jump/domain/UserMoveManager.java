@@ -10,19 +10,13 @@ public class UserMoveManager {
     private final MovePointCalculator movePointCalculator;
 
     private final List<Point> moved = new ArrayList<>(); //note currentPoint객체가 저장됨,currentPoint도 항상 다르기 때문에 moved도 다름
-
-    //private Point currentPoint; //note 항상 새로운 객체가 저장됨
-    //private Direction currentDirection;
-
     private final Position currentPosition;
 
     private int moveCount = 1;
 
-    public UserMoveManager(MovePointCalculator turnLeftCalculator, Point currentPoint, Direction currentDirection) {
+    public UserMoveManager(MovePointCalculator turnLeftCalculator,Position currentPosition) {
         this.movePointCalculator = turnLeftCalculator;
-        //this.currentPoint = currentPoint;
-        //this.currentDirection = currentDirection;
-        this.currentPosition = new Position(currentPoint, currentDirection);
+        this.currentPosition = currentPosition;
     }
 
     public void incrementMoveCount() {
@@ -30,24 +24,18 @@ public class UserMoveManager {
     }
 
     public void addMovedPoint() {
-        //moved.add(currentPoint);
         moved.add(currentPosition.getPoint());
     }
 
     public void setTurnLeftDirection(){
-        //currentDirection = movePointCalculator.getNextDirection(currentDirection);
         currentPosition.setDirection(movePointCalculator.getNextDirection(currentPosition.getDirection()));
     }
 
     public void setCurrentPoint(Point nextPoint){
-        //currentPoint = nextPoint;
         currentPosition.setPoint(nextPoint);
     }
 
     public Point getLeftPoint() {
-        //int x = currentPoint.getX();
-        //int y = currentPoint.getY();
-        //int directionIndex = currentDirection.getNumber();
         int x = currentPosition.getX();
         int y = currentPosition.getY();
         int directionIndex = currentPosition.getDirectionNumber();
@@ -59,10 +47,6 @@ public class UserMoveManager {
     }
 
     public Point getBackPoint(){
-        //int x = currentPoint.getX();
-        //int y = currentPoint.getY();
-        //int directionIndex = currentDirection.getNumber();
-
         int x = currentPosition.getX();
         int y = currentPosition.getY();
         int directionIndex = currentPosition.getDirectionNumber();

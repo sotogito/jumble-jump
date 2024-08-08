@@ -2,6 +2,7 @@ package jumble_jump.controller;
 
 import jumble_jump.domain.Map;
 import jumble_jump.domain.MovePointCalculator;
+import jumble_jump.domain.Position;
 import jumble_jump.domain.UserMoveManager;
 import jumble_jump.dto.StartPositionDTO;
 import jumble_jump.service.GameServer;
@@ -52,11 +53,15 @@ public class GameController {
         while (true) {
             try {
                 StartPositionDTO dto = getStartPositionDTO(map);
-                return new UserMoveManager(createTurnLeftCalculator(), dto.getStartPosition(), dto.getDirection());
+                return new UserMoveManager(createTurnLeftCalculator(), createPosition(dto));
             } catch (IllegalArgumentException e) {
                 Output.printError(e.getMessage());
             }
         }
+    }
+
+    public Position createPosition(StartPositionDTO dto){
+        return new Position(dto.getStartPosition(), dto.getDirection());
     }
 
     public StartPositionDTO getStartPositionDTO(Map map){
