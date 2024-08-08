@@ -30,9 +30,6 @@ public class UserMoveManager {
         moveCount++;
     }
 
-    public void addMovedPoint(int x, int y) {
-        moved.add(new Point(x, y));
-    }
 
     public void addMovedPoint() {
         moved.add(currentPoint);

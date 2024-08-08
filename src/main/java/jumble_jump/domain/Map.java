@@ -1,6 +1,7 @@
 package jumble_jump.domain;
 
 import jumble_jump.domain.type.MapType;
+import jumble_jump.util.MapValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +11,10 @@ public class Map {
     private int length,with;
     private final List<List<Integer>> map = new ArrayList<>();
 
-    public Map(int length, int with) {
-        this.length = length;
-        this.with = with;
+    public Map(int size) {
+        MapValidator.validateMapSIze(length);
+        this.length = size;
+        this.with = size;
     }
 
     public void addMapLine(List<Integer> line) {
@@ -30,6 +32,5 @@ public class Map {
         int y = point.getY();
 
         return x >= 0 && x < with && y >= 0 && y < length;
-
     }
 }
