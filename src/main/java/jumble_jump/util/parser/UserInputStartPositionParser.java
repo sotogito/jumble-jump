@@ -2,13 +2,15 @@ package jumble_jump.util.parser;
 
 import jumble_jump.domain.Map;
 import jumble_jump.domain.Point;
+import jumble_jump.domain.dto.StartPositionDTO;
+import jumble_jump.domain.type.Direction;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserStartLocalDataParser {
+public class UserInputStartPositionParser {
 
-    public static List<Integer> parse(String input, Map map){
+    public static StartPositionDTO parse(String input, Map map){
         List<Integer> result = new ArrayList<>();
         String[] tokens = input.split(" ");
         for (String token : tokens) {
@@ -19,9 +21,12 @@ public class UserStartLocalDataParser {
             }
         }
 
+        validatePoint(result.get(0), result.get(1),map);
         validateValue(result);
-        validatePoint(result.get(0),result.get(1),map);
-        return result;
+
+        Point point = new Point(result.get(0), result.get(1));
+        Direction direction = Direction.fromNumber(result.get(2));
+        return new StartPositionDTO(point, direction);
     }
 
     public static void validatePoint(int x, int y,Map map){

@@ -1,5 +1,6 @@
 package jumble_jump.util;
 
+import jumble_jump.domain.UserMoveManager;
 import jumble_jump.domain.type.MapType;
 
 import java.util.List;
@@ -21,6 +22,12 @@ public class MapValidator {
     public static void validateMapTypes(List<Integer> inputMapTypes){
         for (Integer inputMapType : inputMapTypes) {
             MapType.fromValue(inputMapType);
+        }
+    }
+
+    public static void validateStartPointInInputLine(int i ,List<Integer> mapLine, UserMoveManager userMoveManager){
+        if(userMoveManager.isStartPointYLine(i) && !userMoveManager.isStartPointLandAtInputLine(mapLine)){
+            throw new IllegalArgumentException("시작점 x y는 항상 0이여야합니다.");
         }
     }
 
