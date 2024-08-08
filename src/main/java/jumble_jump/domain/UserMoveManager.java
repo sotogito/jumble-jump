@@ -75,6 +75,17 @@ public class UserMoveManager {
         return currentPoint;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+
+        str.append(currentPoint.getX()).append("\n");
+        str.append(currentPoint.getY()).append("\n");
+        str.append(currentDirection.getNumber()).append("\n");
+
+        return str.toString();
+    }
+
 
 
 

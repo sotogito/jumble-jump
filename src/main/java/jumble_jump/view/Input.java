@@ -14,4 +14,10 @@ public class Input {
             throw new IllegalArgumentException("맵의 크기는 숫자로 입력해주세요.\n");
         }
     }
+
+    public static String inputUserStartPointAndDirection(){
+        System.out.println("x,y 시작 위치와, 방향을 입력해주세요 ex) 1 2 2");
+        return scanner.nextLine();
+    }
+
 }

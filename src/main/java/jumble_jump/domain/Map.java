@@ -12,7 +12,7 @@ public class Map {
     private final List<List<Integer>> map = new ArrayList<>();
 
     public Map(int size) {
-        MapValidator.validateMapSIze(length);
+        MapValidator.validateMapSIze(size);
         this.length = size;
         this.with = size;
     }
@@ -32,5 +32,12 @@ public class Map {
         int y = point.getY();
 
         return x >= 0 && x < with && y >= 0 && y < length;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(length).append("x").append(with).append("\n");
+        return sb.toString();
     }
 }
