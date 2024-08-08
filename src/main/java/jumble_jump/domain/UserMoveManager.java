@@ -14,19 +14,13 @@ public class UserMoveManager {
     private Point currentPoint;
     private Direction currentDirection;
 
-    private int moveCount = 0;
+    private int moveCount = 1;
 
     public UserMoveManager(TurnLeftCalculator turnLeftCalculator, Point currentPoint, Direction currentDirection) {
         this.turnLeftCalculator = turnLeftCalculator;
         this.currentPoint = currentPoint;
         this.currentDirection = currentDirection;
     }
-
-    /**
-     * moved에 들어있는 좌표인지
-     * currentPoint 업데이드
-     * currentDirection 업데이트
-     */
 
     public void incrementMoveCount() {
         moveCount++;
@@ -70,6 +64,12 @@ public class UserMoveManager {
     }
 
     public boolean isMovedPoint(Point point) {
+        //for (Point movedPoint : moved) {
+        //    if (movedPoint.getX() == point.getX() && movedPoint.getY() == point.getY()) {
+       //         return true;
+        //    }
+        //}
+        //return false;
         return moved.contains(point);
     }
 
@@ -84,6 +84,10 @@ public class UserMoveManager {
 
     public Point getCurrentPoint() {
         return currentPoint;
+    }
+
+    public int getMoveCount() {
+        return moveCount;
     }
 
     @Override

@@ -5,6 +5,7 @@ import jumble_jump.domain.Point;
 import jumble_jump.domain.TurnLeftCalculator;
 import jumble_jump.domain.UserMoveManager;
 import jumble_jump.domain.type.Direction;
+import jumble_jump.service.GameServer;
 import jumble_jump.util.parser.MapLineParser;
 import jumble_jump.util.parser.UserStartLocalDataParser;
 import jumble_jump.view.Input;
@@ -13,14 +14,8 @@ import jumble_jump.view.Output;
 import java.util.List;
 
 public class GameController {
-    /**
-     * 1. 맴 크기 입력받기
-     * 2. 캐릭터의 좌표와 방향 입력받기
-     * 3. n번째 줄 차례대로 입력받기
-     * <p>
-     * 4. Map, User , Service 생성하기
-     */
 
+    public GameServer gameServer;
 
     public void run() {
         Map map = createMap();
@@ -28,11 +23,19 @@ public class GameController {
 
         inputMapType(map, userMoveManager);
 
-        System.out.println(map);
-        //시작 위치는 반드시 0이여야함
+        createGameServer(map, userMoveManager);
+
+        gameServer.run();
+
+        System.out.println(userMoveManager.getMoveCount());
 
 
     }
+
+    public void createGameServer(Map map,UserMoveManager userMoveManager){
+        gameServer = new GameServer(map, userMoveManager);
+    }
+
 
     public void inputMapType(Map map,UserMoveManager userMoveManager) {
         for (int i = 0; i < map.getMapSize(); i++) {
@@ -43,6 +46,7 @@ public class GameController {
                     if(userMoveManager.isStartPointYLine(i) && !userMoveManager.isStartPointLandAtInputLine(mapLine)){
                         throw new IllegalArgumentException("시작점 x y는 항상 0이여야합니다.");
                     }
+
                     map.addMapLine(mapLine);
                     break;
                 } catch (IllegalArgumentException e) {

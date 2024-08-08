@@ -33,7 +33,9 @@ public class GameServer {
                 Point backPoint = userMoveManager.getBackPoint();
 
                 if(isCanMoveToBackPoint(backPoint)) {
+                    userMoveManager.addMovedPoint(); //2,2안들어가는 이슈
                     userMoveManager.setCurrentPoint(backPoint);
+                    initBlockMoveCounter(); //뒤로 간다음에 5+부터 하는 이슈
                     continue;
                 }
                 break;
@@ -53,9 +55,9 @@ public class GameServer {
     }
 
 
-
     public void initBlockMoveCounter() {
         blockMoveCounter = 0;
     }
+
 
 }
