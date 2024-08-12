@@ -18,4 +18,17 @@ public class TranslationEntryRepository {
     public void setEnglish(String english) {
         this.english.setEnglish(english);
     }
+
+    public void setKorean(String korean) {
+        this.korean.setKoran(korean);
+    }
+
+    public String getEnglish() {
+        return this.english.getEnglish();
+    }
+
+    public String getKorean() {
+        return this.korean.getKoran();
+    }
+
 }

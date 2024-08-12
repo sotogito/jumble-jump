@@ -21,6 +21,7 @@ public class EnglishTranslationService {
     }
 
     public void translate(String korean) throws Exception {
+        setKorean(korean);
         String english = translateToEnglish(korean);
         translationEntryRepository.setEnglish(english);
     }
@@ -46,6 +47,10 @@ public class EnglishTranslationService {
             String translated = jsonObject.getAsJsonArray("translations").get(0).getAsJsonObject().get("text").getAsString();
             return translated;
         }
+    }
+
+    public void setKorean(String korean){
+        translationEntryRepository.setKorean(korean);
     }
 
 }

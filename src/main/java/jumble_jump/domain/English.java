@@ -9,4 +9,8 @@ public class English {
     public void setEnglish(String english) {
         this.english = english;
     }
+
+    public String getEnglish() {
+        return english;
+    }
 }
