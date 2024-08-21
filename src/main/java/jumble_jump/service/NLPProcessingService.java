@@ -117,7 +117,7 @@ public class NLPProcessingService {
                 }
                 return;
             }
-            methodName.addMethodNameEntry(lemma);
+            methodName.addMethodNameEntry(WordReplacer.replaceOrdinaryVerb(lemma));
         }
     }
 
