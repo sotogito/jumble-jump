@@ -30,16 +30,6 @@ public class NLPProcessingService {
     private List<Integer> ppVerbs = new ArrayList<>();
 
 
-    public static void main(String[] args) {
-        MethodName methodName = new MethodName();
-        NLPProcessingService nlpProcessingService = new NLPProcessingService(new TranslationEntryRepository(new English(), new Korean()),
-                new EnglishPosEntry(), methodName);
-
-        nlpProcessingService.handlePos();
-
-        System.out.println(methodName);
-    }
-
     public NLPProcessingService(TranslationEntryRepository translationEntryRepository, EnglishPosEntry englishPosEntry, MethodName methodName) {
         this.translationEntryRepository = translationEntryRepository;
         this.englishPosEntry = englishPosEntry;
@@ -47,8 +37,8 @@ public class NLPProcessingService {
         wordReplacer = new WordReplacer();
     }
 
-    public void handlePos(){
-        CoreDocument tokenizeDocument = initCoreDocumentation(); //note 문장 초기설정
+    public void handlePos(String english){
+        CoreDocument tokenizeDocument = initCoreDocumentation(english); //note 문장 초기설정
         fullSentenceTokenize(tokenizeDocument); //note 전체 문장 품사 고려하여 토큰화
 
         setPreNounsDividingNouns(); //note 전치사 기준 명사 나누기
@@ -198,10 +188,7 @@ public class NLPProcessingService {
         }
     }
 
-    private CoreDocument initCoreDocumentation(){
-        String english = translationEntryRepository.getEnglish(); //fixme 테스트를 위해서 인수로 받는게 좋은건가
-
-
+    private CoreDocument initCoreDocumentation(String english){
         Properties props = new Properties();
 
         props.setProperty("annotators", "tokenize,ssplit,pos,lemma");

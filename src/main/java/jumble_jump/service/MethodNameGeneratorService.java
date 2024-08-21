@@ -16,8 +16,8 @@ public class MethodNameGeneratorService {
     }
 
     public void generate(String inputKorean) throws Exception {
-        translationService.translate(inputKorean);
-        nlpService.handlePos();
+        String english = translationService.translate(inputKorean);
+        nlpService.handlePos(english);
         camelFormattingService.formatToCamelCase();
     }
 
