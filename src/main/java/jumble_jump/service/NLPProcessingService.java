@@ -32,48 +32,48 @@ public class NLPProcessingService {
         wordReplacer = new WordReplacer();
     }
 
-    public void handlePos(String english){
+    public void handlePos(String english) {
         CoreDocument tokenizeDocument = initCoreDocumentation(english); //note 문장 초기설정
         fullSentenceTokenize(tokenizeDocument); //note 전체 문장 품사 고려하여 토큰화
         setPreNounsDividingNouns(); //note 전치사 기준 명사 나누기
         setMethodNamePosToken(); //note 합치기
     }
 
-    private void setMethodNamePosToken(){
-        if(!englishPosEntry.isEmptyVerbsIndex()){
+    private void setMethodNamePosToken() {
+        if (!englishPosEntry.isEmptyVerbsIndex()) {
             changeInfinitiveVerb();
         }
 
-        if(!englishPosEntry.isEmptyAdjective()){
-            for(int index : englishPosEntry.getAdjectivesIndexList()){
+        if (!englishPosEntry.isEmptyAdjective()) {
+            for (int index : englishPosEntry.getAdjectivesIndexList()) {
                 CoreLabel adjectives = englishPosEntry.getTokenByIndex(index);
                 methodName.addMethodNameEntry(adjectives.word());
             }
         }
 
-        if(!preNouns.isEmpty()){
-            for(int index : preNouns){
+        if (!preNouns.isEmpty()) {
+            for (int index : preNouns) {
                 CoreLabel preNoun = englishPosEntry.getTokenByIndex(index);
                 methodName.addMethodNameEntry(preNoun.word());
             }
         }
 
-        if(!ppVerbs.isEmpty()){
-            for(int index : ppVerbs){
+        if (!ppVerbs.isEmpty()) {
+            for (int index : ppVerbs) {
                 CoreLabel verbs = englishPosEntry.getTokenByIndex(index);
                 methodName.addMethodNameEntry(verbs.word());
             }
         }
 
 
-        if(!englishPosEntry.isEmptyPreposition()){
+        if (!englishPosEntry.isEmptyPreposition()) {
             int index = englishPosEntry.getPrepositionIndex();
             CoreLabel preposition = englishPosEntry.getTokenByIndex(index);
             methodName.addMethodNameEntry(preposition.word());
         }
 
-        if(!englishPosEntry.isEmptyNoun()){
-            for(int index : englishPosEntry.getNounsIndexList()){
+        if (!englishPosEntry.isEmptyNoun()) {
+            for (int index : englishPosEntry.getNounsIndexList()) {
                 CoreLabel noun = englishPosEntry.getTokenByIndex(index);
                 methodName.addMethodNameEntry(noun.word());
             }
@@ -81,26 +81,26 @@ public class NLPProcessingService {
 
     }
 
-    private void changeInfinitiveVerb(){
+    private void changeInfinitiveVerb() {
         int verbsIndexListSize = englishPosEntry.getVerbsIndexListSize();
 
-        for(int i = 0; i < verbsIndexListSize; i++){
+        for (int i = 0; i < verbsIndexListSize; i++) {
             int verbIndexFromToken = englishPosEntry.getVerbsIndexByIndex(i);
             CoreLabel token = englishPosEntry.getTokenByIndex(verbIndexFromToken);
             String lemma = token.lemma();
 
-            if(isBooleanPassiveType(i,verbsIndexListSize,lemma)){
+            if (isBooleanPassiveType(i, verbsIndexListSize, lemma)) {
                 return;
             }
             methodName.addMethodNameEntry(wordReplacer.replaceOrdinaryVerb(lemma));
         }
     }
 
-    private boolean isBooleanPassiveType(int i ,int verbsIndexListSize,String lemma){
-        if(ReplaceWords.verbLemma.contains(lemma)){
+    private boolean isBooleanPassiveType(int i, int verbsIndexListSize, String lemma) {
+        if (ReplaceWords.verbLemma.contains(lemma)) {
             updateMethodNameForAuxiliaryVerb(lemma);
 
-            if(i < verbsIndexListSize -1){
+            if (i < verbsIndexListSize - 1) {
                 collectPassiveVerbs(i);
             }
             return true;
@@ -108,10 +108,10 @@ public class NLPProcessingService {
         return false;
     }
 
-    private void updateMethodNameForAuxiliaryVerb(String lemma){
+    private void updateMethodNameForAuxiliaryVerb(String lemma) {
         methodName.clearMethodNameEntry();
         Optional<String> replacedWord = wordReplacer.replaceBeHave(lemma);
-        if(replacedWord.isEmpty()){
+        if (replacedWord.isEmpty()) {
             return;
         }
         methodName.addMethodNameEntry(replacedWord.get());
@@ -124,7 +124,6 @@ public class NLPProcessingService {
         while (nowVerbsIndexListOrder < verbsIndexListSize - 1) {
             int nextVerbIndexFromToken = englishPosEntry.getVerbsIndexByIndex(nowVerbsIndexListOrder + 1);
             CoreLabel token = englishPosEntry.getTokenByIndex(nextVerbIndexFromToken);
-
             isPassiveType = token.tag().equals(NLPConstants.passiveTypeTage);
 
             if (isPassiveType) {
@@ -134,50 +133,48 @@ public class NLPProcessingService {
             }
             break;
         }
-
     }
 
 
-
-
-    private void setPreNounsDividingNouns(){
+    private void setPreNounsDividingNouns() {
         List<Integer> remainingNouns = new ArrayList<>();
 
-        if(englishPosEntry.isEmptyPreposition()){ //note 전치사가 없으면 실행 preNouns 생성하기
-            preNouns.addAll(englishPosEntry.getNounsIndexList());
-            englishPosEntry.setNounsIndex(remainingNouns);
+        if(!englishPosEntry.isEmptyPreposition()){
+            updatePreNounsByPreposition(remainingNouns);
             return;
         }
+        preNouns.addAll(englishPosEntry.getNounsIndexList());
+        englishPosEntry.setNounsIndex(remainingNouns);
+    }
 
+    private void updatePreNounsByPreposition(List<Integer> remainingNouns){
         int prepositionIndex = englishPosEntry.getPrepositionIndex();
-        for(Integer nounIndex : englishPosEntry.getNounsIndexList()){
-            if(nounIndex < prepositionIndex){ //note 전치사 앞 명사
+        for (Integer nounIndex : englishPosEntry.getNounsIndexList()) {
+            if (nounIndex < prepositionIndex) {
                 preNouns.add(nounIndex);
                 continue;
             }
             remainingNouns.add(nounIndex);
         }
         englishPosEntry.setNounsIndex(remainingNouns);
-
     }
 
 
-
-    private void fullSentenceTokenize(CoreDocument tokenizeDocument){
-        for(CoreLabel token : tokenizeDocument.tokens()){
+    private void fullSentenceTokenize(CoreDocument tokenizeDocument) {
+        for (CoreLabel token : tokenizeDocument.tokens()) {
             englishPosEntry.addToken(token);
             String pos = token.tag();
             String word = token.word();
             int index = token.index();
 
-            if(NLPConstants.verbsPosTags.contains(pos)){
+            if (NLPConstants.verbsPosTags.contains(pos)) {
                 englishPosEntry.addVerb(index);
-            }else if(NLPConstants.nounsPosTags.contains(pos)){
+            } else if (NLPConstants.nounsPosTags.contains(pos)) {
                 englishPosEntry.addNoun(index);
-            }else if(NLPConstants.adjectivesPosTags.contains(pos)){
+            } else if (NLPConstants.adjectivesPosTags.contains(pos)) {
                 englishPosEntry.addAdjective(index);
             } else if (NLPConstants.prepositionsPosTag.equals(pos)) {
-                if(ExclusionWords.exclusionWord.contains(word)){
+                if (ExclusionWords.exclusionWord.contains(word)) {
                     continue;
                 }
                 englishPosEntry.addPreposition(index);
@@ -185,7 +182,7 @@ public class NLPProcessingService {
         }
     }
 
-    private CoreDocument initCoreDocumentation(String english){
+    private CoreDocument initCoreDocumentation(String english) {
         Properties props = new Properties();
 
         props.setProperty("annotators", "tokenize,ssplit,pos,lemma");
