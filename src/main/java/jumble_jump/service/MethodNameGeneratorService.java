@@ -7,7 +7,6 @@ import jumble_jump.service.interfaces.EnglishTranslationService;
 import jumble_jump.service.interfaces.NLPProcessingService;
 
 public class MethodNameGeneratorService {
-    //todo 선언된 서비스들 인터페이스로
     private final EnglishTranslationService translationService;
     private final NLPProcessingService nlpService;
     private final CamelFormattingService camelFormattingService;
@@ -27,7 +26,7 @@ public class MethodNameGeneratorService {
         camelFormattingService.formatToCamelCase();
     }
 
-    public String getCamelCaseMethodName(){
+    public String getCamelCaseMethodName() {
         return methodName.getCamelTypeMethodName();
     }
 

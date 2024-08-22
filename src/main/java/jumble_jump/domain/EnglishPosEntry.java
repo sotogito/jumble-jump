@@ -7,12 +7,12 @@ import java.util.List;
 
 public class EnglishPosEntry {
 
-    private List<CoreLabel> tokens = new ArrayList<>();
+    private final List<CoreLabel> tokens = new ArrayList<>();
 
-    private List<Integer> verbsIndex = new ArrayList<>();
+    private final List<Integer> verbsIndex = new ArrayList<>();
     private List<Integer> nounsIndex = new ArrayList<>();
-    private List<Integer> adjectivesIndex = new ArrayList<>();
-    private List<Integer> prepositionsIndex = new ArrayList<>();
+    private final List<Integer> adjectivesIndex = new ArrayList<>();
+    private final List<Integer> prepositionsIndex = new ArrayList<>();
 
     public EnglishPosEntry() {
     }
@@ -21,26 +21,13 @@ public class EnglishPosEntry {
         return verbsIndex.get(index);
     }
 
-    public List<Integer> getVerbsIndex() {
-        return verbsIndex;
-    }
-
-    public int getVerbsIndexListSize(){
+    public int getVerbsIndexListSize() {
         return verbsIndex.size();
     }
 
     public CoreLabel getTokenByIndex(int index) {
-        int indexFromTokenList = index-1;
+        int indexFromTokenList = index - 1;
         return tokens.get(indexFromTokenList);
-
-        /*
-        for(CoreLabel token : tokens) {
-            if(token.index() == index){
-                return token;
-            }
-        }
-
-         */
     }
 
     public void addToken(CoreLabel token) {
@@ -67,27 +54,23 @@ public class EnglishPosEntry {
         return verbsIndex.isEmpty();
     }
 
-    public boolean isEmptyPreposition(){
+    public boolean isEmptyPreposition() {
         return prepositionsIndex.isEmpty();
     }
 
-    public boolean isEmptyAdjective(){
+    public boolean isEmptyAdjective() {
         return adjectivesIndex.isEmpty();
     }
 
-    public boolean isEmptyNoun(){
+    public boolean isEmptyNoun() {
         return nounsIndex.isEmpty();
     }
 
-    public boolean isEmptyVerb() {
-        return verbsIndex.isEmpty();
-    }
-
-    public void setNounsIndex(List<Integer> nounsIndex){
+    public void setNounsIndex(List<Integer> nounsIndex) {
         this.nounsIndex = nounsIndex;
     }
 
-    public int getPrepositionIndex(){
+    public int getPrepositionIndex() {
         return prepositionsIndex.get(0);
     }
 
@@ -97,15 +80,6 @@ public class EnglishPosEntry {
 
     public List<Integer> getAdjectivesIndexList() {
         return adjectivesIndex;
-    }
-
-    public CoreLabel getCoreLabelTokenByOrder(int order) {
-        for (CoreLabel token : tokens) {
-            if(token.index() == order){
-                return token;
-            }
-        }
-        return null;
     }
 
 }

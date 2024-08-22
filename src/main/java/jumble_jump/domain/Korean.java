@@ -13,4 +13,5 @@ public class Korean {
     public String getKoran() {
         return koran;
     }
+
 }

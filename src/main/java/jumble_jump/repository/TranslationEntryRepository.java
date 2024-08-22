@@ -1,9 +1,8 @@
 package jumble_jump.repository;
 
 import jumble_jump.domain.English;
-import jumble_jump.domain.EnglishPosEntry;
 import jumble_jump.domain.Korean;
-import jumble_jump.domain.MethodName;
+
 
 public class TranslationEntryRepository {
     private final Korean korean;
@@ -34,6 +33,5 @@ public class TranslationEntryRepository {
     public String toString() {
         return getEnglish();
     }
-
 
 }

@@ -63,7 +63,7 @@ public class NLPProcessingServiceImpl implements NLPProcessingService {
         }
     }
 
-    private void updateByPos(String pos,String word,int index){
+    private void updateByPos(String pos, String word, int index) {
         if (NLPConstants.verbsPosTags.contains(pos)) {
             englishPosEntry.addVerb(index);
         } else if (NLPConstants.nounsPosTags.contains(pos)) {
@@ -82,7 +82,7 @@ public class NLPProcessingServiceImpl implements NLPProcessingService {
     public void setPreNounsDividingNouns() {
         List<Integer> remainingNouns = new ArrayList<>();
 
-        if(!englishPosEntry.isEmptyPreposition()){
+        if (!englishPosEntry.isEmptyPreposition()) {
             updatePreNounsByPreposition(remainingNouns);
             return;
         }
@@ -90,7 +90,7 @@ public class NLPProcessingServiceImpl implements NLPProcessingService {
         englishPosEntry.setNounsIndex(remainingNouns);
     }
 
-    private void updatePreNounsByPreposition(List<Integer> remainingNouns){
+    private void updatePreNounsByPreposition(List<Integer> remainingNouns) {
         int prepositionIndex = englishPosEntry.getPrepositionIndex();
         for (Integer nounIndex : englishPosEntry.getNounsIndexList()) {
             if (nounIndex < prepositionIndex) {

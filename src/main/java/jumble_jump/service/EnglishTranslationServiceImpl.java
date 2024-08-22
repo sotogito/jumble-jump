@@ -11,7 +11,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 public class EnglishTranslationServiceImpl implements EnglishTranslationService {
-
     private static final String FORM_URL_ENCODED = "application/x-www-form-urlencoded";
     private static final String API_KEY = "1f3905db-c5c1-4cc1-8681-1229b5f5c555:fx"; // DeepL API Key
     private static final String END_POINT = "https://api-free.deepl.com/v2/translate";
@@ -71,6 +70,5 @@ public class EnglishTranslationServiceImpl implements EnglishTranslationService 
         JsonObject jsonObject = JsonParser.parseString(responseData).getAsJsonObject();
         return jsonObject.getAsJsonArray("translations").get(0).getAsJsonObject().get("text").getAsString();
     }
-
 
 }

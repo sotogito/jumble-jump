@@ -8,7 +8,5 @@ public class Output {
     public static void printCamelCaseMethodName(String methodName) {
         System.out.printf("결과 :    %s", methodName);
     }
-
-
-
+    
 }

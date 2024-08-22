@@ -17,10 +17,9 @@ import jumble_jump.view.Output;
 import jumble_jump.util.ErrorMessage;
 
 public class MainController {
-
     private MethodNameGeneratorService methodNameGeneratorService;
 
-    public void main(){
+    public void main() {
         TranslationEntryRepository translationEntryRepository = new TranslationEntryRepository(new English(), new Korean());
         EnglishPosEntry englishPosEntry = new EnglishPosEntry();
         MethodName methodName = new MethodName();
@@ -31,12 +30,12 @@ public class MainController {
         printCamelCaseMethodName();
     }
 
-    private void generateMethod(){
-        while (true){
-            try{
+    private void generateMethod() {
+        while (true) {
+            try {
                 methodNameGeneratorService.generate(Input.inputKorean());
                 break;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 Output.printError(e.getMessage());
                 e.printStackTrace();
             } catch (Exception e) {
@@ -47,29 +46,29 @@ public class MainController {
     }
 
     private MethodNameGeneratorService createMethodNameGeneratorService(
-            TranslationEntryRepository translationEntryRepository, EnglishPosEntry englishPosEntry, MethodName methodName){
+            TranslationEntryRepository translationEntryRepository, EnglishPosEntry englishPosEntry, MethodName methodName) {
 
         EnglishTranslationService englishTranslationService = createEnglishTranslationService(translationEntryRepository);
         NLPProcessingService nlpProcessingService = createNLPProcessingService(englishPosEntry, methodName);
         CamelFormattingService camelFormattingService = createCamelFormattingService(methodName);
 
         return new MethodNameGeneratorService(
-                englishTranslationService,nlpProcessingService,camelFormattingService,methodName);
+                englishTranslationService, nlpProcessingService, camelFormattingService, methodName);
     }
 
-    private EnglishTranslationService createEnglishTranslationService(TranslationEntryRepository translationEntryRepository){
+    private EnglishTranslationService createEnglishTranslationService(TranslationEntryRepository translationEntryRepository) {
         return new EnglishTranslationServiceImpl(translationEntryRepository);
     }
 
-    private NLPProcessingService createNLPProcessingService(EnglishPosEntry englishPosEntry, MethodName methodName){
-        return new NLPProcessingServiceImpl(englishPosEntry,methodName);
+    private NLPProcessingService createNLPProcessingService(EnglishPosEntry englishPosEntry, MethodName methodName) {
+        return new NLPProcessingServiceImpl(englishPosEntry, methodName);
     }
 
-    private CamelFormattingService createCamelFormattingService(MethodName methodName){
+    private CamelFormattingService createCamelFormattingService(MethodName methodName) {
         return new CamelFormattingServiceImpl(methodName);
     }
 
-    private void printCamelCaseMethodName(){
+    private void printCamelCaseMethodName() {
         Output.printCamelCaseMethodName(methodNameGeneratorService.getCamelCaseMethodName());
     }
 

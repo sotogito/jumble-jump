@@ -6,16 +6,8 @@ import jumble_jump.util.ReplaceWords;
 import java.util.Optional;
 
 public class WordReplacer {
-    /**
-     * be -> is, are
-     * have -> have, has
-     *
-     * return -> get
-     *
-     */
-    
     public Optional<String> replaceBeHave(String word) {
-        if(word.equals(ReplaceWords.be)){
+        if (word.equals(ReplaceWords.be)) {
             return Optional.of("is");
         } else if (word.equals(ReplaceWords.have)) {
             return Optional.of("have");
@@ -23,10 +15,11 @@ public class WordReplacer {
         return Optional.empty();
     }
 
-    public String replaceOrdinaryVerb(String word){
-        if(word.equals(ReplaceWords.returnS)){
+    public String replaceOrdinaryVerb(String word) {
+        if (word.equals(ReplaceWords.returnS)) {
             return "get";
         }
         return word;
     }
+
 }

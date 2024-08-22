@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MethodName {
-    private final List<String> methodNameEntry  = new ArrayList<>();
+    private final List<String> methodNameEntry = new ArrayList<>();
     private String camelTypeMethodName;
 
     public MethodName() {
@@ -14,7 +14,7 @@ public class MethodName {
         this.methodNameEntry.add(methodNameEntry);
     }
 
-    public void setCamelTypeMethodEntryByIndex(int index,String camelTypeToken) {
+    public void setCamelTypeMethodEntryByIndex(int index, String camelTypeToken) {
         methodNameEntry.set(index, camelTypeToken);
     }
 
