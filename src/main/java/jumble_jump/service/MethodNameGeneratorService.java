@@ -1,8 +1,12 @@
 package jumble_jump.service;
 
-import jumble_jump.repository.TranslationEntryRepository;
+
+import jumble_jump.service.interfaces.CamelFormattingService;
+import jumble_jump.service.interfaces.EnglishTranslationService;
+import jumble_jump.service.interfaces.NLPProcessingService;
 
 public class MethodNameGeneratorService {
+    //todo 선언된 서비스들 인터페이스로
     private final EnglishTranslationService translationService;
     private final NLPProcessingService nlpService;
     private final CamelFormattingService camelFormattingService;
@@ -12,7 +16,6 @@ public class MethodNameGeneratorService {
         this.camelFormattingService = camelFormattingService;
         this.translationService = translationService;
         this.nlpService = nlpService;
-
     }
 
     public void generate(String inputKorean) throws Exception {
@@ -20,6 +23,5 @@ public class MethodNameGeneratorService {
         nlpService.handlePos(english);
         camelFormattingService.formatToCamelCase();
     }
-
 
 }

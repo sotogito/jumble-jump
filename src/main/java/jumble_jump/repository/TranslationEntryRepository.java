@@ -3,16 +3,15 @@ package jumble_jump.repository;
 import jumble_jump.domain.English;
 import jumble_jump.domain.EnglishPosEntry;
 import jumble_jump.domain.Korean;
+import jumble_jump.domain.MethodName;
 
 public class TranslationEntryRepository {
     private final Korean korean;
     private final English english;
-    private final EnglishPosEntry englishPosEntry;
 
-    public TranslationEntryRepository(English english, Korean korean, EnglishPosEntry englishEntry) {
+    public TranslationEntryRepository(English english, Korean korean) {
         this.english = english;
         this.korean = korean;
-        this.englishPosEntry = englishEntry;
     }
 
     public void setEnglish(String english) {
@@ -30,5 +29,11 @@ public class TranslationEntryRepository {
     public String getKorean() {
         return this.korean.getKoran();
     }
+
+    @Override
+    public String toString() {
+        return getEnglish();
+    }
+
 
 }

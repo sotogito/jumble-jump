@@ -1,0 +1,17 @@
+사용자 정보 업데이트하기 - updateUserInformation - Updating user information
+파일 내용 읽기 - readFileContents
+데이터베이스 연결 확인 - checkDatabaseConnection - Verify database connections
+상품 목록 가져오기 - getProductList
+주문 상태 변경하기 - changeOrderStatus - Changing the status of an order
+로그인 시도 기록하기 - logLoginAttempt - Logging sign-in attempts
+이메일 주소 검증하기 - validateEmailAddress - Validate your email address
+결제 정보 저장하기 - savePaymentDetails
+회원 가입 처리하기 - processRegistration
+파일 다운로드 시작하기 - startFileDownload
+중복 파일 제거 - removeDuplicateFiles
+사용자 권한 설정 - setUserPermissions
+
+
+
+
+~하기 가 붙으면 ing가 붙고 너무 문장? 같이 번역해버린다.

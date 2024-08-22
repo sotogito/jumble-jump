@@ -1,10 +1,8 @@
-package jumble_jump.controller;
+package jumble_jump.controller.example;
 
 import opennlp.tools.sentdetect.SentenceDetectorME;
 import opennlp.tools.sentdetect.SentenceModel;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 public class example {
@@ -17,7 +15,7 @@ public class example {
             SentenceModel model = new SentenceModel(modelIn);
             SentenceDetectorME sentenceDetector = new SentenceDetectorME(model);
 
-            String text = "This is a test. Let's see if it works.";
+            String text = "This is a test. Let's see if it works. qwe";
             String[] sentences = sentenceDetector.sentDetect(text);
 
             for (String sentence : sentences) {

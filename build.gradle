@@ -28,6 +28,12 @@ dependencies {
 
 	implementation 'edu.stanford.nlp:stanford-corenlp:4.5.4'
 	implementation 'edu.stanford.nlp:stanford-corenlp:4.5.4:models' // 모델 파일 포함
+	// OkHttp 클라이언트
+	implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
+	// JSON 처리를 위한 Gson
+	implementation 'com.google.code.gson:gson:2.8.6'
+
 
 
 }

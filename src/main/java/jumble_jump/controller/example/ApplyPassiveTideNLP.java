@@ -3,11 +3,11 @@ package jumble_jump.controller.example;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
-import jumble_jump.domain.Parts;
+import jumble_jump.util.ExclusionWords;
+import jumble_jump.util.NLPConstants;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 public class ApplyPassiveTideNLP {
@@ -40,7 +40,7 @@ public class ApplyPassiveTideNLP {
         props.setProperty("annotators", "tokenize,ssplit,pos,lemma");
         StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
 
-        CoreDocument document = new CoreDocument("Changing the status book of an order phone");
+        CoreDocument document = new CoreDocument("Changing the status have changed book of an order");
         pipeline.annotate(document);
 
         for(CoreLabel token : document.tokens()){
@@ -49,14 +49,14 @@ public class ApplyPassiveTideNLP {
             String word = token.word();
             int index = token.index();
 
-            if(Parts.verbsPosTags.contains(pos)){
+            if(NLPConstants.verbsPosTags.contains(pos)){
                 verbs.add(index);
-            }else if(Parts.nounsPosTags.contains(pos)){
+            }else if(NLPConstants.nounsPosTags.contains(pos)){
                 nouns.add(index);
-            }else if(Parts.adjectivesPosTags.contains(pos)){
+            }else if(NLPConstants.adjectivesPosTags.contains(pos)){
                 adjectives.add(index);
-            } else if (Parts.prepositionsPosTag.equals(pos)) {
-                if(Parts.exclusionWord.contains(word)){
+            } else if (NLPConstants.prepositionsPosTag.equals(pos)) {
+                if(ExclusionWords.exclusionWord.contains(word)){
                     continue;
                 }
                 preposition = index;
