@@ -14,11 +14,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
 
-/**
- * 단수 복수
- *반환하기 - return - get으로 수정
- *
- */
 public class NLPProcessingService {
 
     private final TranslationEntryRepository translationEntryRepository;
@@ -26,8 +21,8 @@ public class NLPProcessingService {
     private final MethodName methodName;
     private final WordReplacer wordReplacer;
 
-    private List<Integer> preNouns = new ArrayList<>();
-    private List<Integer> ppVerbs = new ArrayList<>();
+    private final List<Integer> preNouns = new ArrayList<>();
+    private final List<Integer> ppVerbs = new ArrayList<>();
 
 
     public NLPProcessingService(TranslationEntryRepository translationEntryRepository, EnglishPosEntry englishPosEntry, MethodName methodName) {
@@ -40,9 +35,7 @@ public class NLPProcessingService {
     public void handlePos(String english){
         CoreDocument tokenizeDocument = initCoreDocumentation(english); //note 문장 초기설정
         fullSentenceTokenize(tokenizeDocument); //note 전체 문장 품사 고려하여 토큰화
-
         setPreNounsDividingNouns(); //note 전치사 기준 명사 나누기
-
         setMethodNamePosToken(); //note 합치기
     }
 
@@ -88,9 +81,6 @@ public class NLPProcessingService {
 
     }
 
-
-
-    //todo 단수 복수 고려
     private void changeInfinitiveVerb(){
         int verbsIndexListSize = englishPosEntry.getVerbsIndexListSize();
 
@@ -99,28 +89,35 @@ public class NLPProcessingService {
             CoreLabel token = englishPosEntry.getTokenByIndex(verbIndexFromToken);
             String lemma = token.lemma();
 
-            if(ReplaceWords.verbLemma.contains(lemma)){
-                handleBooleanType(lemma);
-
-                if(i < verbsIndexListSize -1){
-                    handlePassiveType(i);
-                }
+            if(isBooleanPassiveType(i,verbsIndexListSize,lemma)){
                 return;
             }
-            methodName.addMethodNameEntry(WordReplacer.replaceOrdinaryVerb(lemma));
+            methodName.addMethodNameEntry(wordReplacer.replaceOrdinaryVerb(lemma));
         }
     }
 
-    private void handleBooleanType(String lemma){
+    private boolean isBooleanPassiveType(int i ,int verbsIndexListSize,String lemma){
+        if(ReplaceWords.verbLemma.contains(lemma)){
+            updateMethodNameForAuxiliaryVerb(lemma);
+
+            if(i < verbsIndexListSize -1){
+                collectPassiveVerbs(i);
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void updateMethodNameForAuxiliaryVerb(String lemma){
         methodName.clearMethodNameEntry();
-        Optional<String> replacedWord = WordReplacer.replaceBeHave(lemma);
+        Optional<String> replacedWord = wordReplacer.replaceBeHave(lemma);
         if(replacedWord.isEmpty()){
             return;
         }
         methodName.addMethodNameEntry(replacedWord.get());
     }
 
-    private void handlePassiveType(int nowVerbsIndexListOrder) {
+    private void collectPassiveVerbs(int nowVerbsIndexListOrder) {
         boolean isPassiveType;
         int verbsIndexListSize = englishPosEntry.getVerbsIndexListSize();
 
@@ -198,10 +195,5 @@ public class NLPProcessingService {
         pipeline.annotate(document);
         return document;
     }
-
-
-
-
-
 
 }
