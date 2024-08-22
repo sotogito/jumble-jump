@@ -14,16 +14,7 @@
   - your -> user로 변경 또는 아예삭제하기
 
 ### boolean 메서드는 어떡학지 - "is", "can", "has", "should"
-사용자가 로그인 되어 있는지 확인하기 - isLoggedIn
-파일이 존재하는지 확인하기 - fileExists
-데이터가 유효한지 검사하기 - isValidData
-사용자가 관리자인지 확인하기 - isAdmin - _Verify that the user is an admin_
-저장 공간이 충분한지 확인하기 - hasEnoughStorage
-이메일이 확인되었는지 검사하기 - isEmailVerified
-결제가 완료되었는지 확인하기 - isPaymentCompleted
-업데이트가 필요한지 판단하기 - needsUpdate
-서비스가 활성 상태인지 확인하기 - isActiveService
-사용자가 권한을 가지고 있는지 검사하기 - hasPermission
+
 
 - be 동사 is로
 - 만약 동사가 2개면 하나만 사용해야하는데 일단... 일반 동사를 우선으로, 만약 동사가 2개인데 is 가 있으면 is 앞으로
