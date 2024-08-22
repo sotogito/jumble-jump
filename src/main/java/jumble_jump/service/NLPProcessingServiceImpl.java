@@ -4,6 +4,7 @@ import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import jumble_jump.domain.*;
+import jumble_jump.service.interfaces.NLPProcessingService;
 import jumble_jump.util.ExclusionWords;
 import jumble_jump.util.NLPConstants;
 import jumble_jump.util.ReplaceWords;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Properties;
 
-public class NLPProcessingServiceImpl implements NLPProcessingService{
+public class NLPProcessingServiceImpl implements NLPProcessingService {
     public static final String ANNOTATORS_KEY = "annotators";
     public static final String ANNOTATORS = "tokenize,ssplit,pos,lemma";
 

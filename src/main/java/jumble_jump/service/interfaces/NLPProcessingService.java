@@ -1,4 +1,4 @@
-package jumble_jump.service;
+package jumble_jump.service.interfaces;
 
 import edu.stanford.nlp.pipeline.CoreDocument;
 

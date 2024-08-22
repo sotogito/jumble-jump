@@ -3,13 +3,14 @@ package jumble_jump.service;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import jumble_jump.repository.TranslationEntryRepository;
+import jumble_jump.service.interfaces.EnglishTranslationService;
 import okhttp3.*;
 
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-public class EnglishTranslationServiceImpl implements EnglishTranslationService{
+public class EnglishTranslationServiceImpl implements EnglishTranslationService {
 
     private static final String FORM_URL_ENCODED = "application/x-www-form-urlencoded";
     private static final String API_KEY = "1f3905db-c5c1-4cc1-8681-1229b5f5c555:fx"; // DeepL API Key
