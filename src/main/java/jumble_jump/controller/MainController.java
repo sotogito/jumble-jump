@@ -13,6 +13,8 @@ import jumble_jump.service.interfaces.CamelFormattingService;
 import jumble_jump.service.interfaces.EnglishTranslationService;
 import jumble_jump.service.interfaces.NLPProcessingService;
 import jumble_jump.view.Input;
+import jumble_jump.view.Output;
+import jumble_jump.util.ErrorMessage;
 
 public class MainController {
 
@@ -26,11 +28,7 @@ public class MainController {
         methodNameGeneratorService = createMethodNameGeneratorService(translationEntryRepository, englishPosEntry, methodName);
         generateMethod();
 
-
-
-        System.out.println(methodName);
-        System.out.println(translationEntryRepository);
-
+        printCamelCaseMethodName();
     }
 
     private void generateMethod(){
@@ -39,8 +37,10 @@ public class MainController {
                 methodNameGeneratorService.generate(Input.inputKorean());
                 break;
             }catch (IllegalArgumentException e){
-                System.out.println(e.getMessage());
+                Output.printError(e.getMessage());
+                e.printStackTrace();
             } catch (Exception e) {
+                Output.printError(ErrorMessage.UNEXPECTED_ERROR.name());
                 throw new RuntimeException(e);
             }
         }
@@ -53,7 +53,8 @@ public class MainController {
         NLPProcessingService nlpProcessingService = createNLPProcessingService(englishPosEntry, methodName);
         CamelFormattingService camelFormattingService = createCamelFormattingService(methodName);
 
-        return new MethodNameGeneratorService(englishTranslationService,nlpProcessingService,camelFormattingService);
+        return new MethodNameGeneratorService(
+                englishTranslationService,nlpProcessingService,camelFormattingService,methodName);
     }
 
     private EnglishTranslationService createEnglishTranslationService(TranslationEntryRepository translationEntryRepository){
@@ -66,6 +67,10 @@ public class MainController {
 
     private CamelFormattingService createCamelFormattingService(MethodName methodName){
         return new CamelFormattingServiceImpl(methodName);
+    }
+
+    private void printCamelCaseMethodName(){
+        Output.printCamelCaseMethodName(methodNameGeneratorService.getCamelCaseMethodName());
     }
 
 }

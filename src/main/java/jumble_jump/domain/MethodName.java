@@ -14,12 +14,20 @@ public class MethodName {
         this.methodNameEntry.add(methodNameEntry);
     }
 
-    public void setCamelTypeMethodName(int index,String camelTypeToken) {
+    public void setCamelTypeMethodEntryByIndex(int index,String camelTypeToken) {
         methodNameEntry.set(index, camelTypeToken);
+    }
+
+    public void setCamelTypeMethodName(String methodNameEntry) {
+        this.camelTypeMethodName = methodNameEntry;
     }
 
     public List<String> getMethodNameEntry() {
         return methodNameEntry;
+    }
+
+    public String getCamelTypeMethodName() {
+        return camelTypeMethodName;
     }
 
     public void clearMethodNameEntry() {

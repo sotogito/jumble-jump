@@ -22,6 +22,7 @@ public class CamelFormattingServiceImpl implements CamelFormattingService {
         List<String> tokens = methodName.getMethodNameEntry();
         lowercaseFirstLetter(tokens);
         capitalize(tokens);
+        joinCamelFormattedTokens();
     }
 
     @Override
@@ -30,7 +31,7 @@ public class CamelFormattingServiceImpl implements CamelFormattingService {
             String token = tokens.get(i);
             String capitalizedToken = token.substring(FIRST_CHARACTER_INDEX, REMAINING_CHARACTERS_INDEX).toUpperCase()
                     + token.substring(REMAINING_CHARACTERS_INDEX);
-            methodName.setCamelTypeMethodName(i, capitalizedToken);
+            methodName.setCamelTypeMethodEntryByIndex(i, capitalizedToken);
         }
     }
 
@@ -38,7 +39,12 @@ public class CamelFormattingServiceImpl implements CamelFormattingService {
     public void lowercaseFirstLetter(List<String> tokens){
         String firstLetter = tokens.get(LOWERCASE_INDEX);
         String lowerCaseFirstLetter = firstLetter.toLowerCase();
-        methodName.setCamelTypeMethodName(LOWERCASE_INDEX,lowerCaseFirstLetter);
+        methodName.setCamelTypeMethodEntryByIndex(LOWERCASE_INDEX,lowerCaseFirstLetter);
+    }
+
+    public void joinCamelFormattedTokens(){
+        String camelTypeMethodName =  String.join("", methodName.getMethodNameEntry());
+        methodName.setCamelTypeMethodName(camelTypeMethodName);
     }
 
 }

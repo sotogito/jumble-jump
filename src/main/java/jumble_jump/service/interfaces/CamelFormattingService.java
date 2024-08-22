@@ -1,5 +1,7 @@
 package jumble_jump.service.interfaces;
 
+import jumble_jump.domain.MethodName;
+
 import java.util.List;
 
 public interface CamelFormattingService {
