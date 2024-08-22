@@ -1,5 +1,0 @@
-- 2인칭 대명사(your) : user 또는 없앰
-- 가져오기, 반환 : get
-- 검증 : validate
-- 확인 : check, is
-- be 동사, can, has, should가 들어가면 다른 동사는 삭제하고 뒤에 바로 명사
