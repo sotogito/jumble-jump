@@ -34,7 +34,7 @@ public class NLPProcessingService {
 
     public void handlePos(String english) {
         CoreDocument tokenizeDocument = initCoreDocumentation(english); //note 문장 초기설정
-        fullSentenceTokenize(tokenizeDocument); //note 전체 문장 품사 고려하여 토큰화
+        tokenizeFullSentence(tokenizeDocument); //note 전체 문장 품사 고려하여 토큰화
         setPreNounsDividingNouns(); //note 전치사 기준 명사 나누기
         setMethodNamePosToken(); //note 합치기
     }
@@ -160,25 +160,29 @@ public class NLPProcessingService {
     }
 
 
-    private void fullSentenceTokenize(CoreDocument tokenizeDocument) {
+    private void tokenizeFullSentence(CoreDocument tokenizeDocument) {
         for (CoreLabel token : tokenizeDocument.tokens()) {
             englishPosEntry.addToken(token);
             String pos = token.tag();
             String word = token.word();
             int index = token.index();
 
-            if (NLPConstants.verbsPosTags.contains(pos)) {
-                englishPosEntry.addVerb(index);
-            } else if (NLPConstants.nounsPosTags.contains(pos)) {
-                englishPosEntry.addNoun(index);
-            } else if (NLPConstants.adjectivesPosTags.contains(pos)) {
-                englishPosEntry.addAdjective(index);
-            } else if (NLPConstants.prepositionsPosTag.equals(pos)) {
-                if (ExclusionWords.exclusionWord.contains(word)) {
-                    continue;
-                }
-                englishPosEntry.addPreposition(index);
+            updateByPos(pos, word, index);
+        }
+    }
+
+    private void updateByPos(String pos,String word,int index){
+        if (NLPConstants.verbsPosTags.contains(pos)) {
+            englishPosEntry.addVerb(index);
+        } else if (NLPConstants.nounsPosTags.contains(pos)) {
+            englishPosEntry.addNoun(index);
+        } else if (NLPConstants.adjectivesPosTags.contains(pos)) {
+            englishPosEntry.addAdjective(index);
+        } else if (NLPConstants.prepositionsPosTag.equals(pos)) {
+            if (ExclusionWords.exclusionWord.contains(word)) {
+                return;
             }
+            englishPosEntry.addPreposition(index);
         }
     }
 
