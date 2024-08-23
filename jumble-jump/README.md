@@ -103,4 +103,4 @@
 [ (1) 기본 ](https://github.com/sotogito/jumble-jump/tree/8-game-development)
 - DTO 사용
 - dx,dy - nx,ny 활용
-- 이중리스트 로직 + 방향성 추가 
+- 이중리스트 로직 + 방향성 고려
