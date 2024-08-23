@@ -71,8 +71,9 @@
 - 다양하고 구체화된 유효검사 로직
 - Enum 상수로 연산자 구분 - getOperatorType()
 - 스택 활용
-- 토큰화
 - 인터페이스의 상속
+- 인터페이스 다양성 활용 - List<인터페이스>
+- 토큰화
 
 [(2) 웹 구현](https://github.com/sotogito/jumble-jump/tree/6-1-basic-arithmetic-calculator-web)
 - 스프링 사용
