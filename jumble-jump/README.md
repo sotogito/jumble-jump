@@ -88,6 +88,8 @@
 [(1) 기본](https://github.com/sotogito/jumble-jump/tree/7-camel-case-method-name-tool)
 - DeepL api 사용
 - Stanford NLP 라이브러리 사용
+- NLP를 활용해 품사 조작
+- 명확한 역할을 하는 서비스 클래스
 
 
 
