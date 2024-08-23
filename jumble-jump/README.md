@@ -67,6 +67,7 @@
 [(1) 기본](https://github.com/sotogito/jumble-jump/tree/6-basic-arithmetic-calculator)
 - 전위표기법 -> 후위표기법으로 변환하기
 - 후위표기법 괄호 추가 로직으로 중간 식 출력 (후위 -> 전위)
+- 괄호의 우선순위 고려하여 계산 로직 구현
 - 다소 어려운 알고리즘
 - 다양하고 구체화된 유효검사 로직
 - Enum 상수로 연산자 구분 - getOperatorType()
