@@ -67,7 +67,12 @@
 [(1) 기본](https://github.com/sotogito/jumble-jump/tree/6-basic-arithmetic-calculator)
 - 전위표기법 -> 후위표기법으로 변환하기
 - 후위표기법 괄호 추가 로직으로 중간 식 출력 (후위 -> 전위)
+- 다소 어려운 알고리즘
+- 다양하고 구체화된 유효검사 로직
+- Enum 상수로 연산자 구분 - getOperatorType()
 - 스택 활용
+- 토큰화
+- 인터페이스의 상속
 
 [(2) 웹 구현](https://github.com/sotogito/jumble-jump/tree/6-1-basic-arithmetic-calculator-web)
 - 스프링 사용
