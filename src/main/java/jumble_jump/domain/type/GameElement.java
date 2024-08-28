@@ -1,4 +1,4 @@
-package jumble_jump.domain;
+package jumble_jump.domain.type;
 
 public enum GameElement {
     NUMBER,

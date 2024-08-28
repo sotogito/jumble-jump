@@ -1,5 +1,7 @@
 package jumble_jump.domain;
 
+import jumble_jump.domain.type.GameElement;
+
 public class ClapImpl implements Clap{
     private final String clap = "짝";
     private final int count;
