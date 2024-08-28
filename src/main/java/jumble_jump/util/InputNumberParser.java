@@ -52,4 +52,5 @@ public class InputNumberParser {
             throw new IllegalArgumentException("Number list size must be between " + MIN_LIST_SIZE + " and " + MAX_LIST_SIZE);
         }
     }
+
 }

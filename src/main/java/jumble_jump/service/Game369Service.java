@@ -7,6 +7,7 @@ import jumble_jump.domain.type.Game369Number;
 import jumble_jump.domain.type.GameElement;
 import jumble_jump.repository.Numbers;
 import jumble_jump.repository.Tokens369;
+import jumble_jump.util.InputNumberParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +33,15 @@ public class Game369Service {
         this.tokens369 = tokens369;
     }
 
-    public void make369TokenResult(){
+    public void make369TokenResult(String input){
+        updateNumberByInputNumber(input);
         setToken369();
         updateTokenResult();
+    }
+
+    private void updateNumberByInputNumber(String inputNumber){
+        List<NumberT> numberTList = InputNumberParser.getNumberList(inputNumber);
+        numbers.setNumbers(numberTList);
     }
 
     private void updateTokenResult(){
@@ -43,8 +50,8 @@ public class Game369Service {
                 int clapCount = (((Clap) token)).getClap();
 
                 tokenResult.add(clapPrintoutFormat(clapCount));
+                continue;
             }
-
             int number = (((NumberT) token)).getNumber();
             tokenResult.add(String.valueOf(number));
         }
