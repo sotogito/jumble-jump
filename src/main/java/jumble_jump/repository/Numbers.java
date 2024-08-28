@@ -7,9 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Numbers {
-    private final List<NumberT> numbers;
+    private List<NumberT> numbers;
 
-    public Numbers(List<NumberT> numbers) {
+    public Numbers() {
+    }
+
+    public void setNumbers (List<NumberT> numbers) {
         this.numbers = numbers;
     }
 
