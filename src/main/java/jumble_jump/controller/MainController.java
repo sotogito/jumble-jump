@@ -19,15 +19,23 @@ public class MainController {
     public void main(){
         create369Service();
 
+        make369GameResult();
+        print369GameResult();
+    }
+
+    private void make369GameResult() {
         while (true) {
             try{
-                game369Service.make369TokenResult(Input.inputNumbers());
+                game369Service.make369TokenResult(inputNumber());
                 break;
             }catch (IllegalArgumentException e){
                 e.printStackTrace();
             }
         }
-        print369GameResult();
+    }
+
+    private String inputNumber(){
+        return Input.inputNumbers();
     }
 
     private void print369GameResult(){
