@@ -7,6 +7,7 @@ import jumble_jump.service.ClapMaker;
 import jumble_jump.service.Game369Service;
 import jumble_jump.util.InputNumberParser;
 import jumble_jump.view.Input;
+import jumble_jump.view.Output;
 
 import java.util.List;
 
@@ -26,10 +27,11 @@ public class MainController {
                 e.printStackTrace();
             }
         }
+        print369GameResult();
+    }
 
-        for(String printout : game369Service.getTokenResult()){
-            System.out.println(printout);
-        }
+    private void print369GameResult(){
+        Output.print369GameResult(game369Service);
     }
 
     private void create369Service(){
