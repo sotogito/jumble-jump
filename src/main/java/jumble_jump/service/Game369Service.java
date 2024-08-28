@@ -37,8 +37,8 @@ public class Game369Service {
     public void make369TokenResult(String input){
         List<Integer> numberTList = updateNumberByInputNumber(input);
         List<Integer> sortedNumberTList = sortAscendingOrderNumber(numberTList);
-
         updateNumbersToken(sortedNumberTList);
+
         setToken369();
         updateTokenResult();
     }
