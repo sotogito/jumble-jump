@@ -1,6 +1,6 @@
 package jumble_jump.domain;
 
-public class ClapImpl implements Token{
+public class ClapImpl implements Clap{
     private final String clap = "짝";
     private final int count;
 
