@@ -13,24 +13,22 @@ public class InputNumberParser {
     private final static int MIN_LIST_SIZE = 1;
     private final static int MAX_LIST_SIZE = 99999;
 
-    public static List<NumberT> getNumberList(String input) {
-        List<NumberT> result = new ArrayList<>();
+    public static List<Integer> getNumberList(String input) {
+        List<Integer> result = new ArrayList<>();
 
         String[] splitWord = input.split(" ");
+        //note 오름차순 정렬
         for (String s : splitWord) {
             int number = changeNumberFromString(s);
             validateNumberRange(number);
 
-            result.add(createNumber(number));
+            result.add(number);
         }
 
         validateNumberCount(result);
         return result;
     }
 
-    private static NumberT createNumber(int number){
-        return new NumberImpl(number);
-    }
 
     private static int changeNumberFromString(String s) {
         try{
@@ -46,7 +44,7 @@ public class InputNumberParser {
         }
     }
 
-    private static void validateNumberCount(List<NumberT> numbers) {
+    private static void validateNumberCount(List<Integer> numbers) {
         int size = numbers.size();
         if (size < MIN_LIST_SIZE || size > MAX_LIST_SIZE) {
             throw new IllegalArgumentException("Number list size must be between " + MIN_LIST_SIZE + " and " + MAX_LIST_SIZE);

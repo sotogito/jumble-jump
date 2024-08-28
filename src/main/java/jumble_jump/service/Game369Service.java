@@ -1,6 +1,7 @@
 package jumble_jump.service;
 
 import jumble_jump.domain.Clap;
+import jumble_jump.domain.NumberImpl;
 import jumble_jump.domain.NumberT;
 import jumble_jump.domain.Token;
 import jumble_jump.domain.type.Game369Number;
@@ -34,14 +35,30 @@ public class Game369Service {
     }
 
     public void make369TokenResult(String input){
-        updateNumberByInputNumber(input);
+        List<Integer> numberTList = updateNumberByInputNumber(input);
+        List<Integer> sortedNumberTList = sortAscendingOrderNumber(numberTList);
+
+        updateNumbersToken(sortedNumberTList);
         setToken369();
         updateTokenResult();
     }
 
-    private void updateNumberByInputNumber(String inputNumber){
-        List<NumberT> numberTList = InputNumberParser.getNumberList(inputNumber);
-        numbers.setNumbers(numberTList);
+    private void updateNumbersToken(List<Integer> numberTList){
+        List<NumberT> result = new ArrayList<>();
+
+        for(Integer number : numberTList){
+            result.add(new NumberImpl(number));
+        }
+
+        numbers.setNumbers(result);
+    }
+
+    private List<Integer> sortAscendingOrderNumber(List<Integer> numberTList){
+        return AscendingSortMachine.sort(numberTList);
+    }
+
+    private List<Integer> updateNumberByInputNumber(String inputNumber){
+        return InputNumberParser.getNumberList(inputNumber);
     }
 
     private void updateTokenResult(){
