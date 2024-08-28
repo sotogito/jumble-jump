@@ -1,16 +1,18 @@
 package jumble_jump.repository;
 
+import jumble_jump.domain.Token;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Numbers {
-    private final List<Number> numbers;
+    private final List<Token> numbers;
 
-    public Numbers(List<Number> numbers) {
+    public Numbers(List<Token> numbers) {
         this.numbers = numbers;
     }
 
-    public List<Number> getNumbers() {
+    public List<Token> getNumbers() {
         return numbers;
     }
 
