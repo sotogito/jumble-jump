@@ -1,6 +1,6 @@
 package jumble_jump.domain;
 
-public class NumberImpl implements Token{
+public class NumberImpl implements NumberT{
     private final int number;
 
     public NumberImpl(int number) {
