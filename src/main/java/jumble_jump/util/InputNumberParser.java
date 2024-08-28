@@ -4,7 +4,9 @@ import jumble_jump.domain.NumberImpl;
 import jumble_jump.domain.NumberT;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputNumberParser {
     private final static int MIN = 1;
@@ -25,6 +27,7 @@ public class InputNumberParser {
             result.add(number);
         }
 
+        validateDuplication(result);
         validateNumberCount(result);
         return result;
     }
@@ -51,4 +54,10 @@ public class InputNumberParser {
         }
     }
 
+    private static void validateDuplication(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if(uniqueNumbers.size() != numbers.size()){
+            throw new IllegalArgumentException("중복되는 숫자가 존재합니다.\n");
+        }
+    }
 }
