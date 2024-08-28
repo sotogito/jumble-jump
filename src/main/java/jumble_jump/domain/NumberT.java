@@ -11,4 +11,8 @@ public class NumberT implements Token{
         return number;
     }
 
+    @Override
+    public GameElement getGameElement() {
+        return GameElement.NUMBER;
+    }
 }

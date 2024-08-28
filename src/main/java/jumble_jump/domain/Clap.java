@@ -12,4 +12,9 @@ public class Clap implements Token{
         return count;
     }
 
+    @Override
+    public GameElement getGameElement() {
+        return GameElement.CLAP;
+    }
+
 }
