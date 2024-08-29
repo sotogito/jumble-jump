@@ -21,13 +21,25 @@ public class ClapMaker {
         for (NumberT numberToken : numbers.getNumbers()) {
             int clapCount = getClapCount(numberToken);
 
-            if (clapCount > 0) {
-                result.add(new ClapImpl(clapCount)); //note 박수로 넣음
+            if (isClap(clapCount)) {
+                handleClapToken(result,clapCount);
                 continue;
             }
-            result.add(numberToken); //note 그냥 숫자로 넣음
+            handleNumberToken(result,numberToken);
         }
         return result;
+    }
+
+    private void handleClapToken(List<Token> result, int clapCount){
+        result.add(new ClapImpl(clapCount));
+    }
+
+    private void handleNumberToken(List<Token> result,NumberT numberToken){
+        result.add(numberToken);
+    }
+
+    private boolean isClap(int clapCount){
+        return clapCount > 0;
     }
 
     private int getClapCount(NumberT numberT) {

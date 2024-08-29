@@ -11,4 +11,52 @@
 3. 3,6,9를 Enum으로 정의하고 List로 반환하여 해당 일의자리 숫자가 포함되는지 확인하고 박수 숫자 업데이트
 4. 박수 숫자가 0개 이상이면 박수 횟수 Clap Token으로 넣음, 아닌경우 숫자로 취급하고 Number Token으로 넣어서 List<token>반환
 5. List<Token>을 for 무느 돌려서 박수Token인지 숫자Token인지 확인
-6. 숫자면 String으로 변환해서 넣고, 박수면 박수 횟수만큼 박수침
+6. 숫자면 String으로 변환해서 넣고, 박수면 박수 횟수만큼 박 수침
+
+주석을 달지말고 메서드로 설명하라ㅓ
+```java
+    public List<Token> makeClapList(Numbers numbers) {
+        List<Token> result = new ArrayList<>();
+
+        for (NumberT numberToken : numbers.getNumbers()) {
+            int clapCount = getClapCount(numberToken);
+
+            if (clapCount > 0) {
+                result.add(new ClapImpl(clapCount)); //note 박수로 넣음
+                continue;
+            }
+            result.add(numberToken); //note 그냥 숫자로 넣음
+        }
+        return result;
+    }
+```
+```java
+    public List<Token> makeClapList(Numbers numbers) {
+        List<Token> result = new ArrayList<>();
+
+        for (NumberT numberToken : numbers.getNumbers()) {
+            int clapCount = getClapCount(numberToken);
+
+            if (isClap(clapCount)) {
+                handleClapToken(result,clapCount);
+                continue;
+            }
+            handleNumberToken(result,numberToken);
+        }
+        return result;
+    }
+
+    private void handleClapToken(List<Token> result, int clapCount){
+        result.add(new ClapImpl(clapCount));
+    }
+
+    private void handleNumberToken(List<Token> result,NumberT numberToken){
+        result.add(numberToken);
+    }
+
+    private boolean isClap(int clapCount){
+        return clapCount > 0;
+    }
+```
+주석으로 설명하는것보다는 메시지, 코드에서의 일차적인 메시지를 생각했을때 그건 바로 메서드가 아닐까 생각했다.
+그래서 주석을 달아서 구분하기 쉽게하기 보다는 메서드로 따로 분히새ㅓ 메시지를 전하는 방안으로 해결했다.
