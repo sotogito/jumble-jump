@@ -17,17 +17,18 @@ import java.util.List;
  * 1개 이상이므로 clapToken으로 처리
  */
 public class ClapMaker {
+    private final ClapCounter clapCounter;
     private static final int MIN_CLAP_COUNT = 1;
-    private static final List<Integer> NUMBER_LIST_369 = Game369Number.get369NumberList();
 
-    public ClapMaker() {
+    public ClapMaker(ClapCounter clapCounter) {
+        this.clapCounter = clapCounter;
     }
 
     public List<Token> makeClapList(Numbers numbers) {
         List<Token> result = new ArrayList<>();
 
         for (NumberT numberToken : numbers.getNumbers()) {
-            int clapCount = getClapCount(numberToken);
+            int clapCount = clapCounter.getClapCount(numberToken);
 
             if (isClap(clapCount)) {
                 handleClapToken(result,clapCount);
@@ -49,34 +50,6 @@ public class ClapMaker {
 
     private boolean isClap(int clapCount){
         return clapCount >= MIN_CLAP_COUNT;
-    }
-
-
-    //분리할까?
-    private int getClapCount(NumberT numberT) {
-        int clapResult = 0;
-
-        int number = numberT.getNumber();
-        for (Integer numToken : getNumberListSeperatedByDigit(number)) {
-            if (is369Number(numToken)) {
-                clapResult++;
-            }
-        }
-        return clapResult;
-    }
-
-    private List<Integer> getNumberListSeperatedByDigit(int number) {
-        List<Integer> result = new ArrayList<>();
-
-        String numberStr = String.valueOf(number);
-        for (char ch : numberStr.toCharArray()) {
-            result.add(Character.getNumericValue(ch));
-        }
-        return result;
-    }
-
-    private boolean is369Number(int numToken) {
-        return NUMBER_LIST_369.contains(numToken);
     }
 
 }
