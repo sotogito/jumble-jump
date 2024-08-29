@@ -1,4 +1,4 @@
-package jumble_jump.service;
+package jumble_jump.domain;
 
 import jumble_jump.domain.tokens.NumberT;
 import jumble_jump.domain.type.Game369Number;

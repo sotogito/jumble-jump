@@ -8,6 +8,7 @@ import jumble_jump.domain.type.GameElement;
 import jumble_jump.repository.Numbers;
 import jumble_jump.repository.Tokens369;
 import jumble_jump.util.InputNumberParser;
+import jumble_jump.view.ClapPrintoutFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +23,7 @@ public class Game369Service {
     private final Tokens369 tokens369;
     private final ClapMaker clapMaker;
 
-    private final String CLAP_PRINTOUT = "짝";
-    private final String CLAP_FORMAT = "%s!";
-
-    private List<String> tokenResult = new ArrayList<>();
+    private final List<String> tokenResult = new ArrayList<>();
 
     public Game369Service(ClapMaker clapMaker, Numbers numbers, Tokens369 tokens369) {
         this.clapMaker = clapMaker;
@@ -48,7 +46,6 @@ public class Game369Service {
         for(Integer number : numberTList){
             result.add(new NumberImpl(number));
         }
-
         numbers.setNumbers(result);
     }
 
@@ -60,6 +57,7 @@ public class Game369Service {
         return InputNumberParser.getNumberList(inputNumber);
     }
 
+    //이거랑
     private void updateTokenResult(){
         for(Token token : tokens369.getTokens()){
             if(token.getGameElement() == GameElement.CLAP){
@@ -73,16 +71,16 @@ public class Game369Service {
         }
     }
 
-    private String clapPrintoutFormat(int clapCount){
-        return String.format(CLAP_FORMAT,
-                CLAP_PRINTOUT.repeat(clapCount));
-    }
-
     private void setToken369(){
         tokens369.setTokens(get369TokenIncludedClap());
     }
+
     private List<Token> get369TokenIncludedClap(){
         return clapMaker.makeClapList(numbers);
+    }
+
+    private String clapPrintoutFormat(int clapCount){
+        return ClapPrintoutFormatter.format(clapCount);
     }
 
     public List<String> getTokenResult() {
