@@ -1,8 +1,7 @@
 package jumble_jump.repository;
 
-import jumble_jump.domain.Token;
+import jumble_jump.domain.tokens.Token;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Tokens369 {

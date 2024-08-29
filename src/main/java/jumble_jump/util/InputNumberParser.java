@@ -1,8 +1,5 @@
 package jumble_jump.util;
 
-import jumble_jump.domain.NumberImpl;
-import jumble_jump.domain.NumberT;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -34,14 +31,14 @@ public class InputNumberParser {
 
 
     private static int changeNumberFromString(String s) {
-        try{
+        try {
             return Integer.parseInt(s);
-        }catch (NumberFormatException e){
-            throw new NumberFormatException();
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("숫자로 입력해주세요.");
         }
     }
 
-    private static void validateNumberRange(int number){
+    private static void validateNumberRange(int number) {
         if (number < MIN || number > MAX) {
             throw new IllegalArgumentException("Number must be between " + MIN + " and " + MAX);
         }
@@ -56,7 +53,7 @@ public class InputNumberParser {
 
     private static void validateDuplication(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if(uniqueNumbers.size() != numbers.size()){
+        if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException("중복되는 숫자가 존재합니다.\n");
         }
     }

@@ -1,9 +1,7 @@
 package jumble_jump.repository;
 
-import jumble_jump.domain.NumberT;
-import jumble_jump.domain.Token;
+import jumble_jump.domain.tokens.NumberT;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Numbers {

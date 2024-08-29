@@ -1,10 +1,9 @@
 package jumble_jump.service;
 
-import jumble_jump.domain.Clap;
+import jumble_jump.domain.tokens.Clap;
 import jumble_jump.domain.NumberImpl;
-import jumble_jump.domain.NumberT;
-import jumble_jump.domain.Token;
-import jumble_jump.domain.type.Game369Number;
+import jumble_jump.domain.tokens.NumberT;
+import jumble_jump.domain.tokens.Token;
 import jumble_jump.domain.type.GameElement;
 import jumble_jump.repository.Numbers;
 import jumble_jump.repository.Tokens369;
