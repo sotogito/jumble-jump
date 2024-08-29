@@ -10,14 +10,21 @@ public class AscendingSortMachine {
         for (int i = 0; i < numberList.size() - 1; i++) {
 
             int minIndex = i;
+
+
             for (int j = i + 1; j < numberList.size(); j++) {
-                if (numberList.get(j) < numberList.get(minIndex)) {
+                if (canSort(numberList, minIndex, j)) {
                     minIndex = j;
                 }
             }
+
             swipe(numberList, i, minIndex);
         }
         return numberList;
+    }
+
+    private static boolean canSort(List<Integer> numberList, int minIndex, int j) {
+        return numberList.get(j) < numberList.get(minIndex);
     }
 
     private static void swipe(List<Integer> numberList, int nowIndex, int minIndex) {
@@ -27,4 +34,5 @@ public class AscendingSortMachine {
         numberList.set(nowIndex, smallerNum);
         numberList.set(minIndex, biggerNum);
     }
+
 }
