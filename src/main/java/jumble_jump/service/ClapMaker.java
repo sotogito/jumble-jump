@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClapMaker {
-
-    private final List<Integer> NUMBER_LIST_369 = Game369Number.get369NumberList();
+    private static final List<Integer> NUMBER_LIST_369 = Game369Number.get369NumberList();
 
     public ClapMaker() {
     }
