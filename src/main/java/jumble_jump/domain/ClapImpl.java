@@ -10,6 +10,7 @@ public class ClapImpl implements Clap {
         this.count = count;
     }
 
+    @Override
     public int getClap() {
         return count;
     }

@@ -8,19 +8,18 @@ import java.util.Set;
 public class InputNumberParser {
     private final static int MIN = 1;
     private final static int MAX = 99999;
-
     private final static int MIN_LIST_SIZE = 1;
     private final static int MAX_LIST_SIZE = 99999;
+    private final static String INPUT_NUMBER_DIVIDER = " ";
 
     public static List<Integer> getNumberList(String input) {
         List<Integer> result = new ArrayList<>();
 
-        String[] splitWord = input.split(" ");
-        //note 오름차순 정렬
+        String[] splitWord = input.split(INPUT_NUMBER_DIVIDER);
         for (String s : splitWord) {
             int number = changeNumberFromString(s);
-            validateNumberRange(number);
 
+            validateNumberRange(number);
             result.add(number);
         }
 
@@ -28,7 +27,6 @@ public class InputNumberParser {
         validateNumberCount(result);
         return result;
     }
-
 
     private static int changeNumberFromString(String s) {
         try {
@@ -57,4 +55,5 @@ public class InputNumberParser {
             throw new IllegalArgumentException("중복되는 숫자가 존재합니다.\n");
         }
     }
+
 }

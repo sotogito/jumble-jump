@@ -31,7 +31,7 @@ public class Game369Service {
         this.tokens369 = tokens369;
     }
 
-    public void make369TokenResult(String input){
+    public void make369TokenResult(String input) {
         List<Integer> numberTList = updateNumberByInputNumber(input);
         List<Integer> sortedNumberTList = sortAscendingOrderNumber(numberTList);
         updateNumbersToken(sortedNumberTList);
@@ -40,27 +40,9 @@ public class Game369Service {
         updateTokenResult();
     }
 
-    private void updateNumbersToken(List<Integer> numberTList){
-        List<NumberT> result = new ArrayList<>();
-
-        for(Integer number : numberTList){
-            result.add(new NumberImpl(number));
-        }
-        numbers.setNumbers(result);
-    }
-
-    private List<Integer> sortAscendingOrderNumber(List<Integer> numberTList){
-        return AscendingSortMachine.sort(numberTList);
-    }
-
-    private List<Integer> updateNumberByInputNumber(String inputNumber){
-        return InputNumberParser.getNumberList(inputNumber);
-    }
-
-    //이거랑
-    private void updateTokenResult(){
-        for(Token token : tokens369.getTokens()){
-            if(token.getGameElement() == GameElement.CLAP){
+    private void updateTokenResult() {
+        for (Token token : tokens369.getTokens()) {
+            if (token.getGameElement() == GameElement.CLAP) {
                 int clapCount = (((Clap) token)).getClap();
 
                 tokenResult.add(clapPrintoutFormat(clapCount));
@@ -71,15 +53,32 @@ public class Game369Service {
         }
     }
 
-    private void setToken369(){
+    private void updateNumbersToken(List<Integer> numberTList) {
+        List<NumberT> result = new ArrayList<>();
+
+        for (Integer number : numberTList) {
+            result.add(new NumberImpl(number));
+        }
+        numbers.setNumbers(result);
+    }
+
+    private List<Integer> sortAscendingOrderNumber(List<Integer> numberTList) {
+        return AscendingSortMachine.sort(numberTList);
+    }
+
+    private List<Integer> updateNumberByInputNumber(String inputNumber) {
+        return InputNumberParser.getNumberList(inputNumber);
+    }
+
+    private void setToken369() {
         tokens369.setTokens(get369TokenIncludedClap());
     }
 
-    private List<Token> get369TokenIncludedClap(){
+    private List<Token> get369TokenIncludedClap() {
         return clapMaker.makeClapList(numbers);
     }
 
-    private String clapPrintoutFormat(int clapCount){
+    private String clapPrintoutFormat(int clapCount) {
         return ClapPrintoutFormatter.format(clapCount);
     }
 

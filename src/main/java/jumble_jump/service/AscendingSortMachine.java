@@ -8,16 +8,13 @@ public class AscendingSortMachine {
 
     public static List<Integer> sort(List<Integer> numberList) {
         for (int i = 0; i < numberList.size() - 1; i++) {
-
             int minIndex = i;
-
 
             for (int j = i + 1; j < numberList.size(); j++) {
                 if (canSort(numberList, minIndex, j)) {
                     minIndex = j;
                 }
             }
-
             swipe(numberList, i, minIndex);
         }
         return numberList;

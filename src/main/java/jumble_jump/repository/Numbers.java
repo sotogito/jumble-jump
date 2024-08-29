@@ -10,7 +10,7 @@ public class Numbers {
     public Numbers() {
     }
 
-    public void setNumbers (List<NumberT> numbers) {
+    public void setNumbers(List<NumberT> numbers) {
         this.numbers = numbers;
     }
 

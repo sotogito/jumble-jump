@@ -10,6 +10,7 @@ public class NumberImpl implements NumberT {
         this.number = number;
     }
 
+    @Override
     public int getNumber() {
         return number;
     }
@@ -18,4 +19,5 @@ public class NumberImpl implements NumberT {
     public GameElement getGameElement() {
         return GameElement.NUMBER;
     }
+
 }

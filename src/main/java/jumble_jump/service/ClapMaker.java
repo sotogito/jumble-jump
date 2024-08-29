@@ -31,24 +31,24 @@ public class ClapMaker {
             int clapCount = clapCounter.getClapCount(numberToken);
 
             if (isClap(clapCount)) {
-                handleClapToken(result,clapCount);
+                handleClapToken(result, clapCount);
                 continue;
             }
-            handleNumberToken(result,numberToken);
+            handleNumberToken(result, numberToken);
         }
         return result;
     }
 
-    private void handleClapToken(List<Token> result, int clapCount){
+    private void handleClapToken(List<Token> result, int clapCount) {
         result.add(new ClapImpl(clapCount)); //Token>Clap 인터페이스 = new ClapImpl,
         //note ClapImpl이 Clap인터페이스로 적용되어서 부모 Token이 아닌 자식 Clap으로 리스크에 들어감
     }
 
-    private void handleNumberToken(List<Token> result,NumberT numberToken){
+    private void handleNumberToken(List<Token> result, NumberT numberToken) {
         result.add(numberToken);
     }
 
-    private boolean isClap(int clapCount){
+    private boolean isClap(int clapCount) {
         return clapCount >= MIN_CLAP_COUNT;
     }
 

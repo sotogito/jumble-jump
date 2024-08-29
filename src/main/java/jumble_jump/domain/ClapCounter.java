@@ -9,7 +9,7 @@ import java.util.List;
 public class ClapCounter {
     private static final List<Integer> NUMBER_LIST_369 = Game369Number.get369NumberList();
 
-    public int getClapCount(NumberT numberT){
+    public int getClapCount(NumberT numberT) {
         int clapResult = 0;
 
         int number = numberT.getNumber();
