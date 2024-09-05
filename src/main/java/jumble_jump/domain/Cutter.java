@@ -7,4 +7,8 @@ public class Cutter {
         this.height = height;
     }
 
+    public int getHeight() {
+        return height;
+    }
+
 }

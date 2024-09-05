@@ -1,10 +1,9 @@
-1. RiceCAke,RiceCakse 
+1. RiceCAke,RiceCakse
 2. Order
 3. Cutter
-4. SErive
-5. Parser및 유효검사ㅣ
+4. SErive - 이진탐색 + 재귀 사용
 
-
+3. 5. Parser및 유효검사ㅣ
 ---
 - RiceCake - int
 - RiceCakes - List<떡>
