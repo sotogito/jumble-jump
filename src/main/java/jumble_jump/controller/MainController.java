@@ -37,7 +37,7 @@ public class MainController {
                 int totalHeight = Input.inputRiceCakeTotalHeight();
 
                 return OrderFactory.createOrder(riceCakeeList, totalHeight);
-            }catch (NumberFormatException e){
+            }catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }
         }
