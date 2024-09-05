@@ -1,4 +1,6 @@
-package jumble_jump.domain;
+package jumble_jump.repository;
+
+import jumble_jump.domain.RiceCake;
 
 import java.util.List;
 
@@ -11,6 +13,10 @@ public class RiceCakes {
 
     public List<RiceCake> getRiceCakes() {
         return riceCakes;
+    }
+
+    public int getRiceCakeCount() {
+        return riceCakes.size();
     }
 
 }
