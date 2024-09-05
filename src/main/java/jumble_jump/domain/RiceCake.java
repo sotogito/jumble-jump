@@ -11,7 +11,7 @@ public class RiceCake {
         return height;
     }
 
-    public int getResultOfCuttingWithCutter(int cutterHeight){
+    public int getHeightOfCuttingWithCutter(int cutterHeight){
         return height - cutterHeight;
     }
 

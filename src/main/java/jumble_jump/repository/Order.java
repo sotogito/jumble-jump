@@ -16,14 +16,8 @@ public class Order {
         this.riceCakeLength = riceCakeLength;
     }
 
-    public List<Integer> getArray() {
-        List<Integer> result = new ArrayList<>();
-        int maxRiceCakeLength = Collections.max(riceCakes.getRiceCakes(), Comparator.comparingInt(RiceCake::getHeight)).getHeight();
-        for(int i = 0; i <= maxRiceCakeLength; i++) {
-            result.add(i);
-        }
-
-        return result;
+    public int getMaxRiceCakeLength() {
+        return Collections.max(riceCakes.getRiceCakes(), Comparator.comparingInt(RiceCake::getHeight)).getHeight();
     }
 
     public List<RiceCake> getSortedRiceCakes(){
@@ -34,14 +28,6 @@ public class Order {
 
     public int getRiceCakeLength(){
         return riceCakeLength;
-    }
-
-    public int getRiceCakeCount(){
-        return riceCakes.getRiceCakeCount();
-    }
-
-    public boolean isSameLength(int cutterHeight){
-        return riceCakeLength == cutterHeight;
     }
 
 }

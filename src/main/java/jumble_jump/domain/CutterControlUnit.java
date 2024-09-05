@@ -17,7 +17,6 @@ public class CutterControlUnit implements CutterController{
         return result;
     }
 
-
     @Override
     public CutterLength getCutterLengthStatus(int target, int result) {
         if (target < result) {

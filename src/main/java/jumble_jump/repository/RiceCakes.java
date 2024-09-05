@@ -15,8 +15,4 @@ public class RiceCakes {
         return riceCakes;
     }
 
-    public int getRiceCakeCount() {
-        return riceCakes.size();
-    }
-
 }

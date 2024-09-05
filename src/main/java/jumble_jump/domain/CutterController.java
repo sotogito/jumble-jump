@@ -8,4 +8,5 @@ public interface CutterController {
     int adjustingLength(CutterLength midCutterLength, int mid);
 
     int calculateCutRiceCakeTotalHeight(List<RiceCake> riceCakeList, int midCutterHeight);
+
 }
