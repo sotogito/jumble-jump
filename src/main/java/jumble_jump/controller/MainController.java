@@ -8,6 +8,7 @@ import jumble_jump.serive.CutterHeightSettingService;
 import jumble_jump.util.InputRiceCakeParser;
 import jumble_jump.util.OrderFactory;
 import jumble_jump.view.Input;
+import jumble_jump.view.Output;
 
 import java.util.List;
 
@@ -20,15 +21,12 @@ public class MainController {
 
         cutterHeightSettingService.setCutterHeight();
 
-        System.out.println(cutterHeightSettingService.getResultCutterHeight());
-
+        printCutterHeightResult();
     }
 
     private void createCutterHeightSettingService(Order order){
-        cutterHeightSettingService = new CutterHeightSettingService(
-                new Cutter(),order, new CutterControlUnit());
+        cutterHeightSettingService = new CutterHeightSettingService(new Cutter(),order, new CutterControlUnit());
     }
-
 
     private Order createOrder(){
         while (true){
@@ -41,6 +39,10 @@ public class MainController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void printCutterHeightResult(){
+        Output.printCutterHeightResult(cutterHeightSettingService);
     }
 
 }
