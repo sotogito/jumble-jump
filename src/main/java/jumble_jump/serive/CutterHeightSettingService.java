@@ -21,6 +21,7 @@ public class CutterHeightSettingService {
 
     private static final int NOTHING = -1;
 
+    private int target;
     private int mid;
     private int start;
     private int end;
@@ -33,48 +34,47 @@ public class CutterHeightSettingService {
 
     public void setCutterHeight(){
         List<RiceCake> riceCakeList = order.getSortedRiceCakes();
-        int targetLength = order.getRiceCakeLength();
+        int target = order.getRiceCakeLength();
         int start = 0;
         int end = order.getMaxRiceCakeLength();
 
-        int heightResult = findCutterHeight(riceCakeList,targetLength,start,end);
-        if(heightResult == NOTHING){
+        int heightResult = findCutterHeight(riceCakeList, target, start, end, NOTHING);
+        if (heightResult == NOTHING) {
             throw new IllegalArgumentException("계산할 수 없습니다.");
         }
         cutter.setHeight(heightResult);
     }
 
-    private int findCutterHeight(List<RiceCake> riceCakeList, int target, int start, int end){
+    private int findCutterHeight(List<RiceCake> riceCakeList, int target, int start, int end, int bestHeight) {
         if (isUnderlyingCondition(start, end)) {
-            return NOTHING;
+            return bestHeight;
         }
 
         int mid = (start + end) / 2;
-        int cutRiceCakeHeight = cutterController.calculateCutRiceCakeTotalHeight(riceCakeList,mid);
+        int cutRiceCakeHeight = cutterController.calculateCutRiceCakeTotalHeight(riceCakeList, mid);
         CutterLength midCutterLength = cutterController.getCutterLengthStatus(target, cutRiceCakeHeight);
 
-        return adjustingCutterLength(midCutterLength,riceCakeList,target,start,end,mid);
+        return adjustingCutterLength(midCutterLength, riceCakeList, target, start, end, mid, bestHeight);
     }
 
-    private int adjustingCutterLength(
-            CutterLength midCutterLength, List<RiceCake> riceCakeList, int target, int start, int end, int mid){
-        if (midCutterLength.equals(CutterLength.LONG)){
+    private int adjustingCutterLength(CutterLength midCutterLength, List<RiceCake> riceCakeList,
+                                      int target, int start, int end, int mid, int bestHeight) {
+        if (midCutterLength.equals(CutterLength.LONG)) {
             int startPoint = cutterController.adjustingLength(midCutterLength,mid);
-            return findCutterHeight(riceCakeList, target,startPoint, end); //todo 이부부느메서드로 변경
+            bestHeight = mid;
+            return findCutterHeight(riceCakeList, target, startPoint, end,bestHeight);
 
-        } else if (midCutterLength.equals(CutterLength.SHORT)){
+        } else if (midCutterLength.equals(CutterLength.SHORT)) {
             int endPoint = cutterController.adjustingLength(midCutterLength,mid);
-            return findCutterHeight(riceCakeList, target, start, endPoint);
+            return findCutterHeight(riceCakeList, target, start, endPoint,bestHeight);
         }
-
         return mid;
     }
-
-
 
     private boolean isUnderlyingCondition(int start, int end) {
         return start > end;
     }
+
 
 
     //note 출력
