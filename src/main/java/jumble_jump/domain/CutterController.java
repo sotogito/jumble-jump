@@ -1,6 +1,11 @@
 package jumble_jump.domain;
 
-public interface CutterController {
-    CutterLength calculate(int target, int result);
+import java.util.List;
 
+public interface CutterController {
+    CutterLength getCutterLengthStatus(int target, int result);
+
+    int adjustingLength(CutterLength midCutterLength, int mid);
+
+    int calculateCutRiceCakeTotalHeight(List<RiceCake> riceCakeList, int midCutterHeight);
 }
