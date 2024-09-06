@@ -26,7 +26,7 @@ public class CutterHeightSettingService {
     }
 
     public void setCutterHeight() {
-        List<RiceCake> riceCakeList = order.getSortedRiceCakes();
+        List<RiceCake> riceCakeList = order.getRiceCakes();
         int targetLength = order.getRiceCakeLength();
         start = 0;
         end = order.getMaxRiceCakeLength();
