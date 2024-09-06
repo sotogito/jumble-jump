@@ -17,6 +17,7 @@ class CutterHeightSettingServiceTest {
     private CutterHeightSettingService cutterHeightSettingService;
     private Cutter cutter;
     private CutterControlUnit cutterControlUnit;
+    private RiceCakes riceCakes;
 
     @BeforeEach
     public void setUp() {
@@ -24,28 +25,34 @@ class CutterHeightSettingServiceTest {
         cutterControlUnit = new CutterControlUnit();
 
         // 떡 높이 리스트: 19, 15, 10, 17
-        List<RiceCake> riceCakes = Arrays.asList(
+        List<RiceCake> riceCakeList = Arrays.asList(
                 new RiceCake(19),
                 new RiceCake(15),
                 new RiceCake(10),
                 new RiceCake(17)
         );
 
-        RiceCakes riceCakesRepository = new RiceCakes(riceCakes);
-
-        // 떡의 목표 길이는 6으로 설정
-        Order order = new Order(riceCakesRepository, 4);
-
-        cutterHeightSettingService = new CutterHeightSettingService(cutter, order, cutterControlUnit);
+        riceCakes = new RiceCakes(riceCakeList);
     }
 
     @Test
     public void testSetCutterHeightSuccess() {
-        // 절단기 높이 설정
+        Order order = new Order(riceCakes, 4);
+
+        cutterHeightSettingService = new CutterHeightSettingService(cutter, order, cutterControlUnit);
         cutterHeightSettingService.setCutterHeight();
 
-        // 최종적으로 설정된 절단기 높이는 15이어야 한다 (예상치)
         assertEquals(16, cutter.getHeight());
+    }
+
+    @Test
+    public void 나누어_떨어지지_않을_떄_절단기_최대길이_반환() {
+        Order order = new Order(riceCakes, 5);
+
+        cutterHeightSettingService = new CutterHeightSettingService(cutter, order, cutterControlUnit);
+        cutterHeightSettingService.setCutterHeight();
+
+        assertEquals(15, cutter.getHeight());
     }
 
 }
