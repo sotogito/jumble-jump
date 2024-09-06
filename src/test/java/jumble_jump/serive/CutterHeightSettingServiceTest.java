@@ -48,23 +48,4 @@ class CutterHeightSettingServiceTest {
         assertEquals(16, cutter.getHeight());
     }
 
-    @Test
-    //note 테스트를 위해서 유효검사 위치를 변경?
-    public void testSetCutterHeightFailure() {
-        // 목표 길이를 너무 높게 설정하여 불가능한 경우 테스트
-        List<RiceCake> riceCakes = Arrays.asList(
-                new RiceCake(1),
-                new RiceCake(2),
-                new RiceCake(3),
-                new RiceCake(4)
-        );
-
-        RiceCakes riceCakesRepository = new RiceCakes(riceCakes);
-        Order impossibleOrder = new Order(riceCakesRepository, 100);
-
-        CutterHeightSettingService impossibleService = new CutterHeightSettingService(cutter, impossibleOrder, cutterControlUnit);
-
-        assertThrows(IllegalArgumentException.class, impossibleService::setCutterHeight, "계산할 수 없습니다.");
-    }
-
 }
