@@ -17,7 +17,7 @@ public class Order {
     }
 
     public int getMaxRiceCakeLength() {
-        return Collections.max(riceCakes.getRiceCakes(), Comparator.comparingInt(RiceCake::getHeight)).getHeight();
+        return riceCakes.getMaxRiceCakeLength();
     }
 
     public List<RiceCake> getSortedRiceCakes(){
