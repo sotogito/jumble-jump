@@ -9,18 +9,12 @@ import jumble_jump.repository.RiceCakes;
 
 import java.util.List;
 
-/**
- * 1. 데이터 선언하기
- * 2. 재귀 돌리기
- */
 public class CutterHeightSettingService {
     private final Order order;
     private final Cutter cutter;
     private final CutterController cutterController;
 
-
     private static final int NOTHING = -1;
-
     private int mid;
     private int start;
     private int end;
@@ -31,14 +25,21 @@ public class CutterHeightSettingService {
         this.cutterController = cutterController;
     }
 
-    public void setCutterHeight(){
+    public void setCutterHeight() {
         List<RiceCake> riceCakeList = order.getSortedRiceCakes();
         int targetLength = order.getRiceCakeLength();
         start = 0;
         end = order.getMaxRiceCakeLength();
 
-        int heightResult = findCutterHeight(riceCakeList,targetLength);
+        int heightResult = findCutterHeight(riceCakeList, targetLength);
         setCutterHeightAsResult(heightResult);
+    }
+
+    private void setCutterHeightAsResult(int heightResult) {
+        if (heightResult == NOTHING) {
+            throw new IllegalArgumentException("계산할 수 없습니다.");
+        }
+        cutter.setHeight(heightResult);
     }
 
     private int findCutterHeight(List<RiceCake> riceCakeList, int target) {
@@ -46,17 +47,16 @@ public class CutterHeightSettingService {
 
         while (isContinueCondition()) {
             mid = calculateMidPoint();
-            int cutRiceCakeHeight = cutterController.calculateCutRiceCakeTotalHeight(riceCakeList,mid);
+            int cutRiceCakeHeight = cutterController.calculateCutRiceCakeTotalHeight(riceCakeList, mid);
             CutterLength midCutterLength = cutterController.getCutterLengthStatus(target, cutRiceCakeHeight);
 
-
             if (midCutterLength.equals(CutterLength.LONG)) {
-                start = cutterController.adjustingLength(midCutterLength,mid);
+                updateStartPoint(midCutterLength);
                 result = mid;
                 continue;
 
             } else if (midCutterLength.equals(CutterLength.SHORT)) {
-                end = cutterController.adjustingLength(midCutterLength, mid);
+                updateEndPoint(midCutterLength);
                 continue;
             }
             return mid;
@@ -64,26 +64,24 @@ public class CutterHeightSettingService {
         return result;
     }
 
+    private void updateStartPoint(CutterLength midCutterLength) {
+        start = cutterController.adjustingLength(midCutterLength, mid);
+    }
+
+    private void updateEndPoint(CutterLength midCutterLength) {
+        end = cutterController.adjustingLength(midCutterLength, mid);
+    }
+
     private boolean isContinueCondition() {
         return start <= end;
     }
 
-    private int calculateMidPoint(){
+    private int calculateMidPoint() {
         return (start + end) / 2;
     }
 
-    private void setCutterHeightAsResult(int heightResult){
-        if (heightResult == NOTHING) {
-            throw new IllegalArgumentException("계산할 수 없습니다.");
-        }
-        cutter.setHeight(heightResult);
-    }
-
-
-
     //note 출력
-
-    public int getResultCutterHeight(){
+    public int getResultCutterHeight() {
         return cutter.getHeight();
     }
 

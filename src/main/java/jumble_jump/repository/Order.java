@@ -20,13 +20,13 @@ public class Order {
         return riceCakes.getMaxRiceCakeLength();
     }
 
-    public List<RiceCake> getSortedRiceCakes(){
+    public List<RiceCake> getSortedRiceCakes() {
         List<RiceCake> result = riceCakes.getRiceCakes();
         result.sort(Comparator.comparingInt(RiceCake::getHeight));
         return result;
     }
 
-    public int getRiceCakeLength(){
+    public int getRiceCakeLength() {
         return riceCakeLength;
     }
 

@@ -2,15 +2,14 @@ package jumble_jump.domain;
 
 import java.util.List;
 
-public class CutterControlUnit implements CutterController{
+public class CutterControlUnit implements CutterController {
 
     @Override
-    public int calculateCutRiceCakeTotalHeight(List<RiceCake> riceCakeList, int midCutterHeight){
+    public int calculateCutRiceCakeTotalHeight(List<RiceCake> riceCakeList, int midCutterHeight) {
         int result = 0;
 
         for (RiceCake riceCake : riceCakeList) {
-
-            if(riceCake.canCut(midCutterHeight)){
+            if (riceCake.canCut(midCutterHeight)) {
                 result += (riceCake.getHeightOfCuttingWithCutter(midCutterHeight));
             }
         }

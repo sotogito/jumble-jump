@@ -15,7 +15,7 @@ import java.util.List;
 public class MainController {
     private CutterHeightSettingService cutterHeightSettingService;
 
-    public void main(){
+    public void main() {
         Order order = createOrder();
         createCutterHeightSettingService(order);
 
@@ -24,24 +24,24 @@ public class MainController {
         printCutterHeightResult();
     }
 
-    private void createCutterHeightSettingService(Order order){
-        cutterHeightSettingService = new CutterHeightSettingService(new Cutter(),order, new CutterControlUnit());
+    private void createCutterHeightSettingService(Order order) {
+        cutterHeightSettingService = new CutterHeightSettingService(new Cutter(), order, new CutterControlUnit());
     }
 
-    private Order createOrder(){
-        while (true){
-            try{
+    private Order createOrder() {
+        while (true) {
+            try {
                 List<RiceCake> riceCakeeList = InputRiceCakeParser.parse(Input.inputRiceCakes());
                 int totalHeight = Input.inputRiceCakeTotalHeight();
 
                 return OrderFactory.createOrder(riceCakeeList, totalHeight);
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private void printCutterHeightResult(){
+    private void printCutterHeightResult() {
         Output.printCutterHeightResult(cutterHeightSettingService);
     }
 

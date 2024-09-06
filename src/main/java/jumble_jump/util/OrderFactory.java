@@ -13,14 +13,15 @@ public class OrderFactory {
     public static Order createOrder(List<RiceCake> riceCakes, int riceCakeLength) {
         validateRiceCakeLength(riceCakes, riceCakeLength);
 
-        return new Order(new RiceCakes(riceCakes),riceCakeLength);
+        return new Order(new RiceCakes(riceCakes), riceCakeLength);
     }
 
     private static void validateRiceCakeLength(List<RiceCake> riceCakes, int riceCakeLength) {
         int max = Collections.max(riceCakes, Comparator.comparingInt(RiceCake::getHeight)).getHeight();
 
         if (riceCakeLength < 1 || riceCakeLength > max) {
-            throw new IllegalArgumentException("길이는 최소 1에서 쩍길이의 최대값만 가능해요.");
+            throw new IllegalArgumentException("길이는 최소 1에서 입력된 떡 길이의 최대값만 가능해요.");
         }
     }
+
 }
