@@ -50,18 +50,32 @@ public class CutterHeightSettingService {
             int cutRiceCakeHeight = cutterController.calculateCutRiceCakeTotalHeight(riceCakeList, mid);
             CutterLength midCutterLength = cutterController.getCutterLengthStatus(target, cutRiceCakeHeight);
 
-            if (midCutterLength.equals(CutterLength.LONG)) {
-                updateStartPoint(midCutterLength);
-                result = mid;
-                continue;
 
-            } else if (midCutterLength.equals(CutterLength.SHORT)) {
-                updateEndPoint(midCutterLength);
+            if(whenCutterHeightTooShort(midCutterLength)){
+                result = mid; //note 아래에사면 5일때 16이나옴
+                continue;
+            } else if (whenCutterHeightTooLong(midCutterLength)) {
                 continue;
             }
             return mid;
         }
         return result;
+    }
+
+    private boolean whenCutterHeightTooShort(CutterLength midCutterLength) {
+        if (midCutterLength.equals(CutterLength.SHORT)) {
+            updateStartPoint(midCutterLength);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean whenCutterHeightTooLong(CutterLength midCutterLength) {
+        if (midCutterLength.equals(CutterLength.LONG)) {
+            updateEndPoint(midCutterLength);
+            return true;
+        }
+        return false;
     }
 
     private void updateStartPoint(CutterLength midCutterLength) {
