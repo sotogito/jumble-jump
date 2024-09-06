@@ -50,7 +50,6 @@ public class CutterHeightSettingService {
             int cutRiceCakeHeight = cutterController.calculateCutRiceCakeTotalHeight(riceCakeList, mid);
             CutterLength midCutterLength = cutterController.getCutterLengthStatus(target, cutRiceCakeHeight);
 
-
             if(whenCutterHeightTooShort(midCutterLength)){
                 result = mid; //note 아래에사면 5일때 16이나옴
                 continue;

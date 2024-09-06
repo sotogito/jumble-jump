@@ -2,8 +2,8 @@ package jumble_jump.domain;
 
 public enum CutterLength {
     SAME(0, "nothing"),
-    LONG(1, "start"),
-    SHORT(-1, "end");
+    LONG(-1, "end"),
+    SHORT(1, "start");
 
     private final int calculatedValue;
     private final String adjustingPoint;

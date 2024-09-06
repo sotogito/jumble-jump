@@ -19,9 +19,9 @@ public class CutterControlUnit implements CutterController {
     @Override
     public CutterLength getCutterLengthStatus(int target, int result) {
         if (target < result) {
-            return CutterLength.LONG;
-        } else if (target > result) {
             return CutterLength.SHORT;
+        } else if (target > result) {
+            return CutterLength.LONG;
         }
         return CutterLength.SAME;
     }
